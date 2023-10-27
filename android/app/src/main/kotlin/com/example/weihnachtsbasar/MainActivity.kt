@@ -1,4 +1,4 @@
-package com.example.web_app
+package com.example.weihnachtsbasar
 
 import io.flutter.embedding.android.FlutterActivity
 
