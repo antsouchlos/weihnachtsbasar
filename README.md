@@ -1,10 +1,7 @@
-# Weihnachtsbasar
+# weihnachtsbasar
 
-A registration website for the DSA Weihnachtsbasar 2023.
+A new Flutter project.
 
-## Build & run
+## Getting Started
 
-```bash
-$ flutter run -d linux
-```
-
+FlutterFlow projects are built to run on the Flutter _stable_ release.

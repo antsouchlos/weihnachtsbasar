@@ -1,419 +1,78 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
+import 'flutter_flow/internationalization.dart';
+import 'flutter_flow/nav/nav.dart';
+import 'index.dart';
 
-/*
- *
- * Main function and app
- *
- */
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
 
+  await FlutterFlowTheme.initialize();
 
-void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
 
-  final String title = 'Weihnachtsbasar';
+  static _MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>()!;
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+
+  late AppStateNotifier _appStateNotifier;
+  late GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _appStateNotifier = AppStateNotifier.instance;
+    _router = createRouter(_appStateNotifier);
+  }
+
+  void setLocale(String language) {
+    setState(() => _locale = createLocale(language));
+  }
+
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+        FlutterFlowTheme.saveThemeMode(mode);
+      });
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: title,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: MyHomePage(title: title),
-      //home: StandOverviewPage(title: title),
-      //home: RegistrationPage(title: title)
-    );
-  }
-}
-
-
-/*
- *
- * Helper functions and classes
- *
- */
-
-
-/// @brief Custom pair class allowing to easily store the data of the
-/// registration entries on the home page
-class RegistrationEntryPair<T1, T2> {
-  final T1 title;
-  final T2 description;
-
-  const RegistrationEntryPair(this.title, this.description);
-}
-
-/// @brief Class describing a widget that can be used to access the registration
-/// page
-class RegistrationEntry extends StatelessWidget {
-  const RegistrationEntry({super.key, required this.title, required this.description});
-
-  final String title;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: 400,
-                child: Center(
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: 400,
-                child: Center(
-                  child: Text(
-                    description,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                    ),
-                  ),
-                )
-              )
-            ]
-          ),
-          const SizedBox(width: 20),
-          ElevatedButton(
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => StandOverviewPage(title: title)),
-              );
-            },
-            child: const Text('Zur Anmeldung'),
-          ),
-        ]
-      )
-    );
-  }
-}
-
-/// @brief Card displaying the name of a stand with some basic info and a button
-/// for moving to the registration page
-class StandRegCard extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const StandRegCard({super.key, required this.title, required this.description});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(16.0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Text (
-              title,
-              style: const TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              constraints: const BoxConstraints(minWidth: 100, maxWidth: 500),
-              child: Text(
-                description,
-                style: const TextStyle(fontSize: 16.0),
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegistrationPage(title: title)),
-                );
-              },
-              child: const Text('Zur Anmeldung')
-            ),
-          ]
-        ),
-      ),
-    );
-  }
-}
-
-// TODO: Move this to some proper place
-const List<String> shiftList = <String>['Vormittags', 'Nachmittags', 'Abends'];
-
-/// @brief Drop down button allowing the seleciton of a shift
-class ShiftDropdownButton extends StatefulWidget{
-  const ShiftDropdownButton({super.key});
-
-  @override
-  State<ShiftDropdownButton> createState() => _ShiftDropdownButtonState();
-}
-
-/// @brief State allowing for the selection of different values 
-class _ShiftDropdownButtonState extends State<ShiftDropdownButton> {
-  String dropdownValue = shiftList.first;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      onChanged: (String? value) {
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: shiftList.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}
-
-
-/*
- *
- * Pages
- *
- */
-
-
-/// @brief Home page
-class MyHomePage extends StatelessWidget {
-  final String title;
-
-  final _entryList = [
-    const RegistrationEntryPair('Freitag, 4.09', 'Aufbau von ständen und sortieren von Material'),
-    const RegistrationEntryPair('Samstag, 5.09', 'Verkauf von Ware und Betreuung von Ständen'),
-    const RegistrationEntryPair('Sonntag, 6.09', 'Abbau von Ständen und Aufräumen von Restware'),
-  ];
-
-
-  MyHomePage({super.key, required this.title});
-
-  _constructWidgetList() {
-    var widgetList = <Widget>[];
-
-    for (final entry in _entryList) {
-        widgetList.add(RegistrationEntry(title: entry.title, description: entry.description));
-        widgetList.add(const SizedBox(height: 30));
-    }
-
-    return widgetList;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: _constructWidgetList()
-        ),
-      ),
-    );
-  }
-}
-
-/// @brief Stand overview page
-class StandOverviewPage extends StatelessWidget {
-  final String title;
-
-  final standCardList = [
-    const StandRegCard(title: 'Limonadenverkauf',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'Adventskranz',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'XYZ',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'ABC',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'DEF',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'GHI',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'JKL',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'MNO',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-    const StandRegCard(title: 'PQR',
-                 description: 'Lorem ipsum dolor sit amet, consectetur'
-                              'adipiscing elit. Nulla augue nisi, imperdiet'
-                              'et lorem sed, accumsan fermentum ipsum.'),
-  ];
-
-  StandOverviewPage({super.key, required this.title});
-
-  _wrapCardForListView(StandRegCard card) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        card,
+    return MaterialApp.router(
+      title: 'weihnachtsbasar',
+      localizationsDelegates: [
+        FFLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
-    );
-  }
-
-  _constructCardList() {
-    var cardList = <Widget>[];
-
-    for (final card in standCardList) {
-      cardList.add(_wrapCardForListView(card));
-    }
-
-    return cardList;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+      locale: _locale,
+      supportedLocales: const [Locale('en', '')],
+      theme: ThemeData(
+        brightness: Brightness.light,
+        scrollbarTheme: ScrollbarThemeData(),
       ),
-      body: Center(
-        child: ListView(
-          children: _constructCardList()
-        ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scrollbarTheme: ScrollbarThemeData(),
       ),
-    );
-  }
-}
-
-/// @brief Registration page
-class RegistrationPage extends StatelessWidget {
-  final String title;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final TextEditingController controller = TextEditingController();
-  PhoneNumber number = PhoneNumber(isoCode: 'DE');
-
-  RegistrationPage({super.key, required this.title});
-
-  String? _validateEmail(String? value) {
-    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-    final regex = RegExp(pattern);
-  
-    return value!.isNotEmpty && !regex.hasMatch(value)
-        ? 'Enter a valid email address'
-        : null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title)
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              width: 350,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              width: 350,
-              child: Form(
-                autovalidateMode: AutovalidateMode.always,
-                child: TextFormField(
-                  validator: _validateEmail,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'E-Mail Addresse',
-                  ),
-                ),
-              )
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              width: 350,
-              child: InternationalPhoneNumberInput(
-                onInputChanged: (PhoneNumber number) {},
-                selectorConfig: const SelectorConfig(
-                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                ),
-                ignoreBlank: true,
-                autoValidateMode: AutovalidateMode.always,
-                selectorTextStyle: const TextStyle(color: Colors.black),
-                initialValue: number,
-                textFieldController: controller,
-                keyboardType:
-                    const TextInputType.numberWithOptions(signed: true, decimal: true),
-                inputBorder: const OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 30),
-            const SizedBox(
-              width: 350,
-              child: ShiftDropdownButton()
-            ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: (){},
-              child: const Text('Anmelden'),
-            ),
-          ]
-        )
-      )
+      themeMode: _themeMode,
+      routerConfig: _router,
     );
   }
 }
