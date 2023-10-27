@@ -80,6 +80,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   height: 600.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).customColor1,
+                    shape: BoxShape.rectangle,
                   ),
                   alignment: AlignmentDirectional(0.00, 0.00),
                   child: Row(

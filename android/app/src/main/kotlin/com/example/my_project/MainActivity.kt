@@ -1,4 +1,4 @@
-package com.mycompany.weihnachtsbasar
+package com.andreas.weihnachtsbasar
 
 import io.flutter.embedding.android.FlutterActivity
 
