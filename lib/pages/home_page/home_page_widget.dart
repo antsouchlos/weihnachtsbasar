@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -53,12 +54,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'DSA Weihnachtsbasar 2023',
+            FFLocalizations.of(context).getText(
+              'y1v5lz10' /* DSA Weihnachtsbasar */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',
                   color: Colors.white,
@@ -95,7 +98,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Weihnachtsbasar 2023',
+                              FFLocalizations.of(context).getText(
+                                'r9rlwmpr' /* Weihnachtsbasar 2023 */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -106,7 +111,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                             ),
                             Text(
-                              'Es ist soweit! Für den Weihnachtsbasar der DSA sind wieder Helfer gesucht!\nAuch dieses Jahr gibt es wieder zahlreiche Stände die sich um Essen, Trinken,\nBasteln, Warenverkauf und vieles mehr kümmern!\n\nInteresse zu helfen? Dann melde dich jetzt unter dem folgenden Link an!',
+                              FFLocalizations.of(context).getText(
+                                '5fy8e6jx' /* Es ist soweit! Für den Weihnac... */,
+                              ),
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -149,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 50.0),
                           child: Container(
-                            width: 500.0,
+                            width: 600.0,
                             height: 200.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
@@ -176,7 +183,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            'Freitag, den 1.12     ',
+                                            FFLocalizations.of(context).getText(
+                                              'owosr0y7' /* Freitag, den 1.12      */,
+                                            ),
                                             textAlign: TextAlign.end,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -199,7 +208,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                     Container(
-                                      width: 230.0,
+                                      width: 300.0,
                                       height: 100.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -217,7 +226,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  '16:30 - 19:30',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'sd9g4s1y' /* 16:30 - 19:30 */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -227,7 +239,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Aufbau',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '7tizqs0a' /* Aufbau */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -261,7 +276,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            'Samstag, den 2.12',
+                                            FFLocalizations.of(context).getText(
+                                              '4a31zyop' /* Samstag, den 2.12 */,
+                                            ),
                                             textAlign: TextAlign.end,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -284,7 +301,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                     Container(
-                                      width: 230.0,
+                                      width: 300.0,
                                       height: 100.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -306,7 +323,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  '08:00 - 10:00',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'anr6fipy' /* 08:00 - 10:00 */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -316,7 +336,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Aufbau',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '9vxnwty8' /* Aufbau */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -333,7 +356,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  '10:00 - 19:00',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'po8enmi0' /* 10:00 - 19:00 */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -343,7 +369,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Basar',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'sjrsn6dw' /* Basar */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -358,7 +387,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  '19:00 - 21:00',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'chlressg' /* 19:00 - 21:00 */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -368,7 +400,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  'Abbau',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'nh33btgd' /* Abbau */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -390,10 +425,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                         ),
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            context.pushNamed('Registration');
                           },
-                          text: 'Weiter zur Anmeldung',
+                          text: FFLocalizations.of(context).getText(
+                            'wxp0hk0b' /* Weiter zur Anmeldung */,
+                          ),
                           options: FFButtonOptions(
                             width: 420.0,
                             height: 50.0,
@@ -528,7 +565,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Kontakt: weihnachtsbasar.athen@gmail.com',
+                          FFLocalizations.of(context).getText(
+                            'szuto2mt' /* Kontakt: weihnachtsbasar.athen... */,
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Inter',
@@ -555,13 +594,65 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                             ),
                             Text(
-                              'Weihnachtsbasar 2023',
+                              FFLocalizations.of(context).getText(
+                                'kc9yvg6c' /* Weihnachtsbasar 2023 */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
                                     fontSize: 26.0,
                                   ),
+                            ),
+                            FlutterFlowLanguageSelector(
+                              width: 200.0,
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              borderColor: Colors.transparent,
+                              dropdownIconColor: Colors.white,
+                              borderRadius: 8.0,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 20.0,
+                              ),
+                              hideFlags: false,
+                              flagSize: 24.0,
+                              flagTextGap: 8.0,
+                              currentLanguage:
+                                  FFLocalizations.of(context).languageCode,
+                              languages: FFLocalizations.languages(),
+                              onChanged: (lang) =>
+                                  setAppLanguage(context, lang),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('LogIn');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '57xyj3cp' /* Log In */,
+                              ),
+                              options: FFButtonOptions(
+                                height: 50.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ].divide(SizedBox(width: 30.0)),
                         ),
