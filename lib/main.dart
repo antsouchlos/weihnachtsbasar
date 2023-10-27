@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
+
+/*
+ *
+ * Main function and app
+ *
+ */
+
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +16,404 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  final String title = 'Weihnachtsbasar';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.indigo,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: title),
+      //home: StandOverviewPage(title: title),
+      //home: RegistrationPage(title: title)
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+/*
+ *
+ * Helper functions and classes
+ *
+ */
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
-  final String title;
+/// @brief Custom pair class allowing to easily store the data of the
+/// registration entries on the home page
+class RegistrationEntryPair<T1, T2> {
+  final T1 title;
+  final T2 description;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  const RegistrationEntryPair(this.title, this.description);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+/// @brief Class describing a widget that can be used to access the registration
+/// page
+class RegistrationEntry extends StatelessWidget {
+  const RegistrationEntry({super.key, required this.title, required this.description});
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  final String title;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                width: 400,
+                child: Center(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: 400,
+                child: Center(
+                  child: Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                )
+              )
+            ]
+          ),
+          const SizedBox(width: 20),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StandOverviewPage(title: title)),
+              );
+            },
+            child: const Text('Zur Anmeldung'),
+          ),
+        ]
+      )
+    );
+  }
+}
+
+/// @brief Card displaying the name of a stand with some basic info and a button
+/// for moving to the registration page
+class StandRegCard extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const StandRegCard({super.key, required this.title, required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Text (
+              title,
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              constraints: const BoxConstraints(minWidth: 100, maxWidth: 500),
+              child: Text(
+                description,
+                style: const TextStyle(fontSize: 16.0),
+              ),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegistrationPage(title: title)),
+                );
+              },
+              child: const Text('Zur Anmeldung')
+            ),
+          ]
+        ),
+      ),
+    );
+  }
+}
+
+// TODO: Move this to some proper place
+const List<String> shiftList = <String>['Vormittags', 'Nachmittags', 'Abends'];
+
+/// @brief Drop down button allowing the seleciton of a shift
+class ShiftDropdownButton extends StatefulWidget{
+  const ShiftDropdownButton({super.key});
+
+  @override
+  State<ShiftDropdownButton> createState() => _ShiftDropdownButtonState();
+}
+
+/// @brief State allowing for the selection of different values 
+class _ShiftDropdownButtonState extends State<ShiftDropdownButton> {
+  String dropdownValue = shiftList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      onChanged: (String? value) {
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: shiftList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+
+/*
+ *
+ * Pages
+ *
+ */
+
+
+/// @brief Home page
+class MyHomePage extends StatelessWidget {
+  final String title;
+
+  final _entryList = [
+    const RegistrationEntryPair('Freitag, 4.09', 'Aufbau von ständen und sortieren von Material'),
+    const RegistrationEntryPair('Samstag, 5.09', 'Verkauf von Ware und Betreuung von Ständen'),
+    const RegistrationEntryPair('Sonntag, 6.09', 'Abbau von Ständen und Aufräumen von Restware'),
+  ];
+
+
+  MyHomePage({super.key, required this.title});
+
+  _constructWidgetList() {
+    var widgetList = <Widget>[];
+
+    for (final entry in _entryList) {
+        widgetList.add(RegistrationEntry(title: entry.title, description: entry.description));
+        widgetList.add(const SizedBox(height: 30));
+    }
+
+    return widgetList;
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: _constructWidgetList()
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+/// @brief Stand overview page
+class StandOverviewPage extends StatelessWidget {
+  final String title;
+
+  final standCardList = [
+    const StandRegCard(title: 'Limonadenverkauf',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'Adventskranz',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'XYZ',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'ABC',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'DEF',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'GHI',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'JKL',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'MNO',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+    const StandRegCard(title: 'PQR',
+                 description: 'Lorem ipsum dolor sit amet, consectetur'
+                              'adipiscing elit. Nulla augue nisi, imperdiet'
+                              'et lorem sed, accumsan fermentum ipsum.'),
+  ];
+
+  StandOverviewPage({super.key, required this.title});
+
+  _wrapCardForListView(StandRegCard card) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        card,
+      ],
+    );
+  }
+
+  _constructCardList() {
+    var cardList = <Widget>[];
+
+    for (final card in standCardList) {
+      cardList.add(_wrapCardForListView(card));
+    }
+
+    return cardList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: ListView(
+          children: _constructCardList()
+        ),
+      ),
+    );
+  }
+}
+
+/// @brief Registration page
+class RegistrationPage extends StatelessWidget {
+  final String title;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final TextEditingController controller = TextEditingController();
+  PhoneNumber number = PhoneNumber(isoCode: 'DE');
+
+  RegistrationPage({super.key, required this.title});
+
+  String? _validateEmail(String? value) {
+    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+    final regex = RegExp(pattern);
+  
+    return value!.isNotEmpty && !regex.hasMatch(value)
+        ? 'Enter a valid email address'
+        : null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title)
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(
+              width: 350,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Name',
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 350,
+              child: Form(
+                autovalidateMode: AutovalidateMode.always,
+                child: TextFormField(
+                  validator: _validateEmail,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'E-Mail Addresse',
+                  ),
+                ),
+              )
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 350,
+              child: InternationalPhoneNumberInput(
+                onInputChanged: (PhoneNumber number) {},
+                selectorConfig: const SelectorConfig(
+                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                ),
+                ignoreBlank: true,
+                autoValidateMode: AutovalidateMode.always,
+                selectorTextStyle: const TextStyle(color: Colors.black),
+                initialValue: number,
+                textFieldController: controller,
+                keyboardType:
+                    const TextInputType.numberWithOptions(signed: true, decimal: true),
+                inputBorder: const OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const SizedBox(
+              width: 350,
+              child: ShiftDropdownButton()
+            ),
+            const SizedBox(height: 50),
+            ElevatedButton(
+              onPressed: (){},
+              child: const Text('Anmelden'),
+            ),
+          ]
+        )
+      )
     );
   }
 }
