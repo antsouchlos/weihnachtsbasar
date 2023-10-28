@@ -165,7 +165,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Log in',
       'el': 'Log in',
     },
-    'y1v5lz10': {
+    'ct3bjngc': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -364,7 +364,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Εγγραφή',
     },
-    'v4wygopm': {
+    'rihisduh': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -385,7 +385,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el':
           'Ο υπεύθυνος του πάγκου θα επικοινωνήσει μαζί σας τις επόμενες ημέρες.\n\nΕάν επιθυμείτε να αποσύρετε την εγγραφή σας, παρακαλούμε να ενημερώσετε τον υπεύθυνο.',
     },
-    'wjepdtpv': {
+    'vb43gegd': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -404,7 +404,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.',
       'el': 'Παρακαλούμε προσπαθήστε ξανά αργότερα.',
     },
-    '577br9z6': {
+    '4qfdgjw1': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -507,7 +507,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Weihnachtsbasar 2023',
       'el': 'Χριστουγεννιάτικο παζάρι 2023',
     },
-    'nl55bmcg': {
+    '15uxxh03': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -534,7 +534,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Σύνδεση',
     },
-    'chbyr2tu': {
+    'f45lrdnq': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
@@ -608,7 +608,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Als Excel herunterladen',
       'el': 'Λήψη ως Excel',
     },
-    'zvzspvsq': {
+    'r5ch4jyg': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
     },
