@@ -1,7 +1,13 @@
 # weihnachtsbasar
 
-A new Flutter project.
+## Build and run
 
-## Getting Started
+1. Build docker image
+    ```bash
+    $ docker build . --tag wb
+    ```
+2. Run docker container
+    ```bash
+    $ docker run --net=host -it wb
+    ```
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
