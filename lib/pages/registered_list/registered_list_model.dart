@@ -1,3 +1,4 @@
+import '/components/footer/footer_widget.dart';
 import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -23,6 +24,8 @@ class RegisteredListModel extends FlutterFlowModel<RegisteredListWidget> {
   late StandCardModel standCardModel4;
   // Model for StandCard component.
   late StandCardModel standCardModel5;
+  // Model for Footer component.
+  late FooterModel footerModel;
 
   /// Initialization and disposal methods.
 
@@ -32,6 +35,7 @@ class RegisteredListModel extends FlutterFlowModel<RegisteredListWidget> {
     standCardModel3 = createModel(context, () => StandCardModel());
     standCardModel4 = createModel(context, () => StandCardModel());
     standCardModel5 = createModel(context, () => StandCardModel());
+    footerModel = createModel(context, () => FooterModel());
   }
 
   void dispose() {
@@ -41,6 +45,7 @@ class RegisteredListModel extends FlutterFlowModel<RegisteredListWidget> {
     standCardModel3.dispose();
     standCardModel4.dispose();
     standCardModel5.dispose();
+    footerModel.dispose();
   }
 
   /// Action blocks are added here.

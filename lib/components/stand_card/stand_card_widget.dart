@@ -43,62 +43,75 @@ class _StandCardWidgetState extends State<StandCardWidget> {
   Widget build(BuildContext context) {
     return Align(
       alignment: AlignmentDirectional(0.00, 0.00),
-      child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.6,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-        ),
-        alignment: AlignmentDirectional(0.00, 0.00),
-        child: Card(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          elevation: 4.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 20.0),
-                child: Text(
-                  FFLocalizations.of(context).getText(
-                    'hztjrvp6' /* Standname */,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0.00, 0.00),
+              child: Container(
+                width: 1200.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 10.0, 20.0, 20.0),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'j2fc7dvr' /* Standname */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 25.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
                       ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          wrapWithModel(
+                            model: _model.standCardEntryModel1,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardEntryWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardEntryModel2,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardEntryWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardEntryModel3,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardEntryWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardEntryModel4,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardEntryWidget(),
+                          ),
+                        ].divide(SizedBox(height: 2.0)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  wrapWithModel(
-                    model: _model.standCardEntryModel1,
-                    updateCallback: () => setState(() {}),
-                    child: StandCardEntryWidget(),
-                  ),
-                  wrapWithModel(
-                    model: _model.standCardEntryModel2,
-                    updateCallback: () => setState(() {}),
-                    child: StandCardEntryWidget(),
-                  ),
-                  wrapWithModel(
-                    model: _model.standCardEntryModel3,
-                    updateCallback: () => setState(() {}),
-                    child: StandCardEntryWidget(),
-                  ),
-                  wrapWithModel(
-                    model: _model.standCardEntryModel4,
-                    updateCallback: () => setState(() {}),
-                    child: StandCardEntryWidget(),
-                  ),
-                ].divide(SizedBox(height: 2.0)),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -43,7 +43,6 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
     return Align(
       alignment: AlignmentDirectional(0.00, -1.00),
       child: Container(
-        width: MediaQuery.sizeOf(context).width * 1.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: [
@@ -55,18 +54,18 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
           ],
         ),
         alignment: AlignmentDirectional(0.00, -1.00),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+        child: Align(
+          alignment: AlignmentDirectional(-1.00, -1.00),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SelectionArea(
                     child: Text(
                   FFLocalizations.of(context).getText(
-                    'p1j4stwb' /* Max Mustermann */,
+                    'qpj5sxzr' /* Max Mustermann */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
@@ -83,7 +82,7 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
                 SelectionArea(
                     child: Text(
                   FFLocalizations.of(context).getText(
-                    'ekhggy4l' /* max.mustermann@gmail.com */,
+                    'un2uw99e' /* max.mustermann@gmail.com */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
@@ -100,7 +99,7 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
                 SelectionArea(
                     child: Text(
                   FFLocalizations.of(context).getText(
-                    'a07l1ucx' /* +49 000 00000000 */,
+                    '65tmle7n' /* +49 000 00000000 */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',
@@ -117,7 +116,7 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
                 SelectionArea(
                     child: Text(
                   FFLocalizations.of(context).getText(
-                    '46wdoh7i' /* Freitag 16:30 - 19:30: Aufbau */,
+                    '4p0z6665' /* Freitag 16:30 - 19:30: Aufbau */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Inter',

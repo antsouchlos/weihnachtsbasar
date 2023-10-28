@@ -1,6 +1,6 @@
+import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -33,10 +33,14 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;
+  // Model for Footer component.
+  late FooterModel footerModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    footerModel = createModel(context, () => FooterModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
@@ -48,6 +52,8 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
 
     textFieldFocusNode3?.dispose();
     textController3?.dispose();
+
+    footerModel.dispose();
   }
 
   /// Action blocks are added here.

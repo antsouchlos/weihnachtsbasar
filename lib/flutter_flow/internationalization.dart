@@ -113,13 +113,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5fy8e6jx': {
       'de':
-          'Es ist soweit! Für den Weihnachtsbasar der DSA sind wieder Helfer gesucht!\nAuch dieses Jahr gibt es wieder zahlreiche Stände die sich um Essen, Trinken,\nBasteln, Warenverkauf und vieles mehr kümmern!\n\nInteresse zu helfen? Dann melde dich jetzt unter dem folgenden Link an!',
+          'Es ist soweit! Für den Weihnachtsbasar der DSA sind wieder Helfer gesucht! Auch dieses Jahr gibt es wieder zahlreiche Stände die sich um Essen, Trinken, Basteln, Warenverkauf und vieles mehr kümmern!\n\nInteresse zu helfen? Dann melde dich jetzt unter dem folgenden Link an!',
       'el':
-          'Ήρθε πάλι η ώρα! Χρειάζονται και πάλι βοηθοί για το χριστουγεννιάτικο\nπαζάρι της ΓΣΑ! Και φέτος θα υπάρχουν πολυάριθμοι πάγκοι που θα\nπωλούν φαγητά, ποτά, χειροτεχνήματα, αγαθά και πολλά άλλα!\n\nΕνδιαφέρεστε να βοηθήσετε; Τότε εγγραφείτε τώρα στην παρακάτω\nιστοσελίδα!',
+          'Ήρθε πάλι η ώρα! Χρειάζονται και πάλι βοηθοί για το χριστουγεννιάτικο παζάρι της ΓΣΑ! Και φέτος θα υπάρχουν πολυάριθμοι πάγκοι που θα πωλούν φαγητά, ποτά, χειροτεχνήματα, αγαθά και πολλά άλλα!\n\nΕνδιαφέρεστε να βοηθήσετε; Τότε εγγραφείτε τώρα στην παρακάτω ιστοσελίδα!',
     },
     'owosr0y7': {
-      'de': 'Freitag, den 1.12     ',
-      'el': 'Παρασκευή 1.12',
+      'de': 'Freitag, 1.12',
+      'el': 'Παρασκευή, 1.12',
     },
     'sd9g4s1y': {
       'de': '16:30 - 19:30',
@@ -130,8 +130,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Εγκατάσταση',
     },
     '4a31zyop': {
-      'de': 'Samstag, den 2.12',
-      'el': 'Σάββατο 2.12',
+      'de': 'Samstag, 2.12',
+      'el': 'Σάββατο, 2.12',
     },
     'anr6fipy': {
       'de': '08:00 - 10:00',
@@ -161,17 +161,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Weiter zur Anmeldung',
       'el': 'Συνέχεια στην εγγραφή',
     },
-    'szuto2mt': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    'kc9yvg6c': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
-    },
-    '57xyj3cp': {
-      'de': 'Log In',
-      'el': 'Σύνδεση',
+    'okbr1ofr': {
+      'de': 'Log in',
+      'el': 'Log in',
     },
     'y1v5lz10': {
       'de': 'DSA Weihnachtsbasar',
@@ -184,6 +176,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Registration
   {
+    'wfmh6qda': {
+      'de': 'Anmeldung',
+      'el': 'Εγγραφή',
+    },
     'cppf38cf': {
       'de': 'Name',
       'el': 'Όνομα',
@@ -368,14 +364,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Εγγραφή',
     },
-    '5c7pbjau': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    '5135oy1a': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
-    },
     'v4wygopm': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
@@ -393,17 +381,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wbrhec20': {
       'de':
-          'Sie werden in den nächsten Tagen vom Standverantwortlichen kontaktiert.\n\nSollten Sie Ihre Anmeldung zurückziehen wollen, dann sprechen Sie das\nbitte mit dem Standverantwortlichen ab.',
+          'Sie werden in den nächsten Tagen vom Stand-verantwortlichen kontaktiert.\n\nSollten Sie Ihre Anmeldung zurückziehen wollen, dann sprechen Sie das bitte mit dem Standverantwortlichen ab.',
       'el':
-          'Ο υπεύθυνος του πάγκου θα επικοινωνήσει μαζί σας τις επόμενες ημέρες.\n\nΕάν επιθυμείτε να αποσύρετε την εγγραφή σας, παρακαλούμε να ενημερώσετε\nτον υπεύθυνο του πάγκου.',
-    },
-    'wfysgvja': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    'o6bnk7nw': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
+          'Ο υπεύθυνος του πάγκου θα επικοινωνήσει μαζί σας τις επόμενες ημέρες.\n\nΕάν επιθυμείτε να αποσύρετε την εγγραφή σας, παρακαλούμε να ενημερώσετε τον υπεύθυνο.',
     },
     'wjepdtpv': {
       'de': 'DSA Weihnachtsbasar',
@@ -421,16 +401,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Η εγγραφή απέτυχε!',
     },
     'qkt23lob': {
-      'de': 'Bitte versuchen Sie es zu einem  späteren Zeitpunkt erneut.',
+      'de': 'Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.',
       'el': 'Παρακαλούμε προσπαθήστε ξανά αργότερα.',
-    },
-    'mbo5fcvr': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    'g88nswud': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
     },
     '577br9z6': {
       'de': 'DSA Weihnachtsbasar',
@@ -562,14 +534,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Σύνδεση',
     },
-    '33pi4xkn': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    '0pyqczx3': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
-    },
     'chbyr2tu': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
@@ -636,17 +600,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // RegisteredList
   {
-    '87sq2m6t': {
+    'jjhi72sy': {
+      'de': 'Übersicht',
+      'el': 'Σύνοψη',
+    },
+    '5lql6w6o': {
       'de': 'Als Excel herunterladen',
-      'el': '',
-    },
-    'r9h2p79o': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    '7qlg6pgl': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
+      'el': 'Λήψη ως Excel',
     },
     'zvzspvsq': {
       'de': 'DSA Weihnachtsbasar',
@@ -659,28 +619,50 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // StandCard
   {
-    'hztjrvp6': {
+    'j2fc7dvr': {
       'de': 'Standname',
       'el': '',
     },
   },
   // StandCardEntry
   {
-    'p1j4stwb': {
+    'qpj5sxzr': {
       'de': 'Max Mustermann',
       'el': '',
     },
-    'ekhggy4l': {
+    'un2uw99e': {
       'de': 'max.mustermann@gmail.com',
       'el': '',
     },
-    'a07l1ucx': {
+    '65tmle7n': {
       'de': '+49 000 00000000',
       'el': '',
     },
-    '46wdoh7i': {
+    '4p0z6665': {
       'de': 'Freitag 16:30 - 19:30: Aufbau',
       'el': '',
+    },
+  },
+  // StandCardShift
+  {
+    'ddmyfj1h': {
+      'de': 'Schicht',
+      'el': '',
+    },
+    'h019d9zd': {
+      'de': 'Anmeldung offen',
+      'el': '',
+    },
+  },
+  // Footer
+  {
+    'qll42bzk': {
+      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
+      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
+    },
+    'l83f5r22': {
+      'de': 'Weihnachtsbasar 2023',
+      'el': 'Χριστουγεννιάτικο παζάρι 2023',
     },
   },
   // Miscellaneous

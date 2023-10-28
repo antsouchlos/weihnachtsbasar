@@ -1,3 +1,4 @@
+import '/components/footer/footer_widget.dart';
 import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -90,16 +91,29 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
           top: true,
           child: Align(
             alignment: AlignmentDirectional(0.00, -1.00),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 50.0),
-                    child: Container(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'jjhi72sy' /* Übersicht */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ),
+                    Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -110,13 +124,13 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 40.0),
+                                0.0, 0.0, 0.0, 20.0),
                             child: FFButtonWidget(
                               onPressed: () {
                                 print('Button pressed ...');
                               },
                               text: FFLocalizations.of(context).getText(
-                                '87sq2m6t' /* Als Excel herunterladen */,
+                                '5lql6w6o' /* Als Excel herunterladen */,
                               ),
                               icon: Icon(
                                 Icons.download,
@@ -173,67 +187,13 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                         ].divide(SizedBox(height: 10.0)),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 0.8,
-                    height: 162.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    wrapWithModel(
+                      model: _model.footerModel,
+                      updateCallback: () => setState(() {}),
+                      child: FooterWidget(),
                     ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SelectionArea(
-                              child: Text(
-                            FFLocalizations.of(context).getText(
-                              'r9h2p79o' /* Kontakt: weihnachtsbasar.athen... */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  fontSize: 18.0,
-                                ),
-                          )),
-                          Divider(
-                            height: 20.0,
-                            thickness: 2.0,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/dsa-logo.png',
-                                  width: 80.0,
-                                  height: 80.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  '7qlg6pgl' /* Weihnachtsbasar 2023 */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      fontSize: 26.0,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 30.0)),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

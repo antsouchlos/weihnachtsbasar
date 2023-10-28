@@ -1,5 +1,5 @@
+import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -105,7 +105,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 50.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: 600.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -121,13 +120,14 @@ class _LogInWidgetState extends State<LogInWidget> {
                               FFLocalizations.of(context).getText(
                                 '6wjeje1b' /* Anmeldung für Standverantwortl... */,
                               ),
+                              textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    fontSize: 36.0,
+                                    fontSize: 32.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -321,85 +321,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 0.8,
-                    height: 162.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SelectionArea(
-                              child: Text(
-                            FFLocalizations.of(context).getText(
-                              '33pi4xkn' /* Kontakt: weihnachtsbasar.athen... */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  fontSize: 18.0,
-                                ),
-                          )),
-                          Divider(
-                            height: 20.0,
-                            thickness: 2.0,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/dsa-logo.png',
-                                  width: 80.0,
-                                  height: 80.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  '0pyqczx3' /* Weihnachtsbasar 2023 */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      fontSize: 26.0,
-                                    ),
-                              ),
-                              FlutterFlowLanguageSelector(
-                                width: 200.0,
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).tertiary,
-                                borderColor: Colors.transparent,
-                                dropdownIconColor: Colors.white,
-                                borderRadius: 8.0,
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 20.0,
-                                ),
-                                hideFlags: false,
-                                flagSize: 24.0,
-                                flagTextGap: 8.0,
-                                currentLanguage:
-                                    FFLocalizations.of(context).languageCode,
-                                languages: FFLocalizations.languages(),
-                                onChanged: (lang) =>
-                                    setAppLanguage(context, lang),
-                              ),
-                            ].divide(SizedBox(width: 30.0)),
-                          ),
-                        ],
-                      ),
-                    ),
+                  wrapWithModel(
+                    model: _model.footerModel,
+                    updateCallback: () => setState(() {}),
+                    child: FooterWidget(),
                   ),
                 ],
               ),
