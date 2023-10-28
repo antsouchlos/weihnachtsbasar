@@ -155,7 +155,8 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
+                          SelectionArea(
+                              child: Text(
                             FFLocalizations.of(context).getText(
                               'mbo5fcvr' /* Kontakt: weihnachtsbasar.athen... */,
                             ),
@@ -165,7 +166,7 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
                                   fontFamily: 'Inter',
                                   fontSize: 18.0,
                                 ),
-                          ),
+                          )),
                           Divider(
                             height: 20.0,
                             thickness: 2.0,

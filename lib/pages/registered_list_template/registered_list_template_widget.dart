@@ -141,7 +141,7 @@ class _RegisteredListTemplateWidgetState
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 0.0,
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: Color(0x33000000),
                                 offset: Offset(0.0, 1.0),
                               )
                             ],

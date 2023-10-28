@@ -333,7 +333,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
+                          SelectionArea(
+                              child: Text(
                             FFLocalizations.of(context).getText(
                               '33pi4xkn' /* Kontakt: weihnachtsbasar.athen... */,
                             ),
@@ -343,7 +344,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   fontFamily: 'Inter',
                                   fontSize: 18.0,
                                 ),
-                          ),
+                          )),
                           Divider(
                             height: 20.0,
                             thickness: 2.0,

@@ -1,5 +1,5 @@
+import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -101,11 +101,77 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 50.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: 600.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 40.0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '87sq2m6t' /* Als Excel herunterladen */,
+                              ),
+                              icon: Icon(
+                                Icons.download,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 50.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardModel1,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardModel2,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardModel3,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardModel4,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardWidget(),
+                          ),
+                          wrapWithModel(
+                            model: _model.standCardModel5,
+                            updateCallback: () => setState(() {}),
+                            child: StandCardWidget(),
+                          ),
+                        ].divide(SizedBox(height: 10.0)),
+                      ),
                     ),
                   ),
                   Container(
@@ -120,7 +186,8 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
+                          SelectionArea(
+                              child: Text(
                             FFLocalizations.of(context).getText(
                               'r9h2p79o' /* Kontakt: weihnachtsbasar.athen... */,
                             ),
@@ -130,7 +197,7 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                                   fontFamily: 'Inter',
                                   fontSize: 18.0,
                                 ),
-                          ),
+                          )),
                           Divider(
                             height: 20.0,
                             thickness: 2.0,
@@ -159,27 +226,6 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                                       fontFamily: 'Inter',
                                       fontSize: 26.0,
                                     ),
-                              ),
-                              FlutterFlowLanguageSelector(
-                                width: 200.0,
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).tertiary,
-                                borderColor: Colors.transparent,
-                                dropdownIconColor: Colors.white,
-                                borderRadius: 8.0,
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 20.0,
-                                ),
-                                hideFlags: false,
-                                flagSize: 24.0,
-                                flagTextGap: 8.0,
-                                currentLanguage:
-                                    FFLocalizations.of(context).languageCode,
-                                languages: FFLocalizations.languages(),
-                                onChanged: (lang) =>
-                                    setAppLanguage(context, lang),
                               ),
                             ].divide(SizedBox(width: 30.0)),
                           ),

@@ -636,6 +636,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // RegisteredList
   {
+    '87sq2m6t': {
+      'de': 'Als Excel herunterladen',
+      'el': '',
+    },
     'r9h2p79o': {
       'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
       'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
@@ -651,6 +655,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xzm91rv9': {
       'de': 'Home',
       'el': 'Αρχική σελίδα',
+    },
+  },
+  // StandCard
+  {
+    'hztjrvp6': {
+      'de': 'Standname',
+      'el': '',
+    },
+  },
+  // StandCardEntry
+  {
+    'p1j4stwb': {
+      'de': 'Max Mustermann',
+      'el': '',
+    },
+    'ekhggy4l': {
+      'de': 'max.mustermann@gmail.com',
+      'el': '',
+    },
+    'a07l1ucx': {
+      'de': '+49 000 00000000',
+      'el': '',
+    },
+    '46wdoh7i': {
+      'de': 'Freitag 16:30 - 19:30: Aufbau',
+      'el': '',
     },
   },
   // Miscellaneous

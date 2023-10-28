@@ -564,7 +564,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        SelectionArea(
+                            child: Text(
                           FFLocalizations.of(context).getText(
                             'szuto2mt' /* Kontakt: weihnachtsbasar.athen... */,
                           ),
@@ -573,7 +574,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     fontFamily: 'Inter',
                                     fontSize: 18.0,
                                   ),
-                        ),
+                        )),
                         Divider(
                           height: 20.0,
                           thickness: 2.0,

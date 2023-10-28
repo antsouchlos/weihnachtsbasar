@@ -609,7 +609,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
+                          SelectionArea(
+                              child: Text(
                             FFLocalizations.of(context).getText(
                               '5c7pbjau' /* Kontakt: weihnachtsbasar.athen... */,
                             ),
@@ -619,7 +620,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                   fontFamily: 'Inter',
                                   fontSize: 18.0,
                                 ),
-                          ),
+                          )),
                           Divider(
                             height: 20.0,
                             thickness: 2.0,
