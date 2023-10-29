@@ -41,91 +41,58 @@ class _StandCardEntryWidgetState extends State<StandCardEntryWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.00, -1.00),
-      child: Container(
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 0.0,
-              color: Color(0x33000000),
-              offset: Offset(0.0, 1.0),
-            )
-          ],
-        ),
-        alignment: AlignmentDirectional(0.00, -1.00),
-        child: Align(
-          alignment: AlignmentDirectional(-1.00, -1.00),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SelectionArea(
-                    child: Text(
-                  FFLocalizations.of(context).getText(
-                    'qpj5sxzr' /* Max Mustermann */,
+      alignment: AlignmentDirectional(-1.00, -1.00),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SelectionArea(
+                child: Text(
+              FFLocalizations.of(context).getText(
+                'qpj5sxzr' /* Max Mustermann */,
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Inter',
+                    fontSize: 18.0,
                   ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        fontSize: 20.0,
-                      ),
-                )),
-                SizedBox(
-                  height: 30.0,
-                  child: VerticalDivider(
-                    thickness: 2.0,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                SelectionArea(
-                    child: Text(
-                  FFLocalizations.of(context).getText(
-                    'un2uw99e' /* max.mustermann@gmail.com */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        fontSize: 20.0,
-                      ),
-                )),
-                SizedBox(
-                  height: 30.0,
-                  child: VerticalDivider(
-                    thickness: 2.0,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                SelectionArea(
-                    child: Text(
-                  FFLocalizations.of(context).getText(
-                    '65tmle7n' /* +49 000 00000000 */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        fontSize: 20.0,
-                      ),
-                )),
-                SizedBox(
-                  height: 30.0,
-                  child: VerticalDivider(
-                    thickness: 2.0,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                SelectionArea(
-                    child: Text(
-                  FFLocalizations.of(context).getText(
-                    '4p0z6665' /* Freitag 16:30 - 19:30: Aufbau */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        fontSize: 20.0,
-                      ),
-                )),
-              ].divide(SizedBox(width: 20.0)),
+            )),
+            SizedBox(
+              height: 30.0,
+              child: VerticalDivider(
+                thickness: 2.0,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
             ),
-          ),
+            SelectionArea(
+                child: Text(
+              FFLocalizations.of(context).getText(
+                'un2uw99e' /* max.mustermann@gmail.com */,
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Inter',
+                    fontSize: 18.0,
+                  ),
+            )),
+            SizedBox(
+              height: 30.0,
+              child: VerticalDivider(
+                thickness: 2.0,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            SelectionArea(
+                child: Text(
+              FFLocalizations.of(context).getText(
+                '65tmle7n' /* +49 000 00000000 */,
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Inter',
+                    fontSize: 18.0,
+                  ),
+            )),
+          ].divide(SizedBox(width: 20.0)),
         ),
       ),
     );

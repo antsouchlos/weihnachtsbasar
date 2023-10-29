@@ -619,39 +619,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // StandCard
   {
-    'j2fc7dvr': {
+    '9zqlime7': {
       'de': 'Standname',
-      'el': '',
+      'el': 'Πάγκος',
     },
   },
   // StandCardEntry
   {
     'qpj5sxzr': {
       'de': 'Max Mustermann',
-      'el': '',
+      'el': 'Max Mustermann',
     },
     'un2uw99e': {
       'de': 'max.mustermann@gmail.com',
-      'el': '',
+      'el': 'max.mustermann@gmail.com',
     },
     '65tmle7n': {
       'de': '+49 000 00000000',
-      'el': '',
-    },
-    '4p0z6665': {
-      'de': 'Freitag 16:30 - 19:30: Aufbau',
-      'el': '',
+      'el': '+49 000 00000000',
     },
   },
   // StandCardShift
   {
     'ddmyfj1h': {
-      'de': 'Schicht',
-      'el': '',
+      'de': 'Freitag 16:30-19:30: Aufbau',
+      'el': 'Παρασκευή 16:30-19:30: Εγκατάσταση',
     },
     'h019d9zd': {
-      'de': 'Anmeldung offen',
-      'el': '',
+      'de': 'Anmeldung möglich:',
+      'el': 'Εγκραφή δυνατή:',
     },
   },
   // Footer

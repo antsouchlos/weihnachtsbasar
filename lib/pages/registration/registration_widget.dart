@@ -550,7 +550,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                   onChanged: (val) => setState(
                                       () => _model.dropDownValue2 = val),
                                   width: 300.0,
-                                  height: 60.0,
+                                  height: 70.0,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
