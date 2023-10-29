@@ -134,7 +134,7 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
             child: Container(
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
               ),
               alignment: AlignmentDirectional(0.00, 0.00),
               child: SingleChildScrollView(

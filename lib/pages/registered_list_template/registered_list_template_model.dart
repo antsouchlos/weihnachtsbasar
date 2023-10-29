@@ -1,12 +1,6 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'registered_list_template_widget.dart' show RegisteredListTemplateWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class RegisteredListTemplateModel
     extends FlutterFlowModel<RegisteredListTemplateWidget> {

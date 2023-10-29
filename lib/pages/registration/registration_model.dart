@@ -14,6 +14,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -22,10 +23,33 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '78wqcsjv' /* Field is required */,
+      );
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
+  String? _textController3Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'e9m5e2rw' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
@@ -38,6 +62,8 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    textController2Validator = _textController2Validator;
+    textController3Validator = _textController3Validator;
     footerModel = createModel(context, () => FooterModel());
   }
 

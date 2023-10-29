@@ -364,6 +364,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Εγγραφή',
     },
+    '3fc2jt9c': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'z5p4cryg': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    '78wqcsjv': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'dbowmbh3': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    'e9m5e2rw': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'rua5r41j': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
     'rihisduh': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
@@ -413,109 +437,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Αρχική σελίδα',
     },
   },
-  // RegistrationFancy
-  {
-    'kjlemzx9': {
-      'de': 'Auswahl des Standes:',
-      'el': '',
-    },
-    'pjq94one': {
-      'de': 'Adventskränze',
-      'el': '',
-    },
-    't70ky1tl': {
-      'de': 'Verkauf von Adventskränzen',
-      'el': '',
-    },
-    'ipt7q346': {
-      'de': 'Kinderbasteln',
-      'el': '',
-    },
-    'akq0yoge': {
-      'de': 'Basteln von Lebkuchenhäusern mit Kindern',
-      'el': '',
-    },
-    '3b8gxb9s': {
-      'de': 'Deutsche Spezialitäten',
-      'el': '',
-    },
-    '6soobrc4': {
-      'de': 'Verkauf von typisch deutschem Essen',
-      'el': '',
-    },
-    '9x4zx8re': {
-      'de': 'Name',
-      'el': '',
-    },
-    'f84hydz3': {
-      'de': 'E-Mail',
-      'el': '',
-    },
-    'z2zpde52': {
-      'de': 'Telefonnummer',
-      'el': '',
-    },
-    'zispwfjs': {
-      'de': 'Zeitraum:',
-      'el': '',
-    },
-    '2l4njseg': {
-      'de': 'Freitag 16:30-19:30: Aufbau',
-      'el': '',
-    },
-    'hz3iqdjh': {
-      'de': 'Freitag 16:30-19:30: Aufbau',
-      'el': '',
-    },
-    'qn7swleb': {
-      'de': 'Samstag 08:00 - 10:00: Aufbau',
-      'el': '',
-    },
-    'a5wtnec3': {
-      'de': 'Samstag 10:00 - 13:00: Aufbau',
-      'el': '',
-    },
-    '3kch3yj6': {
-      'de': 'Samstag 13:00 - 16:00: Basar',
-      'el': '',
-    },
-    'l2jq96oy': {
-      'de': 'Samstag 16:00 - 19:00: Basar',
-      'el': '',
-    },
-    'cfzal0lf': {
-      'de': 'Samstag 19:00 - 21:00: Abbau',
-      'el': '',
-    },
-    'szv2xdmr': {
-      'de': 'Please select...',
-      'el': '',
-    },
-    'xb7th9ih': {
-      'de': 'Search for an item...',
-      'el': '',
-    },
-    'uehx5dx2': {
-      'de': 'Anmelden',
-      'el': '',
-    },
-    '96l49whi': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
-    },
-    'qxecqeqf': {
-      'de': 'Weihnachtsbasar 2023',
-      'el': 'Χριστουγεννιάτικο παζάρι 2023',
-    },
-    '15uxxh03': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
-    },
-    '8ejrs0d8': {
-      'de': 'Home',
-      'el': 'Αρχική σελίδα',
-    },
-  },
   // LogIn
   {
     '6wjeje1b': {
@@ -534,6 +455,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Σύνδεση',
     },
+    'x14jo62a': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    '5xh595f1': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    '80emv878': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'hdvtol9m': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
     'f45lrdnq': {
       'de': 'DSA Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
@@ -541,61 +478,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'wbjgcdct': {
       'de': 'Home',
       'el': 'Αρχική σελίδα',
-    },
-  },
-  // RegisteredListTemplate
-  {
-    'e7smhw7q': {
-      'de': 'Manage your team below.',
-      'el': '',
-    },
-    '1nb5qm0f': {
-      'de': 'Random Name',
-      'el': '',
-    },
-    '8hxykyzr': {
-      'de': 'user@randomname.com',
-      'el': '',
-    },
-    '5ectvzyp': {
-      'de': 'Random Name',
-      'el': '',
-    },
-    'fk7vjejm': {
-      'de': 'user@randomname.com',
-      'el': '',
-    },
-    'hkl2h6jq': {
-      'de': 'Random Name',
-      'el': '',
-    },
-    '44cffc30': {
-      'de': 'user@randomname.com',
-      'el': '',
-    },
-    '71cojig1': {
-      'de': 'Random Name',
-      'el': '',
-    },
-    '09qzlqt2': {
-      'de': 'user@randomname.com',
-      'el': '',
-    },
-    'pb0lstf2': {
-      'de': 'Random Name',
-      'el': '',
-    },
-    'f8bq6kcg': {
-      'de': 'user@randomname.com',
-      'el': '',
-    },
-    'bn9s9cnf': {
-      'de': 'My Team',
-      'el': '',
-    },
-    'y9wqlc4s': {
-      'de': 'Home',
-      'el': '',
     },
   },
   // RegisteredList

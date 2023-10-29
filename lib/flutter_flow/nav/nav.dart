@@ -64,19 +64,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RegistrationfailedWidget(),
         ),
         FFRoute(
-          name: 'RegistrationFancy',
-          path: '/registrationFancy',
-          builder: (context, params) => RegistrationFancyWidget(),
-        ),
-        FFRoute(
           name: 'LogIn',
           path: '/logIn',
           builder: (context, params) => LogInWidget(),
-        ),
-        FFRoute(
-          name: 'RegisteredListTemplate',
-          path: '/registeredListTemplate',
-          builder: (context, params) => RegisteredListTemplateWidget(),
         ),
         FFRoute(
           name: 'RegisteredList',
