@@ -96,7 +96,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                       alignment: AlignmentDirectional(0.00, 0.00),
                       child: Form(
                         key: _model.formKey,
-                        autovalidateMode: AutovalidateMode.disabled,
+                        autovalidateMode: AutovalidateMode.always,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -60,12 +60,6 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
             width: MediaQuery.sizeOf(context).width * 1.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).primaryBackground,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x33000000),
-                  offset: Offset(0.0, 1.0),
-                )
-              ],
             ),
             alignment: AlignmentDirectional(0.00, 0.00),
             child: Padding(
@@ -73,10 +67,10 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
               child: Wrap(
                 spacing: 0.0,
                 runSpacing: 0.0,
-                alignment: WrapAlignment.start,
+                alignment: WrapAlignment.center,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 direction: Axis.horizontal,
-                runAlignment: WrapAlignment.start,
+                runAlignment: WrapAlignment.center,
                 verticalDirection: VerticalDirection.down,
                 clipBehavior: Clip.none,
                 children: [
@@ -90,41 +84,16 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 0.5,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    alignment: AlignmentDirectional(1.00, 0.00),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            'h019d9zd' /* Anmeldung möglich: */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
-                                    fontSize: 18.0,
-                                  ),
-                        ),
-                        Switch.adaptive(
-                          value: _model.switchValue ??= true,
-                          onChanged: (newValue) async {
-                            setState(() => _model.switchValue = newValue!);
-                          },
-                          activeColor: FlutterFlowTheme.of(context).primary,
-                          activeTrackColor:
-                              FlutterFlowTheme.of(context).accent1,
-                          inactiveTrackColor:
-                              FlutterFlowTheme.of(context).alternate,
-                          inactiveThumbColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                        ),
-                      ].divide(SizedBox(width: 10.0)),
-                    ),
+                  Switch.adaptive(
+                    value: _model.switchValue ??= true,
+                    onChanged: (newValue) async {
+                      setState(() => _model.switchValue = newValue!);
+                    },
+                    activeColor: FlutterFlowTheme.of(context).primary,
+                    activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                    inactiveTrackColor: FlutterFlowTheme.of(context).alternate,
+                    inactiveThumbColor:
+                        FlutterFlowTheme.of(context).secondaryText,
                   ),
                 ],
               ),

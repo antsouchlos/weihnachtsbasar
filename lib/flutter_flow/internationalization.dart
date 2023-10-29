@@ -364,27 +364,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Εγγραφή',
     },
-    '3fc2jt9c': {
+    '74k2a1ys': {
       'de': 'Field is required',
       'el': '',
     },
-    'z5p4cryg': {
+    'v0uwdtxi': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    '78wqcsjv': {
+    '4w3kwoio': {
       'de': 'Field is required',
       'el': '',
     },
-    'dbowmbh3': {
+    'ehltt8c6': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'e9m5e2rw': {
+    'bso5ygus': {
       'de': 'Field is required',
       'el': '',
     },
-    'rua5r41j': {
+    'x1upp3d7': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
@@ -455,19 +455,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Σύνδεση',
     },
-    'x14jo62a': {
+    '4np4ew3t': {
       'de': 'Field is required',
       'el': '',
     },
-    '5xh595f1': {
+    'tdwbxwkn': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    '80emv878': {
+    'k5znaf64': {
       'de': 'Field is required',
       'el': '',
     },
-    'hdvtol9m': {
+    '0j4xr68c': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
@@ -526,10 +526,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ddmyfj1h': {
       'de': 'Freitag 16:30-19:30: Aufbau',
       'el': 'Παρασκευή 16:30-19:30: Εγκατάσταση',
-    },
-    'h019d9zd': {
-      'de': 'Anmeldung möglich:',
-      'el': 'Εγκραφή δυνατή:',
     },
   },
   // Footer

@@ -19,6 +19,16 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
+  String? _textController1Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '74k2a1ys' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
@@ -26,7 +36,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   String? _textController2Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        '78wqcsjv' /* Field is required */,
+        '4w3kwoio' /* Field is required */,
       );
     }
 
@@ -43,7 +53,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   String? _textController3Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'e9m5e2rw' /* Field is required */,
+        'bso5ygus' /* Field is required */,
       );
     }
 
@@ -62,6 +72,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    textController1Validator = _textController1Validator;
     textController2Validator = _textController2Validator;
     textController3Validator = _textController3Validator;
     footerModel = createModel(context, () => FooterModel());
