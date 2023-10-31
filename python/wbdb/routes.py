@@ -1,45 +1,181 @@
-from wbdb import utility
-from wbdb import app, _db_handler
 from flask import request, json, jsonify
 import bleach
+import logging
+import sys
+from wbdb import utility
+from wbdb import app
+from wbdb import db_handler
+
+from wbdb.loggers import route_logger as route_logger
 
 
-@app.route("/api/v1/upload/register", methods=["POST"])
+#
+# Registration stuff
+#
+
+
+@app.route("/api/v1/registration/create", methods=["POST"])
 def register():
-    if request.method == 'POST':
-        name = bleach.clean(request.form['name'])
-        email = bleach.clean(request.form['email'])
-        phone = bleach.clean(request.form['phone'])
-        stand = bleach.clean(request.form['stand'])
-        shift = bleach.clean(request.form['shift'])
+    """Register a new helper."""
+    # Fetch and validate request data
 
-        if (name is None) or (email is None) or (phone is None) or (
-                stand is None) or (shift is None):
-            return utility.gen_error("Missing data fields.")
-        else:
-            _db_handler.register(name, email, phone, stand, shift)
-
-            response = jsonify({
-                'status': 'SUCCESS',
-                'message': 'Successfully received data'
-            })
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            return response
-    else:
+    if request.method != 'POST':
         return utility.gen_error("Wrong method.")
 
+    name = bleach.clean(request.form['name'])
+    email = bleach.clean(request.form['email'])
+    phone = bleach.clean(request.form['phone'])
+    stand = bleach.clean(request.form['stand'])
+    shift = bleach.clean(request.form['shift'])
 
-@app.route("/api/v1/download/standdata", methods=["POST"])
+    if (name is None) or (email is None) or (phone is None) or (
+            stand is None) or (shift is None):
+        return utility.gen_error("Missing data fields.")
+
+    # Perform registration
+
+    try:
+        db_handler.register(name, email, phone, stand, shift)
+        route_logger.info(
+            f"Registered new helper: ({name}, {email}, {phone}, {stand},"
+            f"{shift}])")
+        return utility.gen_success("Successfully registered.")
+    except Exception as e:
+        route_logger.exception(
+            f"Exception occurred while registering new helper")
+        return utility.gen_error("Unable to register.")
+
+
+@app.route("/api/v1/registration/remove", methods=["POST"])
+def remove_registration():
+    """Remove a helper registration."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    stand = bleach.clean(request.form['stand'])
+    shift = bleach.clean(request.form['shift'])
+    email = bleach.clean(request.form['email'])
+
+    if (stand is None) or (shift is None) or (email is None):
+        return utility.gen_error("Missing data fields.")
+
+    # Remove registration
+
+    try:
+        db_handler.remove_registration(stand, shift, email)
+        route_logger.info(
+            f"Removed registration: ({stand}, {shift}, {email})")
+        return utility.gen_success("Successfully removed registration.")
+    except Exception as e:
+        route_logger.exception(
+            f"Exception occurred while removing registration")
+        return utility.gen_error("Unable to remove registration.")
+
+
+#
+# Shift stuff
+#
+
+
+@app.route("/api/v1/shifts/create", methods=["POST"])
+def add_shift():
+    """Add a new shift."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    text_de = bleach.clean(request.form['text_de'])
+    text_gr = bleach.clean(request.form['text_gr'])
+
+    if (text_de is None) or (text_gr is None):
+        return utility.gen_error("Missing data fields.")
+
+    # Create shift
+
+    try:
+        db_handler.add_shift(text_de, text_gr)
+        route_logger.info(f"Created new shift: ({text_de}, {text_gr})")
+        return utility.gen_success("Created new shift")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while creating new shift")
+        return utility.gen_error("Unable to create shift.")
+
+
+@app.route("/api/v1/shifts/remove", methods=["POST"])
+def remove_shift():
+    """Remove existing shift."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    shift_id = bleach.clean(request.form['shift_id'])
+
+    if shift_id is None:
+        return utility.gen_error("Missing data fields.")
+
+    # Remove shift
+
+    try:
+        db_handler.remove_shift(int(shift_id))
+        route_logger.info(f"Removed shift: {shift_id}")
+        return utility.gen_success("Removed shift")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while removing shift")
+        return utility.gen_error("Unable to remove shift.")
+
+
+@app.route("/api/v1/shifts/download", methods=["POST"])
+def get_shifts():
+    """Get a list of all possible shifts."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    # Get shifts
+
+    try:
+        data = db_handler.get_shifts()
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of all shifts")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching shifts")
+        return utility.gen_error("Unable to download shifts.")
+
+
+#
+# Misc
+#
+
+
+@app.route("/api/v1/standdata/download", methods=["POST"])
 def get_stand_data():
-    if request.method == 'POST':
-        stand = bleach.clean(request.form['stand'])
+    """Get a list of shifts, containing lists of helpers for a stand."""
+    # Fetch and validate request data
 
-        if stand is None:
-            return utility.gen_error("Missing data fields.")
-        else:
-            data = _db_handler.get_stand_data(stand)
-            response = jsonify(data)
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            return response
-    else:
+    if request.method != 'POST':
         return utility.gen_error("Wrong method.")
+
+    stand = bleach.clean(request.form['stand'])
+
+    if stand is None:
+        return utility.gen_error("Missing data fields.")
+
+    # Get stand data
+
+    try:
+        data = db_handler.get_stand_data(stand)
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info("Fetched stand data")
+        return response
+    except Exception as e:
+        route_logger.exception(
+            f"Exception occurred while fetching stand data")
+        return utility.gen_error("Unable to download stand data.")
