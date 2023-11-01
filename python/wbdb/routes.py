@@ -8,6 +8,8 @@ from wbdb import db_handler
 
 from wbdb.loggers import route_logger as route_logger
 
+from werkzeug.security import generate_password_hash
+
 
 #
 # Registration stuff
@@ -147,6 +149,84 @@ def get_shifts():
     except Exception as e:
         route_logger.exception(f"Exception occurred while fetching shifts")
         return utility.gen_error("Unable to download shifts.")
+
+
+#
+# User management
+#
+
+
+# TODO: Should multiple roles per user be possible?
+@app.route("/api/v1/users/create", methods=["POST"])
+def create_user():
+    """Create new user."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    username = bleach.clean(request.form['username'])
+    password = bleach.clean(request.form['password'])
+    role = bleach.clean(request.form['role'])
+
+    if (username is None) or (password is None) or (role is None):
+        return utility.gen_error("Missing data fields.")
+
+    # Create user
+
+    try:
+        password_hash = generate_password_hash(password)
+        db_handler.add_user(username, password_hash, roles=[role])
+        route_logger.info(f"Created user: {username}")
+        return utility.gen_success("Created user")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while creating user")
+        return utility.gen_error("Unable to create user.")
+
+
+@app.route("/api/v1/users/remove", methods=["POST"])
+def remove_user():
+    """Remove existing shift."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    username = bleach.clean(request.form['username'])
+
+    if username is None:
+        return utility.gen_error("Missing data fields.")
+
+    # Remove shift
+
+    try:
+        db_handler.remove_user(username)
+        route_logger.info(f"Removed user: {username}")
+        return utility.gen_success("Removed user")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while removing user")
+        return utility.gen_error("Unable to remove user.")
+
+
+@app.route("/api/v1/users/download", methods=["POST"])
+def get_users():
+    """Get a list of all possible shifts."""
+    # Fetch and validate request data
+
+    if request.method != 'POST':
+        return utility.gen_error("Wrong method.")
+
+    # Get shifts
+
+    try:
+        data = db_handler.get_users()
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of all users")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching users")
+        return utility.gen_error("Unable to download users.")
 
 
 #

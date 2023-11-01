@@ -139,7 +139,8 @@ class DBHandler:
 
         User = Query()
         if len(user_table.search(User["username"] == username)) > 0:
-            raise Exception("A user with this name already exists")
+            raise Exception(
+                f"A user with the username {username} already exists")
 
         user_table.insert(
             {"username": username, "password_hash": password_hash,
@@ -151,7 +152,8 @@ class DBHandler:
 
         Shift = Query()
         if len(user_table.search(Shift.username == username)) == 0:
-            raise Exception("A user with this username does not exist")
+            raise Exception(
+                f"A user with the username {username} does not exist")
 
         user_table.remove(Shift.username == username)
 
@@ -164,7 +166,9 @@ class DBHandler:
         result = []
         for user in user_table.all():
             result.append(
-                (user["username"], user["password_hash"], user["roles"]))
+                {"username": user["username"],
+                 "password_hash": user["password_hash"],
+                 "roles": user["roles"]})
 
         return result
 
@@ -174,7 +178,8 @@ class DBHandler:
         """Get list of registered helpers for a stand."""
         pass
 
-    def set_registration_status(self, stand: str, shift: int, status: bool):
+    def set_registration_status(self, stand: str, shift: int,
+                                status: bool):
         """Enable / Disable registration for a given shift of a given stand."""
         # TODO
         pass
