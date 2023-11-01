@@ -3,6 +3,12 @@
 A registration website for the Christmas bazaar of the
 German School of Athens.
 
+This project is split in two parts:
+* The `flutter` directory contains
+the frontend code, developed using [flutter](https://flutter.dev/).
+* The `python` directory contains the backend code, implementing
+a REST API using [flask](https://flask.palletsprojects.com/en/3.0.x/).
+
 ## Build and run
 
 For all following commands, it is assumed that the working directory
@@ -19,7 +25,7 @@ is the repository root.
 $ docker-compose up -d
 ```
 
-### Manually using `docker`
+### Manually, using `docker`
 
 1. Run web app:
     ```bash
