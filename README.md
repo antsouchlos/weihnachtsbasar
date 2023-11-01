@@ -18,6 +18,6 @@ $ docker run --rm --net=host -it $(docker build -q flutter)
 ### Database service
 
 ```bash
-$ docker run --rm --net=host -it $(docker build -q python)
+$docker run --rm -v ./python:/usr/local/bin/app --net=host -it $(docker build -q python)
 ```
 
