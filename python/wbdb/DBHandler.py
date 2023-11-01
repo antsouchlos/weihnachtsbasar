@@ -10,16 +10,16 @@ import os
 #
 # {
 #     shifts: ["Freitag...", ...],
-#     accounts: [
+#     users: [
 #         {
 #             "username": "abcd",
 #             "password_hash": "efgh",
-#             "permissions": ["Stand0", "Stand1", ...],
+#             "roles": ["Stand0", "Stand1", ...]
 #         },
 #         {
 #             "username": "abcd",
 #             "password_hash": "efgh",
-#             "permissions": ["Stand0", "Stand1", ...],
+#             "roles": ["efgh"]
 #         },
 #         ...
 #     ],
@@ -95,6 +95,7 @@ class DBHandler:
     # Shift stuff
 
     def add_shift(self, text_de: str, text_gr: str):
+        """Add a new shift."""
         shift_table = self._db.table("shifts")
 
         Shift = Query()
@@ -109,12 +110,12 @@ class DBHandler:
             {"shift_id": new_shift_id, "text_de": text_de, "text_gr": text_gr})
 
     def remove_shift(self, shift_id: int):
+        """Remove an existing shift."""
         shift_table = self._db.table("shifts")
 
         Shift = Query()
-        print(f"[DEBUG] shift_id: {shift_id}")
         if len(shift_table.search(Shift.shift_id == shift_id)) == 0:
-            raise Exception("An exception with this ID does not exist")
+            raise Exception("A shift with this ID does not exist")
 
         shift_table.remove(Shift.shift_id == shift_id)
 
@@ -126,6 +127,44 @@ class DBHandler:
         for shift in shift_table.all():
             result.append(
                 (int(shift["shift_id"]), shift["text_de"], shift["text_gr"]))
+
+        return result
+
+    # User management
+
+    def add_user(self, username: str, password_hash: str,
+                 roles: typing.List[str]):
+        """Add a new user."""
+        user_table = self._db.table("users")
+
+        User = Query()
+        if len(user_table.search(User["username"] == username)) > 0:
+            raise Exception("A user with this name already exists")
+
+        user_table.insert(
+            {"username": username, "password_hash": password_hash,
+             "roles": roles})
+
+    def remove_user(self, username: str):
+        """Remove an existing user."""
+        user_table = self._db.table("users")
+
+        Shift = Query()
+        if len(user_table.search(Shift.username == username)) == 0:
+            raise Exception("A user with this username does not exist")
+
+        user_table.remove(Shift.username == username)
+
+    def get_users(self):
+        """Return a list of all users with their usernames, password hashes
+        and roles.
+        """
+        user_table = self._db.table("users")
+
+        result = []
+        for user in user_table.all():
+            result.append(
+                (user["username"], user["password_hash"], user["roles"]))
 
         return result
 
