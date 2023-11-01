@@ -7,6 +7,7 @@ from wbdb import app
 from wbdb import db_handler
 
 from wbdb.loggers import route_logger as route_logger
+from wbdb.auth import auth
 
 from werkzeug.security import generate_password_hash
 
@@ -82,6 +83,7 @@ def remove_registration():
 
 
 @app.route("/api/v1/shifts/create", methods=["POST"])
+@auth.login_required(role="admin")
 def add_shift():
     """Add a new shift."""
     # Fetch and validate request data
@@ -107,6 +109,7 @@ def add_shift():
 
 
 @app.route("/api/v1/shifts/remove", methods=["POST"])
+@auth.login_required(role="admin")
 def remove_shift():
     """Remove existing shift."""
     # Fetch and validate request data
@@ -208,6 +211,7 @@ def remove_user():
         return utility.gen_error("Unable to remove user.")
 
 
+# TODO: Remove this. It is only meant for debugging.
 @app.route("/api/v1/users/download", methods=["POST"])
 def get_users():
     """Get a list of all possible shifts."""
