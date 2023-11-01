@@ -1,23 +1,33 @@
 # weihnachtsbasar
 
+
+
 ## Build and run
 
-For both of the following commands, it is assumed that the working
-directory is the repository root.
+For all  following commands, it is assumed that the working  directory
+is the repository root.
 
 > **Warning** \
-> The following commands use host networking.
+> The following commands configure the containers to use host
+> networking.
 > If different behavior is desired, they should be modified accordingly.
 
-### Website
+
+### Using `docker-compose`
 
 ```bash
-$ docker run --rm --net=host -it $(docker build -q flutter)
+$ docker-compose up -d
 ```
 
-### Database service
+### Manually using `docker`
 
-```bash
-$docker run --rm -v ./python:/usr/local/bin/app --net=host -it $(docker build -q python)
-```
+1. Run web app:
+    ```bash
+    $ docker run --rm --net=host -it $(docker build -q flutter)
+    ```
+   
+2. Run database service
+    ```bash
+    $ docker run --rm -v ./python:/usr/local/bin/app --net=host -it $(docker build -q python)
+    ```
 

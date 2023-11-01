@@ -1,0 +1,13 @@
+services:
+  app:
+    build: ./flutter
+    ports:
+      - 80:80
+    network_mode: "host"
+  db:
+    build: ./python
+    ports:
+      - 5000:5000
+    volumes:
+      - ./python:/usr/local/bin/app
+    network_mode: "host"
