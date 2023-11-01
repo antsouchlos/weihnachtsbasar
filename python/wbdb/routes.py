@@ -161,6 +161,7 @@ def get_shifts():
 
 # TODO: Should multiple roles per user be possible?
 @app.route("/api/v1/users/create", methods=["POST"])
+@auth.login_required(role="admin")
 def create_user():
     """Create new user."""
     # Fetch and validate request data
@@ -188,6 +189,7 @@ def create_user():
 
 
 @app.route("/api/v1/users/remove", methods=["POST"])
+@auth.login_required(role="admin")
 def remove_user():
     """Remove existing shift."""
     # Fetch and validate request data
@@ -200,7 +202,11 @@ def remove_user():
     if username is None:
         return utility.gen_error("Missing data fields.")
 
-    # Remove shift
+    # Remove user
+
+    if username == auth.username():
+        route_logger.debug("Attempted to delete user used for auth")
+        return utility.gen_error("Cant remove user used for auth")
 
     try:
         db_handler.remove_user(username)
