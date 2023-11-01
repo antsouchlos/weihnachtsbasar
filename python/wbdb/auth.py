@@ -2,6 +2,10 @@ from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import check_password_hash
 from wbdb import db_handler
 
+#
+# Authentication stuff
+#
+
 auth = HTTPBasicAuth()
 
 
@@ -20,3 +24,9 @@ def verify_password(username, password):
 @auth.get_user_roles
 def get_user_roles(user):
     return user["roles"]
+
+#
+# Authorization stuff
+#
+
+# TODO

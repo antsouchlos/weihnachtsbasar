@@ -16,6 +16,12 @@ _stdout_handler.setFormatter(_formatter)
 
 # Loggers
 
+system_logger = logging.getLogger("System")
+system_logger.propagate = False
+system_logger.setLevel(logging.DEBUG)
+system_logger.addHandler(_file_handler)
+system_logger.addHandler(_stdout_handler)
+
 route_logger = logging.getLogger("RouteLogger")
 route_logger.propagate = False
 route_logger.setLevel(logging.DEBUG)
