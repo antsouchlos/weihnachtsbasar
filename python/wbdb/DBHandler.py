@@ -23,47 +23,28 @@ import os
 #         },
 #         ...
 #     ],
-#     registration_status: {
-#         "Stand0": {
-#             "0": true,
-#             "1": false,
-#             ...
-#         },
-#         "Stand1": {
-#             "0": true,
-#             "1": false,
-#             ...
-#         },
+#     registration_blacklist: {
+#         "stand_{stand0_slug}": [],
+#         "stand_{stand1_slug}": [0, 1],
 #         ...
 #     },
-#     standdata: {
-#         "Stand0": {
-#             "0": [
-#                 {"Name": "Max Mustermann", ...},
-#                 {"Name": "Max Mustermann", ...},
-#                 ...
-#             ]
-#             "1": [
-#                 {"Name": "Max Mustermann", ...},
-#                 {"Name": "Max Mustermann", ...},
-#                 ...
-#             ],
-#             ...
-#         },
-#         "Stand1": {
-#             "0": [
-#                 {"Name": "Max Mustermann", ...},
-#                 {"Name": "Max Mustermann", ...},
-#                 ...
-#             ]
-#             "1": [
-#                 {"Name": "Max Mustermann", ...},
-#                 {"Name": "Max Mustermann", ...},
-#                 ...
-#             ],
-#             ...
-#         },
+#     "stand_{stand0_slug}": {
+#         {"shift_id": 0, "name": "Max Mustermann", ...},
+#         {"shift_id": 0, "name": "Max Mustermann", ...},
+#         ...
+#         {"shift_id": 1, "name": "Max Mustermann", ...},
+#         {"shift_id": 1, "name": "Max Mustermann", ...},
+#         ...
 #     }
+#     "stand_{stand1_slug}": {
+#         {"shift_id": 0, "name": "Max Mustermann", ...},
+#         {"shift_id": 0, "name": "Max Mustermann", ...},
+#         ...
+#         {"shift_id": 1, "name": "Max Mustermann", ...},
+#         {"shift_id": 1, "name": "Max Mustermann", ...},
+#         ...
+#     },
+#     ...
 # }
 #
 #
