@@ -22,9 +22,6 @@ def register():
     """Register a new helper."""
     # Fetch and validate request data
 
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
     name = bleach.clean(request.form['name'])
     email = bleach.clean(request.form['email'])
     phone = bleach.clean(request.form['phone'])
@@ -55,9 +52,6 @@ def remove_registration(standname):
     """Remove a helper registration."""
     # Fetch and validate request data
 
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
     shift = bleach.clean(request.form['shift'])
     email = bleach.clean(request.form['email'])
 
@@ -78,6 +72,59 @@ def remove_registration(standname):
 
 
 #
+# Stand stuff
+#
+
+@app.route("/api/v1/stands/create", methods=["POST"])
+@auth.login_required(role="admin")
+def create_stand():
+    """Create a new stand."""
+    # Fetch and validate request data
+
+    standname_de = bleach.clean(request.form['standname_de'])
+    standname_gr = bleach.clean(request.form['standname_gr'])
+
+    if (standname_de is None) or (standname_gr is None):
+        return utility.gen_error("Missing data fields.")
+
+    # Create stand
+
+    try:
+        db_handler.add_stand(standname_de, standname_gr)
+        route_logger.info(
+            f"Created new stand: ({standname_de}, {standname_gr})")
+        return utility.gen_success("Created stand")
+    except Exception as e:
+        route_logger.exception(
+            f"Exception occurred while creating stand")
+        return utility.gen_error("Unable to create stand")
+
+
+@app.route("/api/v1/stands/remove", methods=["POST"])
+@auth.login_required(role="admin")
+def remove_stand():
+    """Remove an existing stand."""
+    # Fetch and validate request data
+
+    standname_de = bleach.clean(request.form['standname_de'])
+
+    if standname_de is None:
+        return utility.gen_error("Missing data fields.")
+
+    # Remove stand
+
+    try:
+        db_handler.remove_stand(standname_de)
+        route_logger.info(
+            f"Removed stand: {standname_de}")
+        return utility.gen_success("Removed stand")
+    except Exception as e:
+        route_logger.exception(
+            f"Exception occurred while removing stand")
+        return utility.gen_error("Unable to remove stand")
+
+
+#
 # Shift stuff
 #
 
@@ -87,9 +134,6 @@ def remove_registration(standname):
 def add_shift():
     """Add a new shift."""
     # Fetch and validate request data
-
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
 
     text_de = bleach.clean(request.form['text_de'])
     text_gr = bleach.clean(request.form['text_gr'])
@@ -114,9 +158,6 @@ def remove_shift():
     """Remove existing shift."""
     # Fetch and validate request data
 
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
     shift_id = bleach.clean(request.form['shift_id'])
 
     if shift_id is None:
@@ -136,13 +177,6 @@ def remove_shift():
 @app.route("/api/v1/shifts/download", methods=["POST"])
 def get_shifts():
     """Get a list of all possible shifts."""
-    # Fetch and validate request data
-
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
-    # Get shifts
-
     try:
         data = db_handler.get_shifts()
         response = jsonify(data)
@@ -164,10 +198,6 @@ def get_shifts():
 @auth.login_required(role="admin")
 def create_user():
     """Create new user."""
-    # Fetch and validate request data
-
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
 
     username = bleach.clean(request.form['username'])
     password = bleach.clean(request.form['password'])
@@ -194,9 +224,6 @@ def remove_user():
     """Remove existing shift."""
     # Fetch and validate request data
 
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
     username = bleach.clean(request.form['username'])
 
     if username is None:
@@ -221,13 +248,6 @@ def remove_user():
 @app.route("/api/v1/users/download", methods=["POST"])
 def get_users():
     """Get a list of all possible shifts."""
-    # Fetch and validate request data
-
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
-    # Get shifts
-
     try:
         data = db_handler.get_users()
         response = jsonify(data)
@@ -248,13 +268,6 @@ def get_users():
 @require_standname_or_admin_role
 def get_stand_data(standname):
     """Get a list of shifts, containing lists of helpers, for a given stand."""
-    # Fetch and validate request data
-
-    if request.method != 'POST':
-        return utility.gen_error("Wrong method.")
-
-    # Get stand data
-
     try:
         data = db_handler.get_stand_data(standname)
         response = jsonify(data)
