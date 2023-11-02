@@ -1,7 +1,9 @@
 import typing
 
 from tinydb import TinyDB, Query
+import tinydb
 import os
+from wbdb import utility
 
 
 # =================================
@@ -24,8 +26,8 @@ import os
 #         ...
 #     ],
 #     registration_blacklist: {
-#         "stand_{stand0_slug}": [],
-#         "stand_{stand1_slug}": [0, 1],
+#         {"stand_name"}: "stand_{stand0_slug}", "blacklist": []},
+#         {"stand_name"}: "stand_{stand1_slug}", "blacklist": [0, 1]},
 #         ...
 #     },
 #     "stand_{stand0_slug}": {
@@ -60,18 +62,90 @@ class DBHandler:
         self._db = TinyDB('{0}/db.json'.format(os.getcwd()))
         self._logger = logger
 
+    # Utility
+
+    @staticmethod
+    def _get_stand_slug(standname_de):
+        return f"stand_{utility.slugify(standname_de)}"
+
+    def _stand_exists(self, slug: str) -> bool:
+        """Check if a stand with a given name exists."""
+        blacklist_table = self._db.table("registration_blacklist")
+
+        Stand = Query()
+        return len(blacklist_table.search(Stand.standname == slug)) > 0
+
+    def _get_stand_table(self, standname_de: str):
+        """Get the table corresponding to a stand with a given name. If the
+        stand in question does not exist, an exception is raised.
+        """
+        stand_slug = self._get_stand_slug(standname_de)
+
+        if not self._stand_exists(stand_slug):
+            raise Exception(f"Stand '{stand_slug}' does not exist")
+
+        return self._db.table(stand_slug)
+
     # Registration stuff
 
-    # TODO: Check whether a user with that email already exists
-    #  for that stand and that shift
-    def register(self, name: str, email: str, phone: str, stand: str,
-                 shift: int):
+    def register(self, name: str, email: str, phone: str, standname_de: str,
+                 shift_id: int):
         """Register a new helper."""
-        pass
+        stand_table = self._get_stand_table(standname_de)
 
-    def remove_registration(self, stand: str, shift: int, email: str):
-        # TODO
-        pass
+        User = Query()
+        if len(stand_table.search((User.email == email)
+                                  & (User.shift_id == shift_id))) > 0:
+            raise Exception(
+                f"A user with the email {email} has already been registered "
+                f"for shift {shift_id}")
+
+        stand_table.insert({"shift_id": shift_id, "name": name, "email": email,
+                            "phone": phone})
+
+    def remove_registration(self, standname_de: str, shift_id: int,
+                            email: str):
+        """Remove an existing registration."""
+        stand_table = self._get_stand_table(standname_de)
+
+        User = Query()
+        if len(stand_table.search((User.email == email)
+                                  & (User.shift_id == shift_id))) == 0:
+            raise Exception(
+                f"A user with the email {email} has not been registered "
+                f"for shift {shift_id}")
+
+        stand_table.remove((User.email == email)
+                           & (User.shift_id == shift_id))
+
+    # Stand stuff
+
+    def add_stand(self, standname_de: str, standname_gr: str):
+        """Add a new stand. Creates the corresponding table as well as
+        registration blacklist entry.
+        """
+        stand_slug = self._get_stand_slug(standname_de)
+        if self._stand_exists(stand_slug):
+            raise Exception(f"Table {stand_slug} already exists")
+
+        stand_table = self._db.table(stand_slug)
+        blacklist_table = self._db.table("registration_blacklist")
+        blacklist_table.insert({"standname": stand_slug, "blacklist": []})
+
+    def remove_stand(self, standname_de: str):
+        """Remove and existing stand. Removes the corresponding table as well
+        as the registration blacklist entry.
+        """
+        stand_slug = self._get_stand_slug(standname_de)
+        if not self._stand_exists(stand_slug):
+            raise Exception(f"A table with the name {stand_slug} does"
+                            f"not exist")
+
+        self._db.drop_table(stand_slug)
+
+        blacklist_table = self._db.table("registration_blacklist")
+        Stand = Query()
+        blacklist_table.remove(Stand.stand_name == stand_slug)
 
     # Shift stuff
 
