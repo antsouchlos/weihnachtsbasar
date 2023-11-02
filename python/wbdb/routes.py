@@ -7,7 +7,7 @@ from wbdb import app
 from wbdb import db_handler
 
 from wbdb.loggers import route_logger as route_logger
-from wbdb.auth import auth
+from wbdb.auth import auth, require_standname_or_admin_role
 
 from werkzeug.security import generate_password_hash
 
@@ -49,27 +49,27 @@ def register():
         return utility.gen_error("Unable to register.")
 
 
-@app.route("/api/v1/registration/remove", methods=["POST"])
-def remove_registration():
+@app.route("/api/v1/registration/remove/<path:standname>", methods=["POST"])
+@require_standname_or_admin_role
+def remove_registration(standname):
     """Remove a helper registration."""
     # Fetch and validate request data
 
     if request.method != 'POST':
         return utility.gen_error("Wrong method.")
 
-    stand = bleach.clean(request.form['stand'])
     shift = bleach.clean(request.form['shift'])
     email = bleach.clean(request.form['email'])
 
-    if (stand is None) or (shift is None) or (email is None):
+    if (standname is None) or (shift is None) or (email is None):
         return utility.gen_error("Missing data fields.")
 
     # Remove registration
 
     try:
-        db_handler.remove_registration(stand, shift, email)
+        db_handler.remove_registration(standname, shift, email)
         route_logger.info(
-            f"Removed registration: ({stand}, {shift}, {email})")
+            f"Removed registration: ({standname}, {shift}, {email})")
         return utility.gen_success("Successfully removed registration.")
     except Exception as e:
         route_logger.exception(
@@ -244,23 +244,19 @@ def get_users():
 #
 
 
-@app.route("/api/v1/standdata/download", methods=["POST"])
-def get_stand_data():
-    """Get a list of shifts, containing lists of helpers for a stand."""
+@app.route("/api/v1/standdata/download/<path:standname>", methods=["POST"])
+@require_standname_or_admin_role
+def get_stand_data(standname):
+    """Get a list of shifts, containing lists of helpers, for a given stand."""
     # Fetch and validate request data
 
     if request.method != 'POST':
         return utility.gen_error("Wrong method.")
 
-    stand = bleach.clean(request.form['stand'])
-
-    if stand is None:
-        return utility.gen_error("Missing data fields.")
-
     # Get stand data
 
     try:
-        data = db_handler.get_stand_data(stand)
+        data = db_handler.get_stand_data(standname)
         response = jsonify(data)
         response.headers.add('Access-Control-Allow-Origin', '*')
         route_logger.info("Fetched stand data")
