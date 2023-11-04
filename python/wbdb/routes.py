@@ -7,7 +7,7 @@ from wbdb import app
 from wbdb import db_handler
 
 from wbdb.loggers import route_logger as route_logger
-from wbdb.auth import auth, require_standname_or_admin_role
+from wbdb.auth import auth, require_stand_slug_or_admin_role
 
 from werkzeug.security import generate_password_hash
 
@@ -25,20 +25,20 @@ def register():
     name = bleach.clean(request.form['name'])
     email = bleach.clean(request.form['email'])
     phone = bleach.clean(request.form['phone'])
-    stand = bleach.clean(request.form['stand'])
-    shift = bleach.clean(request.form['shift'])
+    standname_de = bleach.clean(request.form['standname_de'])
+    shift_id = int(bleach.clean(request.form['shift_id']))
 
     if (name is None) or (email is None) or (phone is None) or (
-            stand is None) or (shift is None):
+            standname_de is None) or (shift_id is None):
         return utility.gen_error("Missing data fields.")
 
     # Perform registration
 
     try:
-        db_handler.register(name, email, phone, stand, shift)
+        db_handler.register(name, email, phone, standname_de, shift_id)
         route_logger.info(
-            f"Registered new helper: ({name}, {email}, {phone}, {stand},"
-            f"{shift}])")
+            f"Registered new helper: ({name}, {email}, {phone}, {standname_de},"
+            f"{shift_id}])")
         return utility.gen_success("Successfully registered.")
     except Exception as e:
         route_logger.exception(
@@ -47,7 +47,7 @@ def register():
 
 
 @app.route("/api/v1/registration/remove/<path:standname>", methods=["POST"])
-@require_standname_or_admin_role
+@require_stand_slug_or_admin_role
 def remove_registration(standname):
     """Remove a helper registration."""
     # Fetch and validate request data
@@ -122,6 +122,20 @@ def remove_stand():
         route_logger.exception(
             f"Exception occurred while removing stand")
         return utility.gen_error("Unable to remove stand")
+
+
+@app.route("/api/v1/stands/download", methods=["POST"])
+def get_stands():
+    """Get a list of all possible shifts."""
+    try:
+        data = db_handler.get_stands()
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of all stands")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching stands")
+        return utility.gen_error("Unable to download stands.")
 
 
 #
@@ -244,8 +258,8 @@ def remove_user():
         return utility.gen_error("Unable to remove user.")
 
 
-# TODO: Remove this. It is only meant for debugging.
 @app.route("/api/v1/users/download", methods=["POST"])
+@auth.login_required(role="admin")
 def get_users():
     """Get a list of all possible shifts."""
     try:
@@ -264,12 +278,12 @@ def get_users():
 #
 
 
-@app.route("/api/v1/standdata/download/<path:standname>", methods=["POST"])
-@require_standname_or_admin_role
-def get_stand_data(standname):
+@app.route("/api/v1/standdata/download/<path:stand_slug>", methods=["POST"])
+@require_stand_slug_or_admin_role
+def get_stand_data(stand_slug):
     """Get a list of shifts, containing lists of helpers, for a given stand."""
     try:
-        data = db_handler.get_stand_data(standname)
+        data = db_handler.get_stand_data(stand_slug)
         response = jsonify(data)
         response.headers.add('Access-Control-Allow-Origin', '*')
         route_logger.info("Fetched stand data")

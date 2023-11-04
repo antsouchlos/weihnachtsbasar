@@ -73,7 +73,7 @@ class DBHandler:
         blacklist_table = self._db.table("registration_blacklist")
 
         Stand = Query()
-        return len(blacklist_table.search(Stand.standname == slug)) > 0
+        return len(blacklist_table.search(Stand.stand_slug == slug)) > 0
 
     def _get_stand_table(self, standname_de: str):
         """Get the table corresponding to a stand with a given name. If the
@@ -88,10 +88,16 @@ class DBHandler:
 
     # Registration stuff
 
+    # TODO: Check registration status
     def register(self, name: str, email: str, phone: str, standname_de: str,
                  shift_id: int):
         """Register a new helper."""
         stand_table = self._get_stand_table(standname_de)
+        shift_table = self._db.table("shifts")
+
+        Shift = Query()
+        if len(shift_table.search(Shift.shift_id == shift_id)) == 0:
+            raise Exception(f"A shift with id {shift_id} does not exist")
 
         User = Query()
         if len(stand_table.search((User.email == email)
@@ -128,9 +134,10 @@ class DBHandler:
         if self._stand_exists(stand_slug):
             raise Exception(f"Table {stand_slug} already exists")
 
-        stand_table = self._db.table(stand_slug)
         blacklist_table = self._db.table("registration_blacklist")
-        blacklist_table.insert({"standname": stand_slug, "blacklist": []})
+        blacklist_table.insert(
+            {"stand_slug": stand_slug, "standname_de": standname_de,
+             "standname_gr": standname_gr, "blacklist": []})
 
     def remove_stand(self, standname_de: str):
         """Remove and existing stand. Removes the corresponding table as well
@@ -146,6 +153,18 @@ class DBHandler:
         blacklist_table = self._db.table("registration_blacklist")
         Stand = Query()
         blacklist_table.remove(Stand.stand_name == stand_slug)
+
+    def get_stands(self):
+        """Get a list of all existing stands."""
+        blacklist_table = self._db.table("registration_blacklist")
+
+        result = []
+        for stand in blacklist_table.all():
+            result.append({"stand_slug": stand["stand_slug"],
+                           "standname_de": stand["standname_de"],
+                           "standname_gr": stand["standname_gr"]})
+
+        return result
 
     # Shift stuff
 
@@ -174,14 +193,21 @@ class DBHandler:
 
         shift_table.remove(Shift.shift_id == shift_id)
 
-    def get_shifts(self) -> typing.List[typing.Tuple[int, str, str]]:
+        standnames = [stand["standname_de"] for stand in self.get_stands()]
+        for standname in standnames:
+            stand_table = self._get_stand_table(standname)
+            Registration = Query()
+            stand_table.remove(Registration.shift_id == shift_id)
+
+    def get_shifts(self) -> typing.List[typing.Dict]:
         """Get a list of all shifts."""
         shift_table = self._db.table("shifts")
 
         result = []
         for shift in shift_table.all():
             result.append(
-                (int(shift["shift_id"]), shift["text_de"], shift["text_gr"]))
+                {"shift_id": int(shift["shift_id"]),
+                 "text_de": shift["text_de"], "text_gr": shift["text_gr"]})
 
         return result
 
@@ -229,9 +255,24 @@ class DBHandler:
 
     # Misc
 
-    def get_stand_data(self, stand: str) -> typing.Dict:
+    def get_stand_data(self, stand_slug: str) -> typing.List[typing.Dict]:
         """Get list of registered helpers for a stand."""
-        pass
+        if not self._stand_exists(stand_slug):
+            raise Exception(f"Stand '{stand_slug}' does not exist")
+        
+        stand_table = self._db.table(stand_slug)
+
+        result = []
+
+        shift_ids = [shift["shift_id"] for shift in self.get_shifts()]
+        for shift_id in shift_ids:
+            Registration = Query()
+            registrations = stand_table.search(
+                Registration.shift_id == shift_id)
+            result.append(
+                {"shift_id": shift_id, "registrations": registrations})
+
+        return result
 
     def set_registration_status(self, stand: str, shift: int,
                                 status: bool):

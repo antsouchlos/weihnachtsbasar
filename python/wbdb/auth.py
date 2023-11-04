@@ -31,15 +31,15 @@ def get_user_roles(user):
 # Authorization stuff
 #
 
-def require_standname_or_admin_role(f):
+def require_stand_slug_or_admin_role(f):
     """The effect of this decorator is requiring login and only authorizing
     access when the role of the logged-in user matches 'admin' or a kwarg with
-    the key 'standname'.
+    the key 'stand_slug'.
     """
 
     @wraps(f)
     def dec_func(*args, **kwargs):
-        @auth.login_required(role=[kwargs['standname'], "admin"])
+        @auth.login_required(role=[kwargs['stand_slug'], "admin"])
         def proxy_func():
             return f(*args, **kwargs)
 
