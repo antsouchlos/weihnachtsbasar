@@ -22,7 +22,7 @@ is the repository root.
 ### Using `docker-compose`
 
 ```bash
-$ docker-compose up -d
+$ docker-compose up -d --build
 ```
 
 ### Manually, using `docker`
