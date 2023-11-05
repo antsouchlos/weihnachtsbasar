@@ -1,6 +1,6 @@
-flask==3.0.0
-tinydb==4.8.0
 bleach==6.1.0
+Flask==3.0.0
+flask_httpauth==4.8.0
+tinydb==4.8.0
 waitress==2.1.2
-Flask-HTTPAuth==4.8.0
-werkzeug==3.0.1
+Werkzeug==3.0.1
