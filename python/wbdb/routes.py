@@ -324,11 +324,9 @@ def post_shift():
         return utility.gen_error("Missing data fieldss")
 
     try:
-        data = db_handler.add_shift(text_de, text_gr)
-        response = jsonify(data)
-        response.headers.add('Access-Control-Allow-Origin', '*')
+        db_handler.add_shift(text_de, text_gr)
         route_logger.info(f"Added new shift: ({text_de, text_gr})")
-        return response
+        return utility.gen_success("Added new shift")
     except Exception as e:
         route_logger.exception(f"Exception occurred while adding shift")
         return utility.gen_error("Unable to add shift")
@@ -345,11 +343,9 @@ def delete_shift():
         return utility.gen_error("Missing data fields")
 
     try:
-        data = db_handler.remove_shift(shift_id)
-        response = jsonify(data)
-        response.headers.add('Access-Control-Allow-Origin', '*')
+        db_handler.remove_shift(shift_id)
         route_logger.info(f"Removed shift: {shift_id}")
-        return response
+        return utility.gen_success("Removed shift")
     except Exception as e:
         route_logger.exception(f"Exception occurred while removing shift")
         return utility.gen_error("Unable to remove shift")
