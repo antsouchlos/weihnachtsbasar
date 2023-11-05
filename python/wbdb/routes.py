@@ -124,7 +124,7 @@ def remove_stand():
         return utility.gen_error("Unable to remove stand")
 
 
-@app.route("/api/v1/stands/download", methods=["POST"])
+@app.route("/api/v1/stands/download", methods=["GET"])
 def get_stands():
     """Get a list of all possible shifts."""
     try:
@@ -188,7 +188,7 @@ def remove_shift():
         return utility.gen_error("Unable to remove shift.")
 
 
-@app.route("/api/v1/shifts/download", methods=["POST"])
+@app.route("/api/v1/shifts/download", methods=["GET"])
 def get_shifts():
     """Get a list of all possible shifts."""
     try:
@@ -258,7 +258,7 @@ def remove_user():
         return utility.gen_error("Unable to remove user.")
 
 
-@app.route("/api/v1/users/download", methods=["POST"])
+@app.route("/api/v1/users/download", methods=["GET"])
 @auth.login_required(role="admin")
 def get_users():
     """Get a list of all possible shifts."""
@@ -278,7 +278,7 @@ def get_users():
 #
 
 
-@app.route("/api/v1/standdata/download/<path:stand_slug>", methods=["POST"])
+@app.route("/api/v1/standdata/download/<path:stand_slug>", methods=["GET"])
 @require_stand_slug_or_admin_role
 def get_stand_data(stand_slug):
     """Get a list of shifts, containing lists of helpers, for a given stand."""
