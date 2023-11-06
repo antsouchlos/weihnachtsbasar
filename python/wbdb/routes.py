@@ -333,14 +333,9 @@ def post_shift():
 
 
 @app.route("/api/v2/shifts/<path:shift_id>", methods=["DELETE"])
-def delete_shift():
+def delete_shift(shift_id):
     """Add new shift."""
-    # Fetch and validate request data
-
-    shift_id = bleach.clean(request.form['shift_id'])
-
-    if shift_id is None:
-        return utility.gen_error("Missing data fields")
+    shift_id = int(bleach.clean(shift_id))
 
     try:
         db_handler.remove_shift(shift_id)
