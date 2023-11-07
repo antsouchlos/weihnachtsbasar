@@ -1209,9 +1209,6 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   .secondaryText,
                                                               size: 24.0,
                                                             ),
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
                                                             elevation: 2.0,
                                                             borderColor:
                                                                 FlutterFlowTheme.of(

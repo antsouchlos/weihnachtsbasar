@@ -12,7 +12,7 @@ class GetShiftsCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get shifts',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/shifts',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/shifts',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -46,7 +46,7 @@ class GetStandsCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get stands',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/stands',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/stands',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -83,7 +83,7 @@ class AddShiftCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add shift',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/shifts',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/shifts',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -107,7 +107,8 @@ class RemoveShiftCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Remove shift',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/shifts/${shiftId}',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/shifts/${shiftId}',
       callType: ApiCallType.DELETE,
       headers: {},
       params: {},
@@ -126,7 +127,7 @@ class AddStandCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add stand',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/stands',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/stands',
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -150,7 +151,8 @@ class RemoveStandCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Remove stand',
-      apiUrl: 'http://mercurial-manifold.eu:5000/api/v2/stands/${standSlug}',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/stands/${standSlug}',
       callType: ApiCallType.DELETE,
       headers: {},
       params: {},
