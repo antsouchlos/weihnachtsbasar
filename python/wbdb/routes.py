@@ -313,6 +313,7 @@ def get_shifts():
 
 
 @app.route("/api/v2/shifts", methods=["POST"])
+# TODO: Admin
 def post_shift():
     """Add new shift."""
     # Fetch and validate request data
@@ -322,6 +323,8 @@ def post_shift():
 
     if (text_de is None) or (text_gr is None):
         return utility.gen_error("Missing data fieldss")
+
+    # Add shift
 
     try:
         db_handler.add_shift(text_de, text_gr)
@@ -333,6 +336,7 @@ def post_shift():
 
 
 @app.route("/api/v2/shifts/<path:shift_id>", methods=["DELETE"])
+# TODO: Admin
 def delete_shift(shift_id):
     """Add new shift."""
     shift_id = int(bleach.clean(shift_id))
@@ -358,3 +362,42 @@ def get_stands():
     except Exception as e:
         route_logger.exception(f"Exception occurred while fetching stands")
         return utility.gen_error("Unable to download stands")
+
+
+@app.route("/api/v2/stands", methods=["POST"])
+# TODO: Auth
+def post_stand():
+    """Add new stand."""
+    # Fetch and validate request data
+
+    standname_de = bleach.clean(request.form['standname_de'])
+    standname_gr = bleach.clean(request.form['standname_gr'])
+
+    if (standname_de is None) or (standname_gr is None):
+        return utility.gen_error("Missing data fieldss")
+
+    # Add stand
+
+    try:
+        db_handler.add_stand(standname_de, standname_gr)
+        route_logger.info(f"Added new shift: ({standname_de, standname_gr})")
+        return utility.gen_success("Added new stand")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while adding stand")
+        return utility.gen_error("Unable to add stand")
+
+
+@app.route("/api/v2/stands/<path:stand_slug>", methods=["DELETE"])
+# TODO: Admin
+def delete_stand(stand_slug):
+    """Add new shift."""
+    stand_slug = bleach.clean(stand_slug)
+
+    try:
+        db_handler.remove_stand(stand_slug)
+        route_logger.info(f"Removed stand: {stand_slug}")
+        return utility.gen_success("Removed stand")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while removing stand")
+        return utility.gen_error("Unable to remove stand")
+

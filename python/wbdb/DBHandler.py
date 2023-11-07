@@ -139,20 +139,19 @@ class DBHandler:
             {"stand_slug": stand_slug, "standname_de": standname_de,
              "standname_gr": standname_gr, "blacklist": []})
 
-    def remove_stand(self, standname_de: str):
+    def remove_stand(self, stand_slug: str):
         """Remove and existing stand. Removes the corresponding table as well
         as the registration blacklist entry.
         """
-        stand_slug = self._get_stand_slug(standname_de)
         if not self._stand_exists(stand_slug):
-            raise Exception(f"A table with the name {stand_slug} does"
+            raise Exception(f"A table with the name {stand_slug} does "
                             f"not exist")
 
         self._db.drop_table(stand_slug)
 
         blacklist_table = self._db.table("registration_blacklist")
         Stand = Query()
-        blacklist_table.remove(Stand.stand_name == stand_slug)
+        blacklist_table.remove(Stand.stand_slug == stand_slug)
 
     def get_stands(self):
         """Get a list of all existing stands."""
