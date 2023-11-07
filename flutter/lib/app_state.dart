@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -34,6 +35,36 @@ class FFAppState extends ChangeNotifier {
   set password(String _value) {
     _password = _value;
   }
+
+  final _getStandsManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getStands({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getStandsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetStandsCache() => _getStandsManager.clear();
+  void clearGetStandsCacheKey(String? uniqueKey) =>
+      _getStandsManager.clearRequest(uniqueKey);
+
+  final _getShiftsManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getShifts({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getShiftsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetShiftsCache() => _getShiftsManager.clear();
+  void clearGetShiftsCacheKey(String? uniqueKey) =>
+      _getShiftsManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

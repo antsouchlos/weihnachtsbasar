@@ -24,9 +24,10 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
+  bool apiRequestCompleted1 = false;
+  String? apiRequestLastUniqueKey1;
   // Stores action output result for [Backend Call - API (Remove stand)] action in IconButton widget.
   ApiCallResponse? apiResult60s;
-  Completer<ApiCallResponse>? apiRequestCompleter3;
   // State field(s) for StandNameDE widget.
   FocusNode? standNameDEFocusNode;
   TextEditingController? standNameDEController;
@@ -68,9 +69,10 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
+  bool apiRequestCompleted2 = false;
+  String? apiRequestLastUniqueKey2;
   // Stores action output result for [Backend Call - API (Remove shift)] action in IconButton widget.
   ApiCallResponse? apiResults7h;
-  Completer<ApiCallResponse>? apiRequestCompleter2;
   // State field(s) for ShiftTextDE widget.
   FocusNode? shiftTextDEFocusNode;
   TextEditingController? shiftTextDEController;
@@ -81,7 +83,8 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? Function(BuildContext, String?)? shiftTextGRControllerValidator;
   // Stores action output result for [Backend Call - API (Add shift)] action in IconButton widget.
   ApiCallResponse? apiResultdsv;
-  Completer<ApiCallResponse>? apiRequestCompleter1;
+  bool apiRequestCompleted3 = false;
+  String? apiRequestLastUniqueKey3;
 
   /// Initialization and disposal methods.
 
@@ -116,7 +119,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
 
   /// Additional helper methods are added here.
 
-  Future waitForApiRequestCompleted3({
+  Future waitForApiRequestCompleted1({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -124,7 +127,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     while (true) {
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter3?.isCompleted ?? false;
+      final requestComplete = apiRequestCompleted1;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
@@ -139,14 +142,14 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     while (true) {
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter2?.isCompleted ?? false;
+      final requestComplete = apiRequestCompleted2;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
     }
   }
 
-  Future waitForApiRequestCompleted1({
+  Future waitForApiRequestCompleted3({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -154,7 +157,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     while (true) {
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter1?.isCompleted ?? false;
+      final requestComplete = apiRequestCompleted3;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

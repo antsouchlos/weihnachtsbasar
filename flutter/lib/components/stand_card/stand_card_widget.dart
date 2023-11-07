@@ -96,7 +96,9 @@ class _StandCardWidgetState extends State<StandCardWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                     child: FutureBuilder<ApiCallResponse>(
-                      future: GetShiftsCall.call(),
+                      future: FFAppState().getShifts(
+                        requestFn: () => GetShiftsCall.call(),
+                      ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {

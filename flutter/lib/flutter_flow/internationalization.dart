@@ -406,7 +406,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': '',
     },
     'kx40ykd5': {
-      'de': 'Username',
+      'de': 'Email',
       'el': '',
     },
     'c5zh8m6t': {
@@ -414,7 +414,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': '',
     },
     'itpzx6ip': {
-      'de': 'Username',
+      'de': 'Email',
       'el': '',
     },
     '9at5jy8y': {
