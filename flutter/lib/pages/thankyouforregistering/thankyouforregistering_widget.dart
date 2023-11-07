@@ -49,6 +49,8 @@ class _ThankyouforregisteringWidgetState
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -103,7 +105,7 @@ class _ThankyouforregisteringWidgetState
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 50.0),
+                                  0.0, 0.0, 0.0, 30.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'm14vbi9m' /* Vielen Dank für Ihre Anmeldung... */,
@@ -115,7 +117,7 @@ class _ThankyouforregisteringWidgetState
                                       fontFamily: 'Inter',
                                       color:
                                           FlutterFlowTheme.of(context).success,
-                                      fontSize: 36.0,
+                                      fontSize: 24.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -129,7 +131,7 @@ class _ThankyouforregisteringWidgetState
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    fontSize: 24.0,
+                                    fontSize: 16.0,
                                   ),
                             ),
                           ],

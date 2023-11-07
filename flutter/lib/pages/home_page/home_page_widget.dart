@@ -48,6 +48,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -98,7 +100,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     children: [
                       Container(
                         constraints: BoxConstraints(
-                          maxWidth: 800.0,
+                          maxWidth: 600.0,
                         ),
                         decoration: BoxDecoration(
                           color: Color(0x00FFFFFF),
@@ -120,7 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
-                                      fontSize: 36.0,
+                                      fontSize: 32.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -134,7 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
-                                      fontSize: 20.0,
+                                      fontSize: 16.0,
                                     ),
                               ),
                             ].divide(SizedBox(height: 30.0)),
@@ -148,8 +150,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             'assets/images/title_poster.jpg',
-                            width: 362.0,
-                            height: 512.0,
+                            width: 290.0,
+                            height: 410.0,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -169,287 +171,227 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 50.0),
-                              child: Container(
-                                width: 500.0,
-                                height: 200.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 180.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'owosr0y7' /* Freitag, 1.12 */,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                 ),
-                                child: Column(
+                                SizedBox(
+                                  height: 50.0,
+                                  child: VerticalDivider(
+                                    thickness: 2.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 250.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 180.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'sd9g4s1y' /* 16:30 - 19:30 */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
                                           ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'owosr0y7' /* Freitag, 1.12 */,
-                                                ),
-                                                textAlign: TextAlign.end,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                              ),
-                                              SizedBox(
-                                                height: 50.0,
-                                                child: VerticalDivider(
-                                                  thickness: 2.0,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 300.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'sd9g4s1y' /* 16:30 - 19:30 */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      '7tizqs0a' /* Aufbau */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                ].divide(SizedBox(width: 10.0)),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 180.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '7tizqs0a' /* Aufbau */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
                                           ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '4a31zyop' /* Samstag, 2.12 */,
-                                                ),
-                                                textAlign: TextAlign.end,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                              ),
-                                              SizedBox(
-                                                height: 50.0,
-                                                child: VerticalDivider(
-                                                  thickness: 2.0,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 300.0,
-                                          height: 100.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'anr6fipy' /* 08:00 - 10:00 */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      '9vxnwty8' /* Aufbau */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                ].divide(SizedBox(width: 10.0)),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'po8enmi0' /* 10:00 - 19:00 */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'sjrsn6dw' /* Basar */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                ].divide(SizedBox(width: 10.0)),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'chlressg' /* 19:00 - 21:00 */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'nh33btgd' /* Abbau */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 20.0,
-                                                        ),
-                                                  ),
-                                                ].divide(SizedBox(width: 10.0)),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
                                     ),
-                                  ],
+                                  ].divide(SizedBox(width: 10.0)),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 180.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    '4a31zyop' /* Samstag, 2.12 */,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                                SizedBox(
+                                  height: 50.0,
+                                  child: VerticalDivider(
+                                    thickness: 2.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 250.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'anr6fipy' /* 08:00 - 10:00 */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '9vxnwty8' /* Aufbau */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 10.0)),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'po8enmi0' /* 10:00 - 19:00 */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'sjrsn6dw' /* Basar */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 10.0)),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'chlressg' /* 19:00 - 21:00 */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'nh33btgd' /* Abbau */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 10.0)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       FFButtonWidget(
                         onPressed: () async {
@@ -460,7 +402,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                         options: FFButtonOptions(
                           width: 300.0,
-                          height: 50.0,
+                          height: 40.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -470,7 +412,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Inter',
                                     color: Colors.white,
-                                    fontSize: 20.0,
+                                    fontSize: 18.0,
                                   ),
                           elevation: 3.0,
                           borderSide: BorderSide(
@@ -601,7 +543,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       'okbr1ofr' /* Log in */,
                     ),
                     options: FFButtonOptions(
-                      height: 50.0,
+                      height: 40.0,
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
@@ -611,7 +553,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter',
                                 color: Colors.white,
-                                fontSize: 20.0,
+                                fontSize: 18.0,
                               ),
                       elevation: 3.0,
                       borderSide: BorderSide(

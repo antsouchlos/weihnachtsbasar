@@ -1,22 +1,21 @@
-import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'footer_model.dart';
-export 'footer_model.dart';
+import 'footer_logged_in_model.dart';
+export 'footer_logged_in_model.dart';
 
-class FooterWidget extends StatefulWidget {
-  const FooterWidget({Key? key}) : super(key: key);
+class FooterLoggedInWidget extends StatefulWidget {
+  const FooterLoggedInWidget({Key? key}) : super(key: key);
 
   @override
-  _FooterWidgetState createState() => _FooterWidgetState();
+  _FooterLoggedInWidgetState createState() => _FooterLoggedInWidgetState();
 }
 
-class _FooterWidgetState extends State<FooterWidget> {
-  late FooterModel _model;
+class _FooterLoggedInWidgetState extends State<FooterLoggedInWidget> {
+  late FooterLoggedInModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +26,7 @@ class _FooterWidgetState extends State<FooterWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FooterModel());
+    _model = createModel(context, () => FooterLoggedInModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -65,7 +64,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                 child: SelectionArea(
                     child: Text(
                   FFLocalizations.of(context).getText(
-                    'qll42bzk' /* weihnachtsbasar.athen@gmail.co... */,
+                    '8v0ftksh' /* weihnachtsbasar.athen@gmail.co... */,
                   ),
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -102,35 +101,13 @@ class _FooterWidgetState extends State<FooterWidget> {
                         EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'l83f5r22' /* Weihnachtsbasar */,
+                        'nwf84z7d' /* Weihnachtsbasar */,
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             fontSize: 20.0,
                           ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                    child: FlutterFlowLanguageSelector(
-                      width: 200.0,
-                      backgroundColor: FlutterFlowTheme.of(context).tertiary,
-                      borderColor: Colors.transparent,
-                      dropdownIconColor: Colors.white,
-                      borderRadius: 8.0,
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16.0,
-                      ),
-                      hideFlags: false,
-                      flagSize: 20.0,
-                      flagTextGap: 8.0,
-                      currentLanguage: FFLocalizations.of(context).languageCode,
-                      languages: FFLocalizations.languages(),
-                      onChanged: (lang) => setAppLanguage(context, lang),
                     ),
                   ),
                 ],

@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -48,6 +49,8 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -91,7 +94,7 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
-                            fontSize: 32.0,
+                            fontSize: 26.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -102,72 +105,83 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     alignment: AlignmentDirectional(0.00, 0.00),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '5lql6w6o' /* Als Excel herunterladen */,
-                            ),
-                            icon: Icon(
-                              Icons.download,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 10.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 20.0),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '5lql6w6o' /* Als Excel herunterladen */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              icon: Icon(
+                                Icons.download,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: Colors.white,
+                                      fontSize: 16.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardModel1,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardModel2,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardModel3,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardModel4,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardModel5,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardWidget(),
-                        ),
-                      ].divide(SizedBox(height: 5.0)),
+                          FutureBuilder<ApiCallResponse>(
+                            future: GetStandsCall.call(),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final listViewGetStandsResponse = snapshot.data!;
+                              return ListView(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                children: [
+                                  wrapWithModel(
+                                    model: _model.standCardModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: StandCardWidget(
+                                      standName: 'test',
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ].divide(SizedBox(height: 5.0)),
+                      ),
                     ),
                   ),
                   wrapWithModel(

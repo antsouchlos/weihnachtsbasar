@@ -200,118 +200,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Kerzen',
       'el': 'Κεριά',
     },
-    '7m00vh5o': {
-      'de': 'Kerzen',
-      'el': 'Κεριά',
-    },
-    'kf9wamyt': {
-      'de': 'CD-DVD',
-      'el': 'CD-DVD',
-    },
-    'qzumisl2': {
-      'de': 'Handarbeiten',
-      'el': '',
-    },
-    'a3yk2f1j': {
-      'de': 'Marmeladen',
-      'el': 'Μαρμελάδες',
-    },
-    'hor0wyzf': {
-      'de': 'Bücher',
-      'el': 'Βιβλία',
-    },
-    '4glapv9u': {
-      'de': 'Weihnachtsartikel',
-      'el': '',
-    },
-    'kgj8c5jw': {
-      'de': 'Adventskränze',
-      'el': '',
-    },
-    '3kvbjdbr': {
-      'de': 'Tannengrün',
-      'el': '',
-    },
-    'a2lgef6r': {
-      'de': 'Süßwaren',
-      'el': 'Γλυκά',
-    },
-    'aqoc00in': {
-      'de': 'Second-Hand Kleidung',
-      'el': '',
-    },
-    'aovsqii3': {
-      'de': 'Second-Hand Spielzeug',
-      'el': '',
-    },
-    'x8gb2uoa': {
-      'de': 'Delikatessen',
-      'el': '',
-    },
-    '9hiexof8': {
-      'de': 'Flohmarkt',
-      'el': '',
-    },
-    'nv54q1al': {
-      'de': 'Kaffee&amp;Kuchen',
-      'el': '',
-    },
-    '2fmfgw7s': {
-      'de': 'Kasse',
-      'el': '',
-    },
-    'adz5znfi': {
-      'de': 'Glühwein',
-      'el': '',
-    },
-    '9r11s3v0': {
-      'de': 'Kürbissuppe',
-      'el': '',
-    },
-    'kg18o72x': {
-      'de': 'Waffeln',
-      'el': '',
-    },
-    'c34rm8eq': {
-      'de': 'Deutsche Spezialitäten',
-      'el': '',
-    },
-    'dmh6j2co': {
-      'de': 'Brezeln',
-      'el': '',
-    },
-    'b0ckzsw5': {
-      'de': 'Limonade',
-      'el': '',
-    },
-    'muncc8ke': {
-      'de': 'Bier',
-      'el': '',
-    },
-    '7fwrgy8e': {
-      'de': 'Socken',
-      'el': '',
-    },
-    'qa5hiwfv': {
-      'de': 'SOS-Kinderdorf',
-      'el': '',
-    },
-    'qgq1boak': {
-      'de': 'Losverkauf',
-      'el': '',
-    },
-    '0xlbcbke': {
-      'de': 'Orangensaft u. Mandeln',
-      'el': '',
-    },
-    '2jl3ms5t': {
-      'de': 'Kunsthandwerk',
-      'el': '',
-    },
-    'tzv19ckb': {
-      'de': 'Kinderbasteln',
-      'el': '',
-    },
     'uknozt60': {
       'de': 'Please select...',
       'el': '',
@@ -364,27 +252,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Εγγραφή',
     },
-    '74k2a1ys': {
+    'cymx9cck': {
       'de': 'Field is required',
       'el': '',
     },
-    'v0uwdtxi': {
+    '79l2j75j': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    '4w3kwoio': {
+    '99niuziz': {
       'de': 'Field is required',
       'el': '',
     },
-    'ehltt8c6': {
+    'ogmrh17a': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'bso5ygus': {
+    's4g8lots': {
       'de': 'Field is required',
       'el': '',
     },
-    'x1upp3d7': {
+    'cm154zd0': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
@@ -455,19 +343,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Anmelden',
       'el': 'Σύνδεση',
     },
-    '4np4ew3t': {
+    '0ajsp9sc': {
       'de': 'Field is required',
       'el': '',
     },
-    'tdwbxwkn': {
+    'e9vv2oyw': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'k5znaf64': {
+    'fnwg5uqz': {
       'de': 'Field is required',
       'el': '',
     },
-    '0j4xr68c': {
+    'xngm36xc': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
@@ -499,26 +387,91 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Αρχική σελίδα',
     },
   },
-  // StandCard
+  // AdminPage
   {
-    '9zqlime7': {
+    '1wcu26mr': {
+      'de': 'Stands',
+      'el': '',
+    },
+    'qmki8b2q': {
+      'de': 'Stand name DE',
+      'el': '',
+    },
+    'hi7i7euc': {
+      'de': 'Stand name GR',
+      'el': '',
+    },
+    '7ua3kj9e': {
+      'de': 'Users',
+      'el': '',
+    },
+    'kx40ykd5': {
+      'de': 'Username',
+      'el': '',
+    },
+    'c5zh8m6t': {
       'de': 'Standname',
-      'el': 'Πάγκος',
+      'el': '',
     },
-  },
-  // StandCardEntry
-  {
-    'qpj5sxzr': {
-      'de': 'Max Mustermann',
-      'el': 'Max Mustermann',
+    'itpzx6ip': {
+      'de': 'Username',
+      'el': '',
     },
-    'un2uw99e': {
-      'de': 'max.mustermann@gmail.com',
-      'el': 'max.mustermann@gmail.com',
+    '9at5jy8y': {
+      'de': 'Password',
+      'el': '',
     },
-    '65tmle7n': {
-      'de': '+49 000 00000000',
-      'el': '+49 000 00000000',
+    'b1n8g80v': {
+      'de': 'Option 1',
+      'el': '',
+    },
+    'tlioomad': {
+      'de': 'Please select...',
+      'el': '',
+    },
+    'y10r2661': {
+      'de': 'Search for an item...',
+      'el': '',
+    },
+    'ieivauvc': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'qkq1nyyi': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    'en1eqln8': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'z5y4z57e': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    '4h0wfoe6': {
+      'de': 'Shifts',
+      'el': '',
+    },
+    'nb0jt2ed': {
+      'de': 'Text DE\n',
+      'el': '',
+    },
+    'v7of0ds5': {
+      'de': 'Text GR',
+      'el': '',
+    },
+    'de94tqxz': {
+      'de': 'Registrations',
+      'el': '',
+    },
+    'bzhamcvv': {
+      'de': 'DSA Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+    },
+    'jmmt5z4o': {
+      'de': 'Home',
+      'el': '',
     },
   },
   // StandCardShift
@@ -531,12 +484,41 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Footer
   {
     'qll42bzk': {
-      'de': 'Kontakt: weihnachtsbasar.athen@gmail.com',
-      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
+      'de': 'weihnachtsbasar.athen@gmail.com',
+      'el': 'weihnachtsbasar.athen@gmail.com',
     },
     'l83f5r22': {
-      'de': 'Weihnachtsbasar 2023',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
+    },
+  },
+  // FooterLoggedIn
+  {
+    '8v0ftksh': {
+      'de': 'weihnachtsbasar.athen@gmail.com',
+      'el': 'Επικοινωνία: weihnachtsbasar.athen@gmail.com',
+    },
+    'nwf84z7d': {
+      'de': 'Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι 2023',
+    },
+  },
+  // AdminStandCard
+  {
+    'g3femt44': {
+      'de': 'User: ',
+      'el': '',
+    },
+  },
+  // StandCardShiftNew
+  {
+    'k24jb6ox': {
+      'de': 'Email',
+      'el': '',
+    },
+    'ch0l244x': {
+      'de': 'Phone',
+      'el': '',
     },
   },
   // Miscellaneous

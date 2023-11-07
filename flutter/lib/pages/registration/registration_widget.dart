@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -30,10 +31,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
+
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -54,6 +58,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -93,14 +99,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                       child: Text(
                         FFLocalizations.of(context).getText(
                           'wfmh6qda' /* Anmeldung */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Inter',
-                              fontSize: 32.0,
+                              fontSize: 26.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -141,13 +147,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -190,7 +196,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     validator: _model.textController1Validator
                                         .asValidator(context),
@@ -217,10 +223,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium,
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -262,7 +272,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     keyboardType: TextInputType.emailAddress,
                                     validator: _model.textController2Validator
@@ -290,13 +300,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -339,7 +349,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     keyboardType: TextInputType.number,
                                     validator: _model.textController3Validator
@@ -373,137 +383,81 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                     ),
                                   ),
-                                  FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController1 ??=
-                                            FormFieldController<String>(
-                                      _model.dropDownValue1 ??=
-                                          FFLocalizations.of(context).getText(
-                                        '96cg34yl' /* Kerzen */,
-                                      ),
-                                    ),
-                                    options: [
-                                      FFLocalizations.of(context).getText(
-                                        '7m00vh5o' /* Kerzen */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'kf9wamyt' /* CD-DVD */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'qzumisl2' /* Handarbeiten */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'a3yk2f1j' /* Marmeladen */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'hor0wyzf' /* Bücher */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '4glapv9u' /* Weihnachtsartikel */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'kgj8c5jw' /* Adventskränze */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '3kvbjdbr' /* Tannengrün */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'a2lgef6r' /* Süßwaren */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'aqoc00in' /* Second-Hand Kleidung */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'aovsqii3' /* Second-Hand Spielzeug */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'x8gb2uoa' /* Delikatessen */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '9hiexof8' /* Flohmarkt */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'nv54q1al' /* Kaffee&amp;Kuchen */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '2fmfgw7s' /* Kasse */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'adz5znfi' /* Glühwein */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '9r11s3v0' /* Kürbissuppe */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'kg18o72x' /* Waffeln */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'c34rm8eq' /* Deutsche Spezialitäten */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'dmh6j2co' /* Brezeln */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'b0ckzsw5' /* Limonade */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'muncc8ke' /* Bier */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '7fwrgy8e' /* Socken */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'qa5hiwfv' /* SOS-Kinderdorf */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'qgq1boak' /* Losverkauf */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '0xlbcbke' /* Orangensaft u. Mandeln */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '2jl3ms5t' /* Kunsthandwerk */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'tzv19ckb' /* Kinderbasteln */,
-                                      )
-                                    ],
-                                    onChanged: (val) => setState(
-                                        () => _model.dropDownValue1 = val),
-                                    width: 300.0,
-                                    height: 50.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                  FutureBuilder<ApiCallResponse>(
+                                    future: GetStandsCall.call(),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 40.0,
+                                            height: 40.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final dropDownGetStandsResponse =
+                                          snapshot.data!;
+                                      return FlutterFlowDropDown<String>(
+                                        controller:
+                                            _model.dropDownValueController1 ??=
+                                                FormFieldController<String>(
+                                          _model.dropDownValue1 ??=
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            '96cg34yl' /* Kerzen */,
+                                          ),
                                         ),
-                                    hintText:
-                                        FFLocalizations.of(context).getText(
-                                      'uknozt60' /* Please select... */,
-                                    ),
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderWidth: 2.0,
-                                    borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 16.0, 4.0),
-                                    hidesUnderline: true,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
+                                        options: (GetStandsCall.standNameListDE(
+                                          dropDownGetStandsResponse.jsonBody,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()!,
+                                        onChanged: (val) => setState(
+                                            () => _model.dropDownValue1 = val),
+                                        width: 300.0,
+                                        height: 50.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              fontSize: 16.0,
+                                            ),
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'uknozt60' /* Please select... */,
+                                        ),
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 2.0,
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        borderWidth: 2.0,
+                                        borderRadius: 8.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 16.0, 4.0),
+                                        hidesUnderline: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
@@ -533,77 +487,88 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            fontSize: 20.0,
+                                            fontSize: 16.0,
                                           ),
                                     ),
                                   ),
-                                  FlutterFlowDropDown<String>(
-                                    controller:
-                                        _model.dropDownValueController2 ??=
-                                            FormFieldController<String>(
-                                      _model.dropDownValue2 ??=
-                                          FFLocalizations.of(context).getText(
-                                        '0waiphkf' /* Freitag 16:30-19:30: Aufbau */,
-                                      ),
-                                    ),
-                                    options: [
-                                      FFLocalizations.of(context).getText(
-                                        'niv0okrx' /* Freitag 16:30-19:30: Aufbau */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'b6e2k6c2' /* Samstag 08:00 - 10:00: Aufbau */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'whec0b3p' /* Samstag 10:00 - 13:00: Aufbau */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'ns3hbl0w' /* Samstag 13:00 - 16:00: Basar */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        '8td2cmc4' /* Samstag 16:00 - 19:00: Basar */,
-                                      ),
-                                      FFLocalizations.of(context).getText(
-                                        'dzqycfmz' /* Samstag 19:00 - 21:00: Abbau */,
-                                      )
-                                    ],
-                                    onChanged: (val) => setState(
-                                        () => _model.dropDownValue2 = val),
-                                    width: 300.0,
-                                    height: 100.0,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                  FutureBuilder<ApiCallResponse>(
+                                    future: GetShiftsCall.call(),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 40.0,
+                                            height: 40.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final dropDownGetShiftsResponse =
+                                          snapshot.data!;
+                                      return FlutterFlowDropDown<String>(
+                                        controller:
+                                            _model.dropDownValueController2 ??=
+                                                FormFieldController<String>(
+                                          _model.dropDownValue2 ??=
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            '0waiphkf' /* Freitag 16:30-19:30: Aufbau */,
+                                          ),
                                         ),
-                                    hintText:
-                                        FFLocalizations.of(context).getText(
-                                      'h33oyca5' /* Please select... */,
-                                    ),
-                                    icon: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    elevation: 2.0,
-                                    borderColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderWidth: 2.0,
-                                    borderRadius: 8.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 16.0, 4.0),
-                                    hidesUnderline: true,
-                                    isSearchable: false,
-                                    isMultiSelect: false,
+                                        options: (GetShiftsCall.shiftTextListDE(
+                                          dropDownGetShiftsResponse.jsonBody,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()!,
+                                        onChanged: (val) => setState(
+                                            () => _model.dropDownValue2 = val),
+                                        width: 300.0,
+                                        height: 80.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              fontSize: 16.0,
+                                              lineHeight: 2.0,
+                                            ),
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'h33oyca5' /* Please select... */,
+                                        ),
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 2.0,
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        borderWidth: 2.0,
+                                        borderRadius: 8.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 16.0, 4.0),
+                                        hidesUnderline: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 50.0, 0.0, 0.0),
+                                    0.0, 30.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     context.pushNamed('Thankyouforregistering');
@@ -612,7 +577,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     '80mfaiho' /* Anmelden */,
                                   ),
                                   options: FFButtonOptions(
-                                    height: 50.0,
+                                    height: 40.0,
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -623,7 +588,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         .override(
                                           fontFamily: 'Inter',
                                           color: Colors.white,
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     elevation: 3.0,
                                     borderSide: BorderSide(

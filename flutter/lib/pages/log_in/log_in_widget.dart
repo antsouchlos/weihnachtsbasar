@@ -28,8 +28,10 @@ class _LogInWidgetState extends State<LogInWidget> {
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
+
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -50,6 +52,8 @@ class _LogInWidgetState extends State<LogInWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -103,7 +107,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 60.0),
+                                  0.0, 0.0, 0.0, 40.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '6wjeje1b' /* Anmeldung für Standverantwortl... */,
@@ -115,7 +119,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      fontSize: 32.0,
+                                      fontSize: 26.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -140,13 +144,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -185,7 +189,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Inter',
-                                        fontSize: 20.0,
+                                        fontSize: 16.0,
                                       ),
                                   validator: _model.textController1Validator
                                       .asValidator(context),
@@ -212,13 +216,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 20.0,
+                                          fontSize: 16.0,
                                         ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -270,7 +274,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Inter',
-                                        fontSize: 20.0,
+                                        fontSize: 16.0,
                                       ),
                                   keyboardType: TextInputType.visiblePassword,
                                   validator: _model.textController2Validator
@@ -280,16 +284,21 @@ class _LogInWidgetState extends State<LogInWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 50.0, 0.0, 0.0),
+                                  0.0, 30.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('RegisteredList');
+                                  FFAppState().username =
+                                      _model.textController1.text;
+                                  FFAppState().password =
+                                      _model.textController2.text;
+
+                                  context.pushNamed('AdminPage');
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'q79eoyym' /* Anmelden */,
                                 ),
                                 options: FFButtonOptions(
-                                  height: 50.0,
+                                  height: 40.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -300,7 +309,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       .override(
                                         fontFamily: 'Inter',
                                         color: Colors.white,
-                                        fontSize: 20.0,
+                                        fontSize: 16.0,
                                       ),
                                   elevation: 3.0,
                                   borderSide: BorderSide(

@@ -1,4 +1,5 @@
-import '/components/stand_card_shift/stand_card_shift_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/components/stand_card_shift_new/stand_card_shift_new_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:expandable/expandable.dart';
@@ -10,7 +11,12 @@ import 'stand_card_model.dart';
 export 'stand_card_model.dart';
 
 class StandCardWidget extends StatefulWidget {
-  const StandCardWidget({Key? key}) : super(key: key);
+  const StandCardWidget({
+    Key? key,
+    required this.standName,
+  }) : super(key: key);
+
+  final String? standName;
 
   @override
   _StandCardWidgetState createState() => _StandCardWidgetState();
@@ -30,7 +36,7 @@ class _StandCardWidgetState extends State<StandCardWidget> {
     super.initState();
     _model = createModel(context, () => StandCardModel());
 
-    _model.expandableController = ExpandableController(initialExpanded: true);
+    _model.expandableController = ExpandableController(initialExpanded: false);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -43,10 +49,12 @@ class _StandCardWidgetState extends State<StandCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.00, 0.00),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
         child: Container(
           constraints: BoxConstraints(
             maxWidth: 1200.0,
@@ -73,47 +81,74 @@ class _StandCardWidgetState extends State<StandCardWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(
                           20.0, 20.0, 20.0, 20.0),
                       child: Text(
-                        FFLocalizations.of(context).getText(
-                          '9zqlime7' /* Standname */,
-                        ),
+                        widget.standName!,
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.black,
+                                  fontSize: 20.0,
                                 ),
                       ),
                     ),
                   ),
                   collapsed: Container(),
-                  expanded: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      wrapWithModel(
-                        model: _model.standCardShiftModel1,
-                        updateCallback: () => setState(() {}),
-                        child: StandCardShiftWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.standCardShiftModel2,
-                        updateCallback: () => setState(() {}),
-                        child: StandCardShiftWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.standCardShiftModel3,
-                        updateCallback: () => setState(() {}),
-                        child: StandCardShiftWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.standCardShiftModel4,
-                        updateCallback: () => setState(() {}),
-                        child: StandCardShiftWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.standCardShiftModel5,
-                        updateCallback: () => setState(() {}),
-                        child: StandCardShiftWidget(),
-                      ),
-                    ],
+                  expanded: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetShiftsCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        final columnGetShiftsResponse = snapshot.data!;
+                        return Builder(
+                          builder: (context) {
+                            final shiftList =
+                                columnGetShiftsResponse.jsonBody.toList();
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: List.generate(shiftList.length,
+                                  (shiftListIndex) {
+                                final shiftListItem = shiftList[shiftListIndex];
+                                return Align(
+                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.7,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    alignment: AlignmentDirectional(0.00, 0.00),
+                                    child: StandCardShiftNewWidget(
+                                      key: Key(
+                                          'Keysfr_${shiftListIndex}_of_${shiftList.length}'),
+                                      parameter1: getJsonField(
+                                        shiftListItem,
+                                        r'''$['text_de']''',
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                   theme: ExpandableThemeData(
                     tapHeaderToExpand: true,

@@ -8,3 +8,4 @@ export '/pages/registrationfailed/registrationfailed_widget.dart'
 export '/pages/log_in/log_in_widget.dart' show LogInWidget;
 export '/pages/registered_list/registered_list_widget.dart'
     show RegisteredListWidget;
+export '/pages/admin_page/admin_page_widget.dart' show AdminPageWidget;

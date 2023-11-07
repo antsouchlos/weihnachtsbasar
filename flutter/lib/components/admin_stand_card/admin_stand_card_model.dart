@@ -1,13 +1,13 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'stand_card_entry_widget.dart' show StandCardEntryWidget;
+import 'admin_stand_card_widget.dart' show AdminStandCardWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class StandCardEntryModel extends FlutterFlowModel<StandCardEntryWidget> {
+class AdminStandCardModel extends FlutterFlowModel<AdminStandCardWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
