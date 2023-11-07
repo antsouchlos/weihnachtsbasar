@@ -20,7 +20,7 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        '4np4ew3t' /* Field is required */,
+        '0ajsp9sc' /* Field is required */,
       );
     }
 
@@ -35,7 +35,7 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   String? _textController2Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'k5znaf64' /* Field is required */,
+        'fnwg5uqz' /* Field is required */,
       );
     }
 

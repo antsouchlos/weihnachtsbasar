@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,36 +15,20 @@ class RegisteredListModel extends FlutterFlowModel<RegisteredListWidget> {
 
   final unfocusNode = FocusNode();
   // Model for StandCard component.
-  late StandCardModel standCardModel1;
-  // Model for StandCard component.
-  late StandCardModel standCardModel2;
-  // Model for StandCard component.
-  late StandCardModel standCardModel3;
-  // Model for StandCard component.
-  late StandCardModel standCardModel4;
-  // Model for StandCard component.
-  late StandCardModel standCardModel5;
+  late StandCardModel standCardModel;
   // Model for Footer component.
   late FooterModel footerModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    standCardModel1 = createModel(context, () => StandCardModel());
-    standCardModel2 = createModel(context, () => StandCardModel());
-    standCardModel3 = createModel(context, () => StandCardModel());
-    standCardModel4 = createModel(context, () => StandCardModel());
-    standCardModel5 = createModel(context, () => StandCardModel());
+    standCardModel = createModel(context, () => StandCardModel());
     footerModel = createModel(context, () => FooterModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    standCardModel1.dispose();
-    standCardModel2.dispose();
-    standCardModel3.dispose();
-    standCardModel4.dispose();
-    standCardModel5.dispose();
+    standCardModel.dispose();
     footerModel.dispose();
   }
 

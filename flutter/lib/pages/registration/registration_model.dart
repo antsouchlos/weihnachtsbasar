@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -22,7 +23,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        '74k2a1ys' /* Field is required */,
+        'cymx9cck' /* Field is required */,
       );
     }
 
@@ -36,7 +37,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   String? _textController2Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        '4w3kwoio' /* Field is required */,
+        '99niuziz' /* Field is required */,
       );
     }
 
@@ -53,7 +54,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   String? _textController3Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'bso5ygus' /* Field is required */,
+        's4g8lots' /* Field is required */,
       );
     }
 

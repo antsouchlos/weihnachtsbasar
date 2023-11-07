@@ -1,6 +1,7 @@
 import '/components/stand_card_entry/stand_card_entry_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,12 @@ import 'stand_card_shift_model.dart';
 export 'stand_card_shift_model.dart';
 
 class StandCardShiftWidget extends StatefulWidget {
-  const StandCardShiftWidget({Key? key}) : super(key: key);
+  const StandCardShiftWidget({
+    Key? key,
+    this.shiftText,
+  }) : super(key: key);
+
+  final String? shiftText;
 
   @override
   _StandCardShiftWidgetState createState() => _StandCardShiftWidgetState();
@@ -41,6 +47,8 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       decoration: BoxDecoration(
@@ -80,7 +88,7 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Inter',
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -112,31 +120,43 @@ class _StandCardShiftWidgetState extends State<StandCardShiftWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        wrapWithModel(
-                          model: _model.standCardEntryModel1,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardEntryWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardEntryModel2,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardEntryWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardEntryModel3,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardEntryWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.standCardEntryModel4,
-                          updateCallback: () => setState(() {}),
-                          child: StandCardEntryWidget(),
-                        ),
-                      ],
+                    Builder(
+                      builder: (context) {
+                        final registration = List.generate(
+                            random_data.randomInteger(0, 0),
+                            (index) => random_data.randomString(
+                                  0,
+                                  0,
+                                  true,
+                                  true,
+                                  false,
+                                )).toList();
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: List.generate(registration.length,
+                              (registrationIndex) {
+                            final registrationItem =
+                                registration[registrationIndex];
+                            return StandCardEntryWidget(
+                              key: Key(
+                                  'Keyibb_${registrationIndex}_of_${registration.length}'),
+                              name: valueOrDefault<String>(
+                                registrationItem,
+                                '[name]',
+                              ),
+                              email: valueOrDefault<String>(
+                                registrationItem,
+                                '[email]',
+                              ),
+                              phone: valueOrDefault<String>(
+                                registrationItem,
+                                '[phone]',
+                              ),
+                            );
+                          }),
+                        );
+                      },
                     ),
                   ],
                 ),

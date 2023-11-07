@@ -72,6 +72,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'RegisteredList',
           path: '/registeredList',
           builder: (context, params) => RegisteredListWidget(),
+        ),
+        FFRoute(
+          name: 'AdminPage',
+          path: '/adminPage',
+          builder: (context, params) => AdminPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

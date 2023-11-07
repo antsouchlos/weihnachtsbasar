@@ -48,6 +48,8 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -100,7 +102,7 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 50.0),
+                                  0.0, 0.0, 0.0, 30.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'lcejympj' /* Anmeldung fehlgeschlagen! */,
@@ -111,7 +113,7 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
                                     .override(
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context).error,
-                                      fontSize: 36.0,
+                                      fontSize: 24.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -125,7 +127,7 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    fontSize: 24.0,
+                                    fontSize: 16.0,
                                   ),
                             ),
                           ],
