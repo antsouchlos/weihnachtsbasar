@@ -73,7 +73,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'rihisduh' /* DSA Weihnachtsbasar */,
+              'rihisduh' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',

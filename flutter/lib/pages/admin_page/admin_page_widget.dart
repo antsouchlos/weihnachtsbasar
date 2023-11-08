@@ -94,7 +94,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'bzhamcvv' /* DSA Weihnachtsbasar */,
+              'bzhamcvv' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',

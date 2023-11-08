@@ -67,7 +67,7 @@ class _LogInWidgetState extends State<LogInWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'f45lrdnq' /* DSA Weihnachtsbasar */,
+              'f45lrdnq' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',

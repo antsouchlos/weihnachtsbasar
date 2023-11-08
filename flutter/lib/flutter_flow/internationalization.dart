@@ -113,7 +113,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5fy8e6jx': {
       'de':
-          'Es ist soweit! Für den Weihnachtsbasar der DSA sind wieder Helfer gesucht! Auch dieses Jahr gibt es wieder zahlreiche Stände die sich um Essen, Trinken, Basteln, Warenverkauf und vieles mehr kümmern!\n\nInteresse zu helfen? Dann melde dich jetzt unter dem folgenden Link an!',
+          'Am Samstag, den 2.12.2023 n den Räumen der DSA – Deutschen Schule Athen in Marousi.\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Schicht aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
       'el':
           'Ήρθε πάλι η ώρα! Χρειάζονται και πάλι βοηθοί για το χριστουγεννιάτικο παζάρι της ΓΣΑ! Και φέτος θα υπάρχουν πολυάριθμοι πάγκοι που θα πωλούν φαγητά, ποτά, χειροτεχνήματα, αγαθά και πολλά άλλα!\n\nΕνδιαφέρεστε να βοηθήσετε; Τότε εγγραφείτε τώρα στην παρακάτω ιστοσελίδα!',
     },
@@ -166,8 +166,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Log in',
     },
     'ct3bjngc': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     '4wxylc10': {
       'de': 'Home',
@@ -265,8 +265,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': '',
     },
     'rihisduh': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'qtsym7xh': {
       'de': 'Home',
@@ -276,7 +276,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Thankyouforregistering
   {
     'm14vbi9m': {
-      'de': 'Vielen Dank für Ihre Anmeldung!',
+      'de': 'Vielen Dank für Ihre Bereitschaft, mitzuhelfen!',
       'el': 'Σας ευχαριστούμε για την εγγραφή σας!',
     },
     'wbrhec20': {
@@ -286,8 +286,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Ο υπεύθυνος του πάγκου θα επικοινωνήσει μαζί σας τις επόμενες ημέρες.\n\nΕάν επιθυμείτε να αποσύρετε την εγγραφή σας, παρακαλούμε να ενημερώσετε τον υπεύθυνο.',
     },
     'vb43gegd': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'eyvcsvp8': {
       'de': 'Home',
@@ -305,8 +305,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Παρακαλούμε προσπαθήστε ξανά αργότερα.',
     },
     '4qfdgjw1': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'uk5gw56w': {
       'de': 'Home',
@@ -348,8 +348,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': '',
     },
     'f45lrdnq': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'wbjgcdct': {
       'de': 'Home',
@@ -367,8 +367,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Λήψη ως Excel',
     },
     'r5ch4jyg': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'xzm91rv9': {
       'de': 'Home',
@@ -454,8 +454,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Registrations',
     },
     'bzhamcvv': {
-      'de': 'DSA Weihnachtsbasar',
-      'el': 'Χριστουγεννιάτικο παζάρι της ΓΣΑ',
+      'de': 'Weihnachtsbasar',
+      'el': 'Χριστουγεννιάτικο παζάρι',
     },
     'jmmt5z4o': {
       'de': 'Home',

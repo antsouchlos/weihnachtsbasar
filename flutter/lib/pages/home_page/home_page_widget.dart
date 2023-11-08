@@ -62,7 +62,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'ct3bjngc' /* DSA Weihnachtsbasar */,
+              'ct3bjngc' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',
@@ -128,7 +128,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  '5fy8e6jx' /* Es ist soweit! Für den Weihnac... */,
+                                  '5fy8e6jx' /* Am Samstag, den 2.12.2023 n de... */,
                                 ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)

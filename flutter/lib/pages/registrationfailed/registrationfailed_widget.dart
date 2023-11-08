@@ -62,7 +62,7 @@ class _RegistrationfailedWidgetState extends State<RegistrationfailedWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              '4qfdgjw1' /* DSA Weihnachtsbasar */,
+              '4qfdgjw1' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',

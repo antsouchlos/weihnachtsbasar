@@ -63,7 +63,7 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'r5ch4jyg' /* DSA Weihnachtsbasar */,
+              'r5ch4jyg' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',

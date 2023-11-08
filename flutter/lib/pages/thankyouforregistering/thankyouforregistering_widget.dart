@@ -63,7 +63,7 @@ class _ThankyouforregisteringWidgetState
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'vb43gegd' /* DSA Weihnachtsbasar */,
+              'vb43gegd' /* Weihnachtsbasar */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Readex Pro',
@@ -108,7 +108,7 @@ class _ThankyouforregisteringWidgetState
                                   0.0, 0.0, 0.0, 30.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'm14vbi9m' /* Vielen Dank für Ihre Anmeldung... */,
+                                  'm14vbi9m' /* Vielen Dank für Ihre Bereitsch... */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
