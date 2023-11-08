@@ -322,7 +322,7 @@ def post_shift():
     text_gr = bleach.clean(request.form['text_gr'])
 
     if (text_de is None) or (text_gr is None):
-        return utility.gen_error("Missing data fieldss")
+        return utility.gen_error("Missing data fields")
 
     # Add shift
 
@@ -374,7 +374,7 @@ def post_stand():
     standname_gr = bleach.clean(request.form['standname_gr'])
 
     if (standname_de is None) or (standname_gr is None):
-        return utility.gen_error("Missing data fieldss")
+        return utility.gen_error("Missing data fields")
 
     # Add stand
 
@@ -400,4 +400,78 @@ def delete_stand(stand_slug):
     except Exception as e:
         route_logger.exception(f"Exception occurred while removing stand")
         return utility.gen_error("Unable to remove stand")
+
+
+@app.route("/api/v2/registrations", methods=["POST"])
+def post_registration():
+    """Add new registration."""
+    # Fetch and validate request data
+
+    name = bleach.clean(request.form['name'])
+    email = bleach.clean(request.form['email'])
+    phone = bleach.clean(request.form['phone'])
+    standname = bleach.clean(request.form['standname'])
+    shift_text = bleach.clean(request.form['shift_text'])
+
+    if (name is None) or (email is None) or (phone is None) or (standname is None) or (shift_text is None):
+        return utility.gen_error("Missing data fields")
+
+    # Add registration
+
+    try:
+        db_handler.add_registration(name, email, phone, standname, shift_text)
+        route_logger.info(f"Added new registration: ({name}, {email}, {phone}, {standname}, {shift_text})")
+        return utility.gen_success("Added new registration")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while adding registration")
+        return utility.gen_error("Unable to add registration")
+
+
+@app.route("/api/v2/registrations/<path:standname>/<path:shift_text>/<path:email>", methods=["DELETE"])
+# TODO: Admin
+def delete_registration(standname, shift_text, email):
+    """Remove existing registration."""
+    # Fetch and validate request data
+
+    standname = bleach.clean(standname)
+    shift_text = bleach.clean(shift_text)
+    email = bleach.clean(email)
+
+    if (standname is None) or (shift_text is None) or (email is None):
+        return utility.gen_error("Missing data fields")
+
+    # Remove registration
+
+    try:
+        db_handler.remove_registration(standname, shift_text, email)
+        route_logger.info(f"Removed registration: ({standname}, {shift_text}, {email})")
+        return utility.gen_success("Removed registration")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while removing registration")
+        return utility.gen_error("Unable to remove registration")
+
+
+@app.route("/api/v2/registrations/<path:standname>/<path:shift_text>", methods=["GET"])
+# TODO: Admin
+def get_registrations(standname, shift_text):
+    """Get registrations for a specific shift of a stand."""
+    # Fetch and validate request data
+
+    standname = bleach.clean(standname)
+    shift_text = bleach.clean(shift_text)
+
+    if (standname is None) or (shift_text is None):
+        return utility.gen_error("Missing data fields")
+
+    # Get data
+
+    try:
+        data = db_handler.get_registrations(standname, shift_text)
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of relevant registrations")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching registrations")
+        return utility.gen_error("Unable to download registrations")
 

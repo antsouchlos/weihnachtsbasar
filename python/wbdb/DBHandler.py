@@ -88,41 +88,74 @@ class DBHandler:
 
     # Registration stuff
 
-    # TODO: Check registration status
-    def register(self, name: str, email: str, phone: str, standname_de: str,
-                 shift_id: int):
-        """Register a new helper."""
-        stand_table = self._get_stand_table(standname_de)
+    def _get_shift_id_by_text(self, text):
+        """Get the id of a shift given its text."""
         shift_table = self._db.table("shifts")
 
         Shift = Query()
-        if len(shift_table.search(Shift.shift_id == shift_id)) == 0:
-            raise Exception(f"A shift with id {shift_id} does not exist")
+        results_de = shift_table.search(Shift.text_de == text)
+        results_gr = shift_table.search(Shift.text_gr == text)
 
-        User = Query()
-        if len(stand_table.search((User.email == email)
-                                  & (User.shift_id == shift_id))) > 0:
-            raise Exception(
-                f"A user with the email {email} has already been registered "
-                f"for shift {shift_id}")
+        if len(results_de) > 0:
+            return results_de[0]["shift_id"]
+        elif len(results_gr) > 0:
+            return results_gr[0]["shift_id"]
+        else:
+            raise Exception(f"A shift with this text does not exist: {text}")
 
-        stand_table.insert({"shift_id": shift_id, "name": name, "email": email,
-                            "phone": phone})
+    def _get_stand_slug_by_name(self, standname):
+        """Get the slug of a stand given its name."""
+        blacklist_table = self._db.table("registration_blacklist")
 
-    def remove_registration(self, standname_de: str, shift_id: int,
+        Stand = Query()
+        results_de = blacklist_table.search(Stand.standname_de == standname)
+        results_gr = blacklist_table.search(Stand.standname_gr == standname)
+
+        if len(results_de) > 0:
+            return results_de[0]["stand_slug"]
+        elif len(results_gr) > 0:
+            return results_gr[0]["stand_slug"]
+        else:
+            raise Exception(f"A stand with this name does not exist: {standname}")
+
+    def add_registration(self, name, email, phone, standname, shift_text):
+        """Add new registration."""
+        shift_id = self._get_shift_id_by_text(shift_text)
+
+        stand_slug = self._get_stand_slug_by_name(standname)
+        stand_table = self._db.table(stand_slug)
+
+        stand_table.insert({"shift_id": shift_id, "name": name, "email": email, "phone": phone})
+
+    def remove_registration(self, standname: str, shift_text: int,
                             email: str):
         """Remove an existing registration."""
-        stand_table = self._get_stand_table(standname_de)
+        shift_id = self._get_shift_id_by_text(shift_text)
+
+        stand_slug = self._get_stand_slug_by_name(standname)
+        stand_table = self._db.table(stand_slug)
 
         User = Query()
         if len(stand_table.search((User.email == email)
                                   & (User.shift_id == shift_id))) == 0:
             raise Exception(
                 f"A user with the email {email} has not been registered "
-                f"for shift {shift_id}")
+                f"for shift {shift_id} of stand {stand_slug}")
 
         stand_table.remove((User.email == email)
                            & (User.shift_id == shift_id))
+
+    def get_registrations(self, standname: str, shift_text: str):
+        """Get a list of relevant registrations for a given stand and shift."""
+        shift_id = self._get_shift_id_by_text(shift_text)
+
+        stand_slug = self._get_stand_slug_by_name(standname)
+        stand_table = self._db.table(stand_slug)
+
+        Registration = Query()
+        result = [{"name": reg['name'], "email": reg['email'], "phone": reg['phone']} for reg in stand_table.search(Registration.shift_id == shift_id)]
+        return result
+
 
     # Stand stuff
 
