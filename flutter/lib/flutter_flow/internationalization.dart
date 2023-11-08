@@ -196,12 +196,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Stand:',
       'el': 'Πάγκος ',
     },
-    '96cg34yl': {
-      'de': 'Kerzen',
-      'el': 'Κεριά',
-    },
-    'uknozt60': {
-      'de': 'Please select...',
+    'hrfsj93x': {
+      'de': '',
       'el': '',
     },
     'kre8u85u': {
@@ -211,10 +207,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ynko1xaq': {
       'de': 'Zeitraum:',
       'el': 'Ώρα:',
-    },
-    '0waiphkf': {
-      'de': 'Freitag 16:30-19:30: Aufbau',
-      'el': 'Παρασκευή 16:30-19:30: Εγκατάσταση',
     },
     'niv0okrx': {
       'de': 'Freitag 16:30-19:30: Aufbau',
@@ -239,10 +231,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dzqycfmz': {
       'de': 'Samstag 19:00 - 21:00: Abbau',
       'el': 'Σάββατο 19:00 - 21:00: Καθάρισμα',
-    },
-    'h33oyca5': {
-      'de': 'Please select...',
-      'el': '',
     },
     'yeqaj2iy': {
       'de': 'Search for an item...',
@@ -391,19 +379,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '1wcu26mr': {
       'de': 'Stands',
-      'el': '',
+      'el': 'Stands',
     },
     'qmki8b2q': {
       'de': 'Stand name DE',
-      'el': '',
+      'el': 'Stand name DE',
     },
     'hi7i7euc': {
       'de': 'Stand name GR',
-      'el': '',
+      'el': 'Stand name GR',
     },
     '7ua3kj9e': {
       'de': 'Users',
-      'el': '',
+      'el': 'Users',
     },
     'kx40ykd5': {
       'de': 'Email',
@@ -415,18 +403,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'itpzx6ip': {
       'de': 'Email',
-      'el': '',
+      'el': 'Email',
+    },
+    '7iessj1z': {
+      'de': 'Phone',
+      'el': 'Phone',
     },
     '9at5jy8y': {
       'de': 'Password',
-      'el': '',
+      'el': 'Password',
     },
     'b1n8g80v': {
       'de': 'Option 1',
-      'el': '',
-    },
-    'tlioomad': {
-      'de': 'Please select...',
       'el': '',
     },
     'y10r2661': {
@@ -451,19 +439,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '4h0wfoe6': {
       'de': 'Shifts',
-      'el': '',
+      'el': 'Shifts',
     },
     'nb0jt2ed': {
-      'de': 'Text DE\n',
-      'el': '',
+      'de': 'Text DE',
+      'el': 'Text DE',
     },
     'v7of0ds5': {
       'de': 'Text GR',
-      'el': '',
+      'el': 'Text GR',
     },
     'de94tqxz': {
       'de': 'Registrations',
-      'el': '',
+      'el': 'Registrations',
     },
     'bzhamcvv': {
       'de': 'DSA Weihnachtsbasar',
@@ -507,17 +495,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'g3femt44': {
       'de': 'User: ',
-      'el': '',
-    },
-  },
-  // StandCardShiftNew
-  {
-    'k24jb6ox': {
-      'de': 'Email',
-      'el': '',
-    },
-    'ch0l244x': {
-      'de': 'Phone',
       'el': '',
     },
   },

@@ -164,6 +164,79 @@ class RemoveStandCall {
   }
 }
 
+class AddRegistrationCall {
+  static Future<ApiCallResponse> call({
+    String? name = '',
+    String? email = '',
+    String? phone = '',
+    String? standname = '',
+    String? shiftText = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add registration',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'standname': standname,
+        'shift_text': shiftText,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class DeleteRegistrationCall {
+  static Future<ApiCallResponse> call({
+    String? standname = '',
+    String? shiftText = '',
+    String? email = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete registration',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/${standname}/${shiftText}/${email}',
+      callType: ApiCallType.DELETE,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class GetRegistrationsCall {
+  static Future<ApiCallResponse> call({
+    String? standname = '',
+    String? shiftText = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get registrations',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/${standname}/${shiftText}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -1,7 +1,7 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,10 +12,12 @@ export 'stand_card_shift_new_model.dart';
 class StandCardShiftNewWidget extends StatefulWidget {
   const StandCardShiftNewWidget({
     Key? key,
-    this.parameter1,
+    required this.standname,
+    required this.shiftText,
   }) : super(key: key);
 
-  final dynamic parameter1;
+  final String? standname;
+  final String? shiftText;
 
   @override
   _StandCardShiftNewWidgetState createState() =>
@@ -69,7 +71,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
           clipBehavior: Clip.none,
           children: [
             Text(
-              widget.parameter1!.toString(),
+              widget.shiftText!,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: 'Inter',
                     fontSize: 18.0,
@@ -88,106 +90,193 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
             ),
           ],
         ),
-        Builder(
-          builder: (context) {
-            final nameList = List.generate(random_data.randomInteger(3, 7),
-                (index) => random_data.randomName(true, true)).toList();
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              children: List.generate(nameList.length, (nameListIndex) {
-                final nameListItem = nameList[nameListIndex];
-                return Row(
+        FutureBuilder<ApiCallResponse>(
+          future: _model.getRegistrations(
+            requestFn: () => GetRegistrationsCall.call(
+              standname: widget.standname,
+              shiftText: widget.shiftText,
+            ),
+          ),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      FlutterFlowTheme.of(context).primary,
+                    ),
+                  ),
+                ),
+              );
+            }
+            final registrationColumnGetRegistrationsResponse = snapshot.data!;
+            return Builder(
+              builder: (context) {
+                final registrationList =
+                    registrationColumnGetRegistrationsResponse.jsonBody
+                        .toList();
+                return Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  nameListItem,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
+                  children: List.generate(registrationList.length,
+                      (registrationListIndex) {
+                    final registrationListItem =
+                        registrationList[registrationListIndex];
+                    return Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: AlignmentDirectional(0.00, 0.00),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      getJsonField(
+                                        registrationListItem,
+                                        r'''$['name']''',
+                                      ).toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                    SizedBox(
+                                      height: 20.0,
+                                      child: VerticalDivider(
+                                        thickness: 2.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                       ),
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                  child: VerticalDivider(
-                                    thickness: 2.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'k24jb6ox' /* Email */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
+                                    ),
+                                    Text(
+                                      getJsonField(
+                                        registrationListItem,
+                                        r'''$['email']''',
+                                      ).toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                    SizedBox(
+                                      height: 20.0,
+                                      child: VerticalDivider(
+                                        thickness: 2.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                       ),
+                                    ),
+                                    Text(
+                                      getJsonField(
+                                        registrationListItem,
+                                        r'''$['phone']''',
+                                      ).toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(width: 5.0)),
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                  child: VerticalDivider(
-                                    thickness: 2.0,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'ch0l244x' /* Phone */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
-                                      ),
-                                ),
-                              ].divide(SizedBox(width: 5.0)),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).primary,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).accent1,
-                        icon: Icon(
-                          Icons.delete,
-                          color: FlutterFlowTheme.of(context).error,
-                          size: 24.0,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 10.0, 10.0, 10.0),
+                          child: FlutterFlowIconButton(
+                            borderColor: FlutterFlowTheme.of(context).primary,
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).accent1,
+                            icon: Icon(
+                              Icons.delete,
+                              color: FlutterFlowTheme.of(context).error,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Delete Registration'),
+                                            content: Text(
+                                                'This action cannot be undone. Are you sure you want to continue?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                _model.apiResultkb3 =
+                                    await DeleteRegistrationCall.call(
+                                  standname: widget.standname,
+                                  shiftText: widget.shiftText,
+                                  email: getJsonField(
+                                    registrationListItem,
+                                    r'''$['email']''',
+                                  ).toString(),
+                                );
+                                if (!(_model.apiResultkb3?.succeeded ?? true)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'An error occurred',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                }
+                              }
+                              _model.clearGetRegistrationsCache();
+
+                              setState(() {});
+                            },
+                          ),
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  }),
                 );
-              }),
+              },
             );
           },
         ),

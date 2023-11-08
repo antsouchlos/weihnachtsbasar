@@ -117,8 +117,13 @@ class _StandCardWidgetState extends State<StandCardWidget> {
                         final columnGetShiftsResponse = snapshot.data!;
                         return Builder(
                           builder: (context) {
-                            final shiftList =
-                                columnGetShiftsResponse.jsonBody.toList();
+                            final shiftList = (GetShiftsCall.shiftTextListDE(
+                                  columnGetShiftsResponse.jsonBody,
+                                ) as List)
+                                    .map<String>((s) => s.toString())
+                                    .toList()
+                                    ?.toList() ??
+                                [];
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -138,10 +143,8 @@ class _StandCardWidgetState extends State<StandCardWidget> {
                                     child: StandCardShiftNewWidget(
                                       key: Key(
                                           'Keysfr_${shiftListIndex}_of_${shiftList.length}'),
-                                      parameter1: getJsonField(
-                                        shiftListItem,
-                                        r'''$['text_de']''',
-                                      ),
+                                      standname: widget.standName!,
+                                      shiftText: shiftListItem,
                                     ),
                                   ),
                                 );

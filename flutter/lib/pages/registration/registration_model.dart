@@ -16,11 +16,11 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
+  // State field(s) for NameField widget.
+  FocusNode? nameFieldFocusNode;
+  TextEditingController? nameFieldController;
+  String? Function(BuildContext, String?)? nameFieldControllerValidator;
+  String? _nameFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'cymx9cck' /* Field is required */,
@@ -30,11 +30,11 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
+  // State field(s) for EmailField widget.
+  FocusNode? emailFieldFocusNode;
+  TextEditingController? emailFieldController;
+  String? Function(BuildContext, String?)? emailFieldControllerValidator;
+  String? _emailFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         '99niuziz' /* Field is required */,
@@ -47,11 +47,11 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
+  // State field(s) for PhoneField widget.
+  FocusNode? phoneFieldFocusNode;
+  TextEditingController? phoneFieldController;
+  String? Function(BuildContext, String?)? phoneFieldControllerValidator;
+  String? _phoneFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         's4g8lots' /* Field is required */,
@@ -61,34 +61,36 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     return null;
   }
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  // State field(s) for StandDropdown widget.
+  String? standDropdownValue;
+  FormFieldController<String>? standDropdownValueController;
+  // State field(s) for ShiftDropdown widget.
+  String? shiftDropdownValue;
+  FormFieldController<String>? shiftDropdownValueController;
+  // Stores action output result for [Backend Call - API (Add registration)] action in Button widget.
+  ApiCallResponse? apiResultsc0;
   // Model for Footer component.
   late FooterModel footerModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    textController1Validator = _textController1Validator;
-    textController2Validator = _textController2Validator;
-    textController3Validator = _textController3Validator;
+    nameFieldControllerValidator = _nameFieldControllerValidator;
+    emailFieldControllerValidator = _emailFieldControllerValidator;
+    phoneFieldControllerValidator = _phoneFieldControllerValidator;
     footerModel = createModel(context, () => FooterModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    nameFieldFocusNode?.dispose();
+    nameFieldController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    emailFieldFocusNode?.dispose();
+    emailFieldController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    phoneFieldFocusNode?.dispose();
+    phoneFieldController?.dispose();
 
     footerModel.dispose();
   }

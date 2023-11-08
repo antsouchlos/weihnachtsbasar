@@ -50,6 +50,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
+    _model.textController5 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
+
     _model.shiftTextDEController ??= TextEditingController();
     _model.shiftTextDEFocusNode ??= FocusNode();
 
@@ -1024,6 +1027,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             .textController4,
                                                         focusNode: _model
                                                             .textFieldFocusNode2,
+                                                        autofocus: true,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -1031,7 +1035,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                            '9at5jy8y' /* Password */,
+                                                            '7iessj1z' /* Phone */,
                                                           ),
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
@@ -1128,6 +1132,119 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
+                                                                  20.0,
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .textController5,
+                                                        focusNode: _model
+                                                            .textFieldFocusNode3,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            '9at5jy8y' /* Password */,
+                                                          ),
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        16.0,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        16.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                        validator: _model
+                                                            .textController5Validator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
                                                                   0.0,
                                                                   15.0,
                                                                   0.0,
@@ -1169,8 +1286,19 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             controller: _model
                                                                     .dropDownValueController ??=
                                                                 FormFieldController<
-                                                                        String>(
-                                                                    null),
+                                                                    String>(
+                                                              _model.dropDownValue ??=
+                                                                  (GetStandsCall
+                                                                          .standNameListDE(
+                                                                dropDownGetStandsResponse
+                                                                    .jsonBody,
+                                                              ) as List)
+                                                                      .map<String>(
+                                                                          (s) =>
+                                                                              s.toString())
+                                                                      .toList()
+                                                                      .first,
+                                                            ),
                                                             options: (GetStandsCall
                                                                     .standNameListDE(
                                                               dropDownGetStandsResponse
@@ -1195,12 +1323,15 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                       fontSize:
                                                                           16.0,
                                                                     ),
-                                                            hintText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'tlioomad' /* Please select... */,
-                                                            ),
+                                                            hintText: (GetStandsCall
+                                                                    .standNameListDE(
+                                                              dropDownGetStandsResponse
+                                                                  .jsonBody,
+                                                            ) as List)
+                                                                .map<String>((s) =>
+                                                                    s.toString())
+                                                                .toList()
+                                                                .first,
                                                             icon: Icon(
                                                               Icons
                                                                   .keyboard_arrow_down_rounded,
@@ -1252,7 +1383,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                               Icons.add,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryText,
+                                                      .success,
                                               size: 24.0,
                                             ),
                                             onPressed: () {
@@ -1575,9 +1706,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   labelText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'nb0jt2ed' /* Text DE
- */
-                                                                    ,
+                                                                    'nb0jt2ed' /* Text DE */,
                                                                   ),
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)

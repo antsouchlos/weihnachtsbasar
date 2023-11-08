@@ -56,7 +56,11 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode3;
+  TextEditingController? textController5;
+  String? Function(BuildContext, String?)? textController5Validator;
+  String? _textController5Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'en1eqln8' /* Field is required */,
@@ -90,7 +94,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
 
   void initState(BuildContext context) {
     textController3Validator = _textController3Validator;
-    textController4Validator = _textController4Validator;
+    textController5Validator = _textController5Validator;
   }
 
   void dispose() {
@@ -107,6 +111,9 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
 
     textFieldFocusNode2?.dispose();
     textController4?.dispose();
+
+    textFieldFocusNode3?.dispose();
+    textController5?.dispose();
 
     shiftTextDEFocusNode?.dispose();
     shiftTextDEController?.dispose();

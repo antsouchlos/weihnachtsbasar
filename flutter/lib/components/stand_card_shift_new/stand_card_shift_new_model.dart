@@ -1,7 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
+import '/flutter_flow/request_manager.dart';
+
 import 'stand_card_shift_new_widget.dart' show StandCardShiftNewWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,12 +15,35 @@ class StandCardShiftNewModel extends FlutterFlowModel<StandCardShiftNewWidget> {
 
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Backend Call - API (Delete registration)] action in IconButton widget.
+  ApiCallResponse? apiResultkb3;
+
+  /// Query cache managers for this widget.
+
+  final _getRegistrationsManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getRegistrations({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getRegistrationsManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetRegistrationsCache() => _getRegistrationsManager.clear();
+  void clearGetRegistrationsCacheKey(String? uniqueKey) =>
+      _getRegistrationsManager.clearRequest(uniqueKey);
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {}
+  void dispose() {
+    /// Dispose query cache managers for this widget.
+
+    clearGetRegistrationsCache();
+  }
 
   /// Action blocks are added here.
 

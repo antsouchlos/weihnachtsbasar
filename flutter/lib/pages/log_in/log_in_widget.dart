@@ -132,7 +132,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                                 child: TextFormField(
                                   controller: _model.textController1,
                                   focusNode: _model.textFieldFocusNode1,
-                                  autofocus: true,
                                   textInputAction: TextInputAction.next,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -204,7 +203,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                                 child: TextFormField(
                                   controller: _model.textController2,
                                   focusNode: _model.textFieldFocusNode2,
-                                  autofocus: true,
                                   textInputAction: TextInputAction.done,
                                   obscureText: !_model.passwordVisibility,
                                   decoration: InputDecoration(

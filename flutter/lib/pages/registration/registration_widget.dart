@@ -29,14 +29,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     super.initState();
     _model = createModel(context, () => RegistrationModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.nameFieldController ??= TextEditingController();
+    _model.nameFieldFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.emailFieldController ??= TextEditingController();
+    _model.emailFieldFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.phoneFieldController ??= TextEditingController();
+    _model.phoneFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -133,9 +133,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                    controller: _model.textController1,
-                                    focusNode: _model.textFieldFocusNode1,
-                                    autofocus: true,
+                                    controller: _model.nameFieldController,
+                                    focusNode: _model.nameFieldFocusNode,
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -198,7 +197,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           fontFamily: 'Inter',
                                           fontSize: 16.0,
                                         ),
-                                    validator: _model.textController1Validator
+                                    validator: _model
+                                        .nameFieldControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -209,9 +209,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                    controller: _model.textController2,
-                                    focusNode: _model.textFieldFocusNode2,
-                                    autofocus: true,
+                                    controller: _model.emailFieldController,
+                                    focusNode: _model.emailFieldFocusNode,
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -275,7 +274,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           fontSize: 16.0,
                                         ),
                                     keyboardType: TextInputType.emailAddress,
-                                    validator: _model.textController2Validator
+                                    validator: _model
+                                        .emailFieldControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -286,9 +286,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                    controller: _model.textController3,
-                                    focusNode: _model.textFieldFocusNode3,
-                                    autofocus: true,
+                                    controller: _model.phoneFieldController,
+                                    focusNode: _model.phoneFieldFocusNode,
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -352,7 +351,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           fontSize: 16.0,
                                         ),
                                     keyboardType: TextInputType.number,
-                                    validator: _model.textController3Validator
+                                    validator: _model
+                                        .phoneFieldControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -406,25 +406,30 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           ),
                                         );
                                       }
-                                      final dropDownGetStandsResponse =
+                                      final standDropdownGetStandsResponse =
                                           snapshot.data!;
                                       return FlutterFlowDropDown<String>(
-                                        controller:
-                                            _model.dropDownValueController1 ??=
-                                                FormFieldController<String>(
-                                          _model.dropDownValue1 ??=
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                            '96cg34yl' /* Kerzen */,
-                                          ),
+                                        controller: _model
+                                                .standDropdownValueController ??=
+                                            FormFieldController<String>(
+                                          _model.standDropdownValue ??=
+                                              (GetStandsCall.standNameListDE(
+                                            standDropdownGetStandsResponse
+                                                .jsonBody,
+                                          ) as List)
+                                                  .map<String>(
+                                                      (s) => s.toString())
+                                                  .toList()
+                                                  .first,
                                         ),
                                         options: (GetStandsCall.standNameListDE(
-                                          dropDownGetStandsResponse.jsonBody,
+                                          standDropdownGetStandsResponse
+                                              .jsonBody,
                                         ) as List)
                                             .map<String>((s) => s.toString())
                                             .toList()!,
-                                        onChanged: (val) => setState(
-                                            () => _model.dropDownValue1 = val),
+                                        onChanged: (val) => setState(() =>
+                                            _model.standDropdownValue = val),
                                         width: 300.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -434,9 +439,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               fontSize: 16.0,
                                             ),
                                         hintText:
-                                            FFLocalizations.of(context).getText(
-                                          'uknozt60' /* Please select... */,
-                                        ),
+                                            (GetStandsCall.standNameListDE(
+                                          standDropdownGetStandsResponse
+                                              .jsonBody,
+                                        ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()
+                                                .first,
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -510,25 +520,30 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           ),
                                         );
                                       }
-                                      final dropDownGetShiftsResponse =
+                                      final shiftDropdownGetShiftsResponse =
                                           snapshot.data!;
                                       return FlutterFlowDropDown<String>(
-                                        controller:
-                                            _model.dropDownValueController2 ??=
-                                                FormFieldController<String>(
-                                          _model.dropDownValue2 ??=
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                            '0waiphkf' /* Freitag 16:30-19:30: Aufbau */,
-                                          ),
+                                        controller: _model
+                                                .shiftDropdownValueController ??=
+                                            FormFieldController<String>(
+                                          _model.shiftDropdownValue ??=
+                                              (GetShiftsCall.shiftTextListDE(
+                                            shiftDropdownGetShiftsResponse
+                                                .jsonBody,
+                                          ) as List)
+                                                  .map<String>(
+                                                      (s) => s.toString())
+                                                  .toList()
+                                                  .first,
                                         ),
                                         options: (GetShiftsCall.shiftTextListDE(
-                                          dropDownGetShiftsResponse.jsonBody,
+                                          shiftDropdownGetShiftsResponse
+                                              .jsonBody,
                                         ) as List)
                                             .map<String>((s) => s.toString())
                                             .toList()!,
-                                        onChanged: (val) => setState(
-                                            () => _model.dropDownValue2 = val),
+                                        onChanged: (val) => setState(() =>
+                                            _model.shiftDropdownValue = val),
                                         width: 300.0,
                                         height: 80.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -539,9 +554,14 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               lineHeight: 2.0,
                                             ),
                                         hintText:
-                                            FFLocalizations.of(context).getText(
-                                          'h33oyca5' /* Please select... */,
-                                        ),
+                                            (GetShiftsCall.shiftTextListDE(
+                                          shiftDropdownGetShiftsResponse
+                                              .jsonBody,
+                                        ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()
+                                                .first,
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -571,7 +591,51 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     0.0, 30.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('Thankyouforregistering');
+                                    if (_model.formKey.currentState == null ||
+                                        !_model.formKey.currentState!
+                                            .validate()) {
+                                      return;
+                                    }
+                                    if (_model.standDropdownValue == null) {
+                                      return;
+                                    }
+                                    if (_model.shiftDropdownValue == null) {
+                                      return;
+                                    }
+                                    _model.apiResultsc0 =
+                                        await AddRegistrationCall.call(
+                                      name: _model.nameFieldController.text,
+                                      email: _model.emailFieldController.text,
+                                      phone: _model.phoneFieldController.text,
+                                      standname: _model.standDropdownValue,
+                                      shiftText: _model.shiftDropdownValue,
+                                    );
+                                    if ((_model.apiResultsc0?.succeeded ??
+                                        true)) {
+                                      context
+                                          .pushNamed('Thankyouforregistering');
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'An error occurred',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    }
+
+                                    setState(() {});
                                   },
                                   text: FFLocalizations.of(context).getText(
                                     '80mfaiho' /* Anmelden */,
