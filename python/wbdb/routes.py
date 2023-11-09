@@ -504,3 +504,49 @@ def download_registrations():
         route_logger.exception(f"Exception occurred while sending data as excel")
         return utility.gen_error("Unable to download registrations")
 
+
+@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["POST"])
+# TODO: Admin
+def set_registration_status(standname, shift_text):
+    """Open or close registration for a shift of a given stand."""
+    # Fetch and validate request data
+
+    standname = bleach.clean(standname)
+    shift_text = bleach.clean(shift_text)
+    status = ((bleach.clean(request.form['status'])) == "true")
+
+    if status is None:
+        return utility.gen_error("Missing data fields")
+
+    # Set registration status
+
+    try:
+        db_handler.set_registration_status(standname, shift_text, status)
+        route_logger.info(f"Set registration status: ({standname}, {shift_text}, {status})")
+        return utility.gen_success("Set registration status")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while setting registration status")
+        return utility.gen_error("Unable to set registration status")
+
+
+@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["GET"])
+# TODO: Admin
+def get_registration_status(standname, shift_text):
+    """Open or close registration for a shift of a given stand."""
+    # Fetch and validate request data
+
+    standname = bleach.clean(standname)
+    shift_text = bleach.clean(shift_text)
+
+    # Get registration status
+
+    try:
+        data = db_handler.get_registration_status(standname, shift_text)
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched registration status")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching registration status")
+        return utility.gen_error("Unable to get registration status")
+

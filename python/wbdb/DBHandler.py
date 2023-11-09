@@ -332,8 +332,35 @@ class DBHandler:
 
         return result
 
-    def set_registration_status(self, stand: str, shift: int,
+    def set_registration_status(self, standname: str, shift_text: str,
                                 status: bool):
         """Enable / Disable registration for a given shift of a given stand."""
-        # TODO
-        pass
+        stand_slug = self._get_stand_slug_by_name(standname)
+        shift_id = self._get_shift_id_by_text(shift_text)
+
+        blacklist_table = self._db.table("registration_blacklist")
+
+        StandEntry = Query()
+        blacklist = blacklist_table.search(StandEntry.stand_slug == stand_slug)[0]["blacklist"]
+
+        if (shift_id in blacklist) and status:
+            blacklist.remove(shift_id)
+        elif (shift_id not in blacklist) and (not status):
+            blacklist.append(shift_id)
+
+        blacklist_table.update({"blacklist": blacklist}, StandEntry.stand_slug == stand_slug)
+
+    def get_registration_status(self, standname: str, shift_text: str):
+        """Get the current registration status (open / closed) for a shift of a given stand."""
+        stand_slug = self._get_stand_slug_by_name(standname)
+        shift_id = self._get_shift_id_by_text(shift_text)
+
+        blacklist_table = self._db.table("registration_blacklist")
+
+        StandEntry = Query()
+        blacklist = blacklist_table.search(StandEntry.stand_slug == stand_slug)[0]["blacklist"]
+
+        status = "closed" if shift_id in blacklist else "open"
+
+        return {"status": status}
+
