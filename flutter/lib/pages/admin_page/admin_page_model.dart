@@ -40,6 +40,8 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? Function(BuildContext, String?)? standnameGRControllerValidator;
   // Stores action output result for [Backend Call - API (Add stand)] action in IconButton widget.
   ApiCallResponse? apiResultkn2;
+  // Stores action output result for [Backend Call - API (Delete user)] action in IconButton widget.
+  ApiCallResponse? apiResultzyj;
   // State field(s) for NameField widget.
   FocusNode? nameFieldFocusNode;
   TextEditingController? nameFieldController;
@@ -100,6 +102,8 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   // State field(s) for StandDropDown widget.
   String? standDropDownValue;
   FormFieldController<String>? standDropDownValueController;
+  // Stores action output result for [Backend Call - API (Add user)] action in IconButton widget.
+  ApiCallResponse? apiResultkzs;
   bool apiRequestCompleted2 = false;
   String? apiRequestLastUniqueKey2;
   // Stores action output result for [Backend Call - API (Remove shift)] action in IconButton widget.

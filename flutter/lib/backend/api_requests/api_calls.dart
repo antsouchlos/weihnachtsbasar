@@ -318,6 +318,91 @@ class GetRegistrationStatusCall {
       );
 }
 
+class GetUsersCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get users',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic emailList(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['email']''',
+        true,
+      );
+  static dynamic nameList(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['name']''',
+        true,
+      );
+  static dynamic phoneList(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['phone']''',
+        true,
+      );
+  static dynamic standnameList(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['standname']''',
+        true,
+      );
+}
+
+class AddUserCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+    String? name = '',
+    String? phone = '',
+    String? password = '',
+    String? standname = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add user',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'email': email,
+        'name': name,
+        'phone': phone,
+        'password': password,
+        'standname': standname,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class DeleteUserCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete user',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users/${email}',
+      callType: ApiCallType.DELETE,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

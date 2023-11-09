@@ -409,22 +409,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Users',
       'el': 'Users',
     },
-    'kx40ykd5': {
-      'de': 'Stand',
-      'el': '',
-    },
-    'c5zh8m6t': {
-      'de': 'Name',
-      'el': '',
-    },
-    'gd93p3te': {
-      'de': 'Email',
-      'el': '',
-    },
-    '9kahqugq': {
-      'de': 'Phone',
-      'el': '',
-    },
     'ux4tcchw': {
       'de': 'Name',
       'el': '',
