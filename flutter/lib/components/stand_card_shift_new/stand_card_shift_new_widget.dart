@@ -78,15 +78,94 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            Switch.adaptive(
-              value: _model.switchValue ??= true,
-              onChanged: (newValue) async {
-                setState(() => _model.switchValue = newValue!);
+            FutureBuilder<ApiCallResponse>(
+              future: _model.getRegistrationStatus(
+                requestFn: () => GetRegistrationStatusCall.call(
+                  standname: widget.standname,
+                  shiftText: widget.shiftText,
+                ),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                final switchGetRegistrationStatusResponse = snapshot.data!;
+                return Switch.adaptive(
+                  value: _model.switchValue ??=
+                      GetRegistrationStatusCall.status(
+                            switchGetRegistrationStatusResponse.jsonBody,
+                          ).toString() ==
+                          'open',
+                  onChanged: (newValue) async {
+                    setState(() => _model.switchValue = newValue!);
+                    if (newValue!) {
+                      _model.apiResultqy1 =
+                          await SetRegistrationStatusCall.call(
+                        status: true,
+                        standname: widget.standname,
+                        shiftText: widget.shiftText,
+                      );
+                      if (!(_model.apiResultqy1?.succeeded ?? true)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'An error occurred',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+
+                      setState(() {});
+                    } else {
+                      _model.apiResultjho =
+                          await SetRegistrationStatusCall.call(
+                        status: false,
+                        standname: widget.standname,
+                        shiftText: widget.shiftText,
+                      );
+                      if (!(_model.apiResultjho?.succeeded ?? true)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'An error occurred',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+
+                      setState(() {});
+                    }
+                  },
+                  activeColor: FlutterFlowTheme.of(context).primary,
+                  activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                  inactiveTrackColor: FlutterFlowTheme.of(context).alternate,
+                  inactiveThumbColor:
+                      FlutterFlowTheme.of(context).secondaryText,
+                );
               },
-              activeColor: FlutterFlowTheme.of(context).primary,
-              activeTrackColor: FlutterFlowTheme.of(context).accent1,
-              inactiveTrackColor: FlutterFlowTheme.of(context).alternate,
-              inactiveThumbColor: FlutterFlowTheme.of(context).secondaryText,
             ),
           ],
         ),

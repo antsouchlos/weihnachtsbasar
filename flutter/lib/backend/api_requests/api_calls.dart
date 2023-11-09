@@ -267,18 +267,43 @@ class GetShiftsForStandCall {
       );
 }
 
-class DownloadRegistrationsCall {
+class SetRegistrationStatusCall {
   static Future<ApiCallResponse> call({
-    String? stand = '',
+    String? standname = '',
+    String? shiftText = '',
+    bool? status,
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'Download registrations',
+      callName: 'Set registration status',
       apiUrl:
-          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/download/${stand}',
-      callType: ApiCallType.GET,
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/status/${standname}/${shiftText}',
+      callType: ApiCallType.POST,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-type': 'application/x-www-form-urlencoded',
       },
+      params: {
+        'status': status,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class GetRegistrationStatusCall {
+  static Future<ApiCallResponse> call({
+    String? standname = '',
+    String? shiftText = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get registration status',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/status/${standname}/${shiftText}',
+      callType: ApiCallType.GET,
+      headers: {},
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -286,6 +311,11 @@ class DownloadRegistrationsCall {
       cache: false,
     );
   }
+
+  static dynamic status(dynamic response) => getJsonField(
+        response,
+        r'''$["status"]''',
+      );
 }
 
 class ApiPagingParams {

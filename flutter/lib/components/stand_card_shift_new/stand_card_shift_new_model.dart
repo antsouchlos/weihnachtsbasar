@@ -15,6 +15,10 @@ class StandCardShiftNewModel extends FlutterFlowModel<StandCardShiftNewWidget> {
 
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Backend Call - API (Set registration status)] action in Switch widget.
+  ApiCallResponse? apiResultqy1;
+  // Stores action output result for [Backend Call - API (Set registration status)] action in Switch widget.
+  ApiCallResponse? apiResultjho;
   // Stores action output result for [Backend Call - API (Delete registration)] action in IconButton widget.
   ApiCallResponse? apiResultkb3;
 
@@ -35,6 +39,22 @@ class StandCardShiftNewModel extends FlutterFlowModel<StandCardShiftNewWidget> {
   void clearGetRegistrationsCacheKey(String? uniqueKey) =>
       _getRegistrationsManager.clearRequest(uniqueKey);
 
+  final _getRegistrationStatusManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getRegistrationStatus({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getRegistrationStatusManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetRegistrationStatusCache() =>
+      _getRegistrationStatusManager.clear();
+  void clearGetRegistrationStatusCacheKey(String? uniqueKey) =>
+      _getRegistrationStatusManager.clearRequest(uniqueKey);
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
@@ -43,6 +63,8 @@ class StandCardShiftNewModel extends FlutterFlowModel<StandCardShiftNewWidget> {
     /// Dispose query cache managers for this widget.
 
     clearGetRegistrationsCache();
+
+    clearGetRegistrationStatusCache();
   }
 
   /// Action blocks are added here.
