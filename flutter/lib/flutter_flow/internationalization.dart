@@ -460,6 +460,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Registrations',
       'el': 'Registrations',
     },
+    'qb6lanw3': {
+      'de': 'Download as Excel',
+      'el': '',
+    },
     'bzhamcvv': {
       'de': 'Weihnachtsbasar',
       'el': 'Χριστουγεννιάτικο παζάρι',
