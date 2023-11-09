@@ -14,8 +14,11 @@ from wbdb import utility
 #     shifts: ["Freitag...", ...],
 #     users: [
 #         {
-#             "username": "abcd",
+#             "email": "a@b.c",
+#             "name": "asdf adsf",
+#             "phone": "123456543",
 #             "password_hash": "efgh",
+#             "stand_slug": "stand0_slug",
 #             "roles": ["Stand0", "Stand1", ...]
 #         },
 #         {
@@ -271,30 +274,40 @@ class DBHandler:
 
     # User management
 
-    def add_user(self, username: str, password_hash: str,
-                 roles: typing.List[str]):
+    def add_user(self, name: str, email: str, phone: str, password_hash: str, standname: str):
         """Add a new user."""
+        stand_slug = self._get_stand_slug_by_name(standname)
+        roles = [stand_slug]
+
         user_table = self._db.table("users")
 
         User = Query()
-        if len(user_table.search(User["username"] == username)) > 0:
+        if len(user_table.search(User["email"] == email)) > 0:
             raise Exception(
-                f"A user with the username {username} already exists")
+                f"A user with the email {email} already exists")
 
         user_table.insert(
-            {"username": username, "password_hash": password_hash,
-             "roles": roles})
+            {"name": name, "email": email, "phone": phone, "password_hash": password_hash, "stand_slug": stand_slug, "roles": roles})
 
-    def remove_user(self, username: str):
+    def remove_user(self, email: str):
         """Remove an existing user."""
         user_table = self._db.table("users")
 
         Shift = Query()
-        if len(user_table.search(Shift.username == username)) == 0:
+        if len(user_table.search(Shift.email == email)) == 0:
             raise Exception(
-                f"A user with the username {username} does not exist")
+                f"A user with the email {email} does not exist")
 
-        user_table.remove(Shift.username == username)
+        user_table.remove(Shift.email == email)
+
+    def _get_standname_by_stand_slug(self, stand_slug: str):
+        blacklist_table = self._db.table("registration_blacklist")
+
+        self._logger.debug(stand_slug)
+
+        Stand = Query()
+        return blacklist_table.search(Stand.stand_slug == stand_slug)[0]["standname_de"]
+        
 
     def get_users(self):
         """Return a list of all users with their usernames, password hashes
@@ -304,8 +317,12 @@ class DBHandler:
 
         result = []
         for user in user_table.all():
+            standname = self._get_standname_by_stand_slug(user["stand_slug"])
             result.append(
-                {"username": user["username"],
+                {"email": user["email"],
+                 "name": user["name"],
+                 "phone": user["phone"],
+                 "standname": standname,
                  "password_hash": user["password_hash"],
                  "roles": user["roles"]})
 

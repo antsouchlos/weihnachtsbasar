@@ -550,3 +550,49 @@ def get_registration_status(standname, shift_text):
         route_logger.exception(f"Exception occurred while fetching registration status")
         return utility.gen_error("Unable to get registration status")
 
+
+@app.route("/api/v2/users", methods=["POST"])
+# TODO: Admin
+def post_user():
+    name = bleach.clean(request.form['name'])
+    email = bleach.clean(request.form['email'])
+    phone = bleach.clean(request.form['phone'])
+    password = bleach.clean(request.form['password'])
+    standname = bleach.clean(request.form['standname'])
+
+    password_hash = generate_password_hash(password)
+
+    try:
+        db_handler.add_user(name, email, phone, password_hash, standname)
+        route_logger.info(f"Added user: ({name}, {email}, {phone}, {password}, {standname})")
+        return utility.gen_success("Added user")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while adding user")
+        return utility.gen_error("Unable to add user")
+
+
+@app.route("/api/v2/users/<path:email>", methods=["DELETE"])
+# TODO: Admin
+def delete_user(email):
+    email = bleach.clean(email)
+
+    try:
+        db_handler.remove_user(email)
+        route_logger.info(f"Removed user: {email}")
+        return utility.gen_success("Removed user")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while deleting user")
+        return utility.gen_error("Unable to delete user")
+
+
+@app.route("/api/v2/users", methods=["GET"])
+def get_users():
+    try:
+        data = db_handler.get_users()
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of all users")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching users")
+        return utility.gen_error("Unable to download users")
