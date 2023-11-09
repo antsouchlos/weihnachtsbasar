@@ -30,7 +30,6 @@ dependencies:
   carousel_slider: 4.2.1
   dio:
   dropdown_button2: 2.0.0
-  emoji_flag_converter: 1.1.0
   equatable: 2.0.5
   expandable: 5.0.1
   flutter_animate: 4.1.1+1

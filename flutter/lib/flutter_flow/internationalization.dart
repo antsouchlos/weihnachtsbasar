@@ -107,6 +107,18 @@ Locale createLocale(String language) => language.contains('_')
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // HomePage
   {
+    'g7ulganq': {
+      'de': 'Deutsch',
+      'el': 'Deutsch',
+    },
+    '99194fzg': {
+      'de': 'Ελληνικά',
+      'el': 'Ελληνικά',
+    },
+    'm78as9qk': {
+      'de': 'Deutsch',
+      'el': '',
+    },
     'r9rlwmpr': {
       'de': 'Weihnachtsbasar 2023',
       'el': 'Χριστουγεννιάτικο παζάρι 2023',
@@ -114,7 +126,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'apmghflv': {
       'de':
           'am Samstag, den 2.12.2023\nin den Räumen der DSA – Deutschen Schule Athen\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Schicht aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
-      'el': '',
+      'el':
+          'το Σάββατο 2/12/2023\nστους χώρους της ΓΣΑ - Γερμανικής Σχολής Αθηνών\n\nΧαιρόμαστε για κάθε βοήθεια για την επιτυχία του παζαριού μας! Επιλέξτε το περίπτερο και τη βάρδια σας και δηλώστε συμμετοχή!\n\nΣτη συνέχεια θα επικοινωνήσουμε μαζί σας! Σας ευχαριστούμε πολύ!',
     },
     'owosr0y7': {
       'de': 'Freitag, 1.12',
@@ -397,11 +410,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Users',
     },
     'kx40ykd5': {
-      'de': 'Email',
+      'de': 'Stand',
       'el': '',
     },
     'c5zh8m6t': {
-      'de': 'Standname',
+      'de': 'Name',
+      'el': '',
+    },
+    'gd93p3te': {
+      'de': 'Email',
+      'el': '',
+    },
+    '9kahqugq': {
+      'de': 'Phone',
       'el': '',
     },
     'ux4tcchw': {
@@ -428,11 +449,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Search for an item...',
       'el': '',
     },
+    'v57fpinr': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    '5geh6e4v': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
     'ieivauvc': {
       'de': 'Field is required',
       'el': '',
     },
     'qkq1nyyi': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    'ian8ggsx': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'vfzc7fw6': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },

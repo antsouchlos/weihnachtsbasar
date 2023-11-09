@@ -36,6 +36,12 @@ class FFAppState extends ChangeNotifier {
     _password = _value;
   }
 
+  String _language = 'de';
+  String get language => _language;
+  set language(String _value) {
+    _language = _value;
+  }
+
   final _getStandsManager = FutureRequestManager<ApiCallResponse>();
   Future<ApiCallResponse> getStands({
     String? uniqueQueryKey,

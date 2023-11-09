@@ -45,17 +45,17 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
     _model.standnameGRController ??= TextEditingController();
     _model.standnameGRFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.nameFieldController ??= TextEditingController();
+    _model.nameFieldFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.emailFieldController ??= TextEditingController();
+    _model.emailFieldFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.phoneFieldController ??= TextEditingController();
+    _model.phoneFieldFocusNode ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.passwordFieldController ??= TextEditingController();
+    _model.passwordFieldFocusNode ??= FocusNode();
 
     _model.shiftTextDEController ??= TextEditingController();
     _model.shiftTextDEFocusNode ??= FocusNode();
@@ -813,7 +813,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'kx40ykd5' /* Email */,
+                                                          'kx40ykd5' /* Stand */,
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -831,7 +831,37 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'c5zh8m6t' /* Standname */,
+                                                          'c5zh8m6t' /* Name */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                      ),
+                                                      Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'gd93p3te' /* Email */,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                      ),
+                                                      Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '9kahqugq' /* Phone */,
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -915,9 +945,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   0.0),
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController3,
+                                                            .nameFieldController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode1,
+                                                            .nameFieldFocusNode,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration:
@@ -1014,7 +1044,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               fontSize: 16.0,
                                                             ),
                                                         validator: _model
-                                                            .textController3Validator
+                                                            .nameFieldControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
@@ -1029,9 +1059,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   0.0),
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController4,
+                                                            .emailFieldController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode2,
+                                                            .emailFieldFocusNode,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -1127,7 +1157,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               fontSize: 16.0,
                                                             ),
                                                         validator: _model
-                                                            .textController4Validator
+                                                            .emailFieldControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
@@ -1142,9 +1172,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   0.0),
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController5,
+                                                            .phoneFieldController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode3,
+                                                            .phoneFieldFocusNode,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration:
@@ -1241,7 +1271,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               fontSize: 16.0,
                                                             ),
                                                         validator: _model
-                                                            .textController5Validator
+                                                            .phoneFieldControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
@@ -1256,10 +1286,11 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   0.0),
                                                       child: TextFormField(
                                                         controller: _model
-                                                            .textController6,
+                                                            .passwordFieldController,
                                                         focusNode: _model
-                                                            .textFieldFocusNode4,
-                                                        obscureText: false,
+                                                            .passwordFieldFocusNode,
+                                                        obscureText: !_model
+                                                            .passwordFieldVisibility,
                                                         decoration:
                                                             InputDecoration(
                                                           labelText:
@@ -1344,6 +1375,26 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                     .circular(
                                                                         8.0),
                                                           ),
+                                                          suffixIcon: InkWell(
+                                                            onTap: () =>
+                                                                setState(
+                                                              () => _model
+                                                                      .passwordFieldVisibility =
+                                                                  !_model
+                                                                      .passwordFieldVisibility,
+                                                            ),
+                                                            focusNode: FocusNode(
+                                                                skipTraversal:
+                                                                    true),
+                                                            child: Icon(
+                                                              _model.passwordFieldVisibility
+                                                                  ? Icons
+                                                                      .visibility_outlined
+                                                                  : Icons
+                                                                      .visibility_off_outlined,
+                                                              size: 18.0,
+                                                            ),
+                                                          ),
                                                         ),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
@@ -1354,7 +1405,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               fontSize: 16.0,
                                                             ),
                                                         validator: _model
-                                                            .textController6Validator
+                                                            .passwordFieldControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
@@ -1397,18 +1448,18 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               ),
                                                             );
                                                           }
-                                                          final dropDownGetStandsResponse =
+                                                          final standDropDownGetStandsResponse =
                                                               snapshot.data!;
                                                           return FlutterFlowDropDown<
                                                               String>(
                                                             controller: _model
-                                                                    .dropDownValueController ??=
+                                                                    .standDropDownValueController ??=
                                                                 FormFieldController<
                                                                     String>(
-                                                              _model.dropDownValue ??=
+                                                              _model.standDropDownValue ??=
                                                                   (GetStandsCall
                                                                           .standNameListDE(
-                                                                dropDownGetStandsResponse
+                                                                standDropDownGetStandsResponse
                                                                     .jsonBody,
                                                               ) as List)
                                                                       .map<String>(
@@ -1419,16 +1470,24 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             ),
                                                             options: (GetStandsCall
                                                                     .standNameListDE(
-                                                              dropDownGetStandsResponse
+                                                              standDropDownGetStandsResponse
                                                                   .jsonBody,
                                                             ) as List)
                                                                 .map<String>((s) =>
                                                                     s.toString())
                                                                 .toList()!,
-                                                            onChanged: (val) =>
-                                                                setState(() =>
-                                                                    _model.dropDownValue =
-                                                                        val),
+                                                            onChanged:
+                                                                (val) async {
+                                                              setState(() =>
+                                                                  _model.standDropDownValue =
+                                                                      val);
+                                                              setState(() {
+                                                                _model.passwordFieldController
+                                                                        ?.text =
+                                                                    _model
+                                                                        .standDropDownValue!;
+                                                              });
+                                                            },
                                                             width: 300.0,
                                                             height: 50.0,
                                                             textStyle:
@@ -1443,7 +1502,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                     ),
                                                             hintText: (GetStandsCall
                                                                     .standNameListDE(
-                                                              dropDownGetStandsResponse
+                                                              standDropDownGetStandsResponse
                                                                   .jsonBody,
                                                             ) as List)
                                                                 .map<String>((s) =>

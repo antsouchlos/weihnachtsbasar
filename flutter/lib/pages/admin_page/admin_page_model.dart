@@ -39,15 +39,25 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? Function(BuildContext, String?)? standnameGRControllerValidator;
   // Stores action output result for [Backend Call - API (Add stand)] action in IconButton widget.
   ApiCallResponse? apiResultkn2;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
+  // State field(s) for NameField widget.
+  FocusNode? nameFieldFocusNode;
+  TextEditingController? nameFieldController;
+  String? Function(BuildContext, String?)? nameFieldControllerValidator;
+  String? _nameFieldControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'v57fpinr' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for EmailField widget.
+  FocusNode? emailFieldFocusNode;
+  TextEditingController? emailFieldController;
+  String? Function(BuildContext, String?)? emailFieldControllerValidator;
+  String? _emailFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'ieivauvc' /* Field is required */,
@@ -57,15 +67,26 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  String? _textController6Validator(BuildContext context, String? val) {
+  // State field(s) for PhoneField widget.
+  FocusNode? phoneFieldFocusNode;
+  TextEditingController? phoneFieldController;
+  String? Function(BuildContext, String?)? phoneFieldControllerValidator;
+  String? _phoneFieldControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'ian8ggsx' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for PasswordField widget.
+  FocusNode? passwordFieldFocusNode;
+  TextEditingController? passwordFieldController;
+  late bool passwordFieldVisibility;
+  String? Function(BuildContext, String?)? passwordFieldControllerValidator;
+  String? _passwordFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'en1eqln8' /* Field is required */,
@@ -75,9 +96,9 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     return null;
   }
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for StandDropDown widget.
+  String? standDropDownValue;
+  FormFieldController<String>? standDropDownValueController;
   bool apiRequestCompleted2 = false;
   String? apiRequestLastUniqueKey2;
   // Stores action output result for [Backend Call - API (Remove shift)] action in IconButton widget.
@@ -98,8 +119,11 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    textController4Validator = _textController4Validator;
-    textController6Validator = _textController6Validator;
+    nameFieldControllerValidator = _nameFieldControllerValidator;
+    emailFieldControllerValidator = _emailFieldControllerValidator;
+    phoneFieldControllerValidator = _phoneFieldControllerValidator;
+    passwordFieldVisibility = false;
+    passwordFieldControllerValidator = _passwordFieldControllerValidator;
   }
 
   void dispose() {
@@ -111,17 +135,17 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
     standnameGRFocusNode?.dispose();
     standnameGRController?.dispose();
 
-    textFieldFocusNode1?.dispose();
-    textController3?.dispose();
+    nameFieldFocusNode?.dispose();
+    nameFieldController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController4?.dispose();
+    emailFieldFocusNode?.dispose();
+    emailFieldController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController5?.dispose();
+    phoneFieldFocusNode?.dispose();
+    phoneFieldController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController6?.dispose();
+    passwordFieldFocusNode?.dispose();
+    passwordFieldController?.dispose();
 
     shiftTextDEFocusNode?.dispose();
     shiftTextDEController?.dispose();

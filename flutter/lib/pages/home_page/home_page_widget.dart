@@ -1,8 +1,9 @@
 import '/components/footer/footer_widget.dart';
-import '/flutter_flow/flutter_flow_language_selector.dart';
+import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -92,25 +93,103 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
-                      child: FlutterFlowLanguageSelector(
-                        width: 200.0,
-                        backgroundColor: FlutterFlowTheme.of(context).tertiary,
-                        borderColor: Colors.transparent,
-                        dropdownIconColor: Colors.white,
-                        borderRadius: 8.0,
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13.0,
+                          15.0, 15.0, 15.0, 15.0),
+                      child: FlutterFlowChoiceChips(
+                        options: [
+                          ChipData(FFLocalizations.of(context).getText(
+                            'g7ulganq' /* Deutsch */,
+                          )),
+                          ChipData(FFLocalizations.of(context).getText(
+                            '99194fzg' /* Ελληνικά */,
+                          ))
+                        ],
+                        onChanged: (val) async {
+                          setState(() => _model.choiceChipsValue = val?.first);
+                          if (_model.choiceChipsValue == 'Deutsch') {
+                            setAppLanguage(context, 'de');
+                            setState(() {
+                              FFAppState().language = 'de';
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Set language to german',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                          } else {
+                            setAppLanguage(context, 'el');
+                            setState(() {
+                              FFAppState().language = 'gr';
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Set language to greek',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                          }
+                        },
+                        selectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Inter',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 16.0,
+                              ),
+                          iconColor: FlutterFlowTheme.of(context).primaryText,
+                          iconSize: 18.0,
+                          elevation: 4.0,
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
-                        hideFlags: false,
-                        flagSize: 24.0,
-                        flagTextGap: 8.0,
-                        currentLanguage:
-                            FFLocalizations.of(context).languageCode,
-                        languages: FFLocalizations.languages(),
-                        onChanged: (lang) => setAppLanguage(context, lang),
+                        unselectedChipStyle: ChipStyle(
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).alternate,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Inter',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 14.0,
+                              ),
+                          iconColor: FlutterFlowTheme.of(context).secondaryText,
+                          iconSize: 18.0,
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        chipSpacing: 12.0,
+                        rowSpacing: 12.0,
+                        multiselect: false,
+                        initialized: _model.choiceChipsValue != null,
+                        alignment: WrapAlignment.start,
+                        controller: _model.choiceChipsValueController ??=
+                            FormFieldController<List<String>>(
+                          [
+                            FFLocalizations.of(context).getText(
+                              'm78as9qk' /* Deutsch */,
+                            )
+                          ],
+                        ),
+                        wrapped: true,
                       ),
                     ),
                     Align(
@@ -177,19 +256,34 @@ in d... */
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 20.0, 20.0, 20.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/title_poster.jpg',
-                                width: 290.0,
-                                height: 410.0,
-                                fit: BoxFit.cover,
+                          if (FFAppState().language == 'gr')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 20.0, 20.0, 20.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/title_poster_gr.jpg',
+                                  width: 290.0,
+                                  height: 410.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
+                          if (FFAppState().language == 'de')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 20.0, 20.0, 20.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  'assets/images/title_poster.jpg',
+                                  width: 290.0,
+                                  height: 410.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),
