@@ -10,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,11 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => AdminPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setAppLanguage(context, 'de');
+    });
 
     _model.tabBarController = TabController(
       vsync: this,

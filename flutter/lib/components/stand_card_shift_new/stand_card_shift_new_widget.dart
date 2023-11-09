@@ -220,7 +220,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    SelectionArea(
+                                        child: Text(
                                       getJsonField(
                                         registrationListItem,
                                         r'''$['name']''',
@@ -231,7 +232,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                             fontFamily: 'Inter',
                                             fontSize: 16.0,
                                           ),
-                                    ),
+                                    )),
                                     SizedBox(
                                       height: 20.0,
                                       child: VerticalDivider(
@@ -240,7 +241,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    Text(
+                                    SelectionArea(
+                                        child: Text(
                                       getJsonField(
                                         registrationListItem,
                                         r'''$['email']''',
@@ -251,7 +253,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                             fontFamily: 'Inter',
                                             fontSize: 16.0,
                                           ),
-                                    ),
+                                    )),
                                     SizedBox(
                                       height: 20.0,
                                       child: VerticalDivider(
@@ -260,7 +262,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    Text(
+                                    SelectionArea(
+                                        child: Text(
                                       getJsonField(
                                         registrationListItem,
                                         r'''$['phone']''',
@@ -271,7 +274,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                             fontFamily: 'Inter',
                                             fontSize: 16.0,
                                           ),
-                                    ),
+                                    )),
                                   ].divide(SizedBox(width: 5.0)),
                                 ),
                               ),
