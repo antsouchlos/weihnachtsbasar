@@ -243,6 +243,32 @@ class DBHandler:
 
         return result
 
+    def _get_blacklist_for_stand(self, standname: str):
+        """Return a list of the shift_ids of the blacklisted shifts for a given stand."""
+        stand_slug = self._get_stand_slug_by_name(standname)
+
+        blacklist_table = self._db.table("registration_blacklist")
+
+        BlacklistEntry = Query()
+        blacklist_entries = blacklist_table.search(BlacklistEntry.stand_slug == stand_slug)
+
+        return blacklist_entries[0]["blacklist"]
+
+    def get_shifts_for_stand(self, standname: str):
+        """Get a list of shifts open for registration for a given stand."""
+        shift_table = self._db.table("shifts")
+
+        blacklist = self._get_blacklist_for_stand(standname)
+
+        result = []
+        for shift in shift_table.all():
+            if shift["shift_id"] not in blacklist:
+                result.append(
+                    {"shift_id": int(shift["shift_id"]),
+                     "text_de": shift["text_de"], "text_gr": shift["text_gr"]})
+
+        return result
+
     # User management
 
     def add_user(self, username: str, password_hash: str,

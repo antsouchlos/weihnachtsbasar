@@ -39,3 +39,4 @@ def slugify(value, allow_unicode=False):
             'ascii')
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
+

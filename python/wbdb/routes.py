@@ -1,10 +1,11 @@
-from flask import request, json, jsonify
+from flask import request, json, jsonify, send_file
 import bleach
 import logging
 import sys
 from wbdb import utility
 from wbdb import app
 from wbdb import db_handler
+import os
 
 from wbdb.loggers import route_logger as route_logger
 from wbdb.auth import auth, require_stand_slug_or_admin_role
@@ -298,7 +299,7 @@ from werkzeug.security import generate_password_hash
 # API V2
 #
 
-@app.route("/api/v2/shifts", methods=["GET"])
+@app.route("/api/v2/shifts/", methods=["GET"])
 def get_shifts():
     """Get a list of all possible shifts."""
     try:
@@ -310,6 +311,24 @@ def get_shifts():
     except Exception as e:
         route_logger.exception(f"Exception occurred while fetching shifts")
         return utility.gen_error("Unable to download shifts")
+
+
+@app.route("/api/v2/shifts/<path:standname>", methods=["GET"])
+def get_shifts_for_stand(standname):
+    """Get a list of shifts open for registration for a given stand."""
+    try:
+        # Handle API call before stands hvae been loaded
+        if standname == "null":
+            return get_shifts()
+
+        data = db_handler.get_shifts_for_stand(standname)
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of shifts open for registration")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while fetching shifts open for registration")
+        return utility.gen_error("Unable to download shifts open for registration")
 
 
 @app.route("/api/v2/shifts", methods=["POST"])
@@ -473,5 +492,15 @@ def get_registrations(standname, shift_text):
         return response
     except Exception as e:
         route_logger.exception(f"Exception occurred while fetching registrations")
+        return utility.gen_error("Unable to download registrations")
+
+
+@app.route("/api/v2/registrations/download/", methods=["GET"])
+def download_registrations(): 
+    try:
+        return send_file('{0}/db.json'.format(os.getcwd()), as_attachment=True)
+        route_logger.info(f"Sent data as excel")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while sending data as excel")
         return utility.gen_error("Unable to download registrations")
 
