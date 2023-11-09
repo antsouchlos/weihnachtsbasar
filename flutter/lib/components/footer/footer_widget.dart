@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -109,28 +108,6 @@ class _FooterWidgetState extends State<FooterWidget> {
                             fontFamily: 'Inter',
                             fontSize: 20.0,
                           ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                    child: FlutterFlowLanguageSelector(
-                      width: 200.0,
-                      backgroundColor: FlutterFlowTheme.of(context).tertiary,
-                      borderColor: Colors.transparent,
-                      dropdownIconColor: Colors.white,
-                      borderRadius: 8.0,
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16.0,
-                      ),
-                      hideFlags: false,
-                      flagSize: 20.0,
-                      flagTextGap: 8.0,
-                      currentLanguage: FFLocalizations.of(context).languageCode,
-                      languages: FFLocalizations.languages(),
-                      onChanged: (lang) => setAppLanguage(context, lang),
                     ),
                   ),
                 ],

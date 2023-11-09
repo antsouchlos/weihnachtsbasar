@@ -5,7 +5,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +31,21 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     super.initState();
     _model = createModel(context, () => RegistrationModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 2000));
+      setState(() {
+        _model.clearGetShiftsForStandCache();
+        _model.apiRequestCompleted = false;
+      });
+      await _model.waitForApiRequestCompleted();
+    });
+
     _model.nameFieldController ??= TextEditingController();
     _model.nameFieldFocusNode ??= FocusNode();
+
+    _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
 
     _model.emailFieldController ??= TextEditingController();
     _model.emailFieldFocusNode ??= FocusNode();
@@ -199,6 +214,81 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         ),
                                     validator: _model
                                         .nameFieldControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
+                                child: Container(
+                                  width: 300.0,
+                                  child: TextFormField(
+                                    controller: _model.textController2,
+                                    focusNode: _model.textFieldFocusNode,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText:
+                                          FFLocalizations.of(context).getText(
+                                        'f3fy446j' /* Label here... */,
+                                      ),
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                          ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          fontSize: 16.0,
+                                        ),
+                                    validator: _model.textController2Validator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -428,8 +518,17 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         ) as List)
                                             .map<String>((s) => s.toString())
                                             .toList()!,
-                                        onChanged: (val) => setState(() =>
-                                            _model.standDropdownValue = val),
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.standDropdownValue = val);
+                                          setState(() {
+                                            _model
+                                                .clearGetShiftsForStandCache();
+                                            _model.apiRequestCompleted = false;
+                                          });
+                                          await _model
+                                              .waitForApiRequestCompleted();
+                                        },
                                         width: 300.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -502,7 +601,20 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     ),
                                   ),
                                   FutureBuilder<ApiCallResponse>(
-                                    future: GetShiftsCall.call(),
+                                    future: _model
+                                        .getShiftsForStand(
+                                      requestFn: () =>
+                                          GetShiftsForStandCall.call(
+                                        standname:
+                                            _model.standDropdownValue == 'null'
+                                                ? ''
+                                                : _model.standDropdownValue,
+                                      ),
+                                    )
+                                        .then((result) {
+                                      _model.apiRequestCompleted = true;
+                                      return result;
+                                    }),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -520,15 +632,16 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           ),
                                         );
                                       }
-                                      final shiftDropdownGetShiftsResponse =
+                                      final shiftDropdownGetShiftsForStandResponse =
                                           snapshot.data!;
                                       return FlutterFlowDropDown<String>(
                                         controller: _model
                                                 .shiftDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.shiftDropdownValue ??=
-                                              (GetShiftsCall.shiftTextListDE(
-                                            shiftDropdownGetShiftsResponse
+                                              (GetShiftsForStandCall
+                                                      .shiftTextDE(
+                                            shiftDropdownGetShiftsForStandResponse
                                                 .jsonBody,
                                           ) as List)
                                                   .map<String>(
@@ -536,14 +649,19 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                                   .toList()
                                                   .first,
                                         ),
-                                        options: (GetShiftsCall.shiftTextListDE(
-                                          shiftDropdownGetShiftsResponse
+                                        options:
+                                            (GetShiftsForStandCall.shiftTextDE(
+                                          shiftDropdownGetShiftsForStandResponse
                                               .jsonBody,
                                         ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()!,
-                                        onChanged: (val) => setState(() =>
-                                            _model.shiftDropdownValue = val),
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()!,
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.shiftDropdownValue = val);
+                                          _model.clearGetShiftsForStandCache();
+                                        },
                                         width: 300.0,
                                         height: 80.0,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -554,8 +672,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               lineHeight: 2.0,
                                             ),
                                         hintText:
-                                            (GetShiftsCall.shiftTextListDE(
-                                          shiftDropdownGetShiftsResponse
+                                            (GetShiftsForStandCall.shiftTextDE(
+                                          shiftDropdownGetShiftsForStandResponse
                                               .jsonBody,
                                         ) as List)
                                                 .map<String>(

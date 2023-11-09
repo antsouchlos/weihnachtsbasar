@@ -42,7 +42,11 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController4;
+  String? Function(BuildContext, String?)? textController4Validator;
+  String? _textController4Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'ieivauvc' /* Field is required */,
@@ -53,14 +57,14 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   }
 
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
-  String? _textController5Validator(BuildContext context, String? val) {
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode4;
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
+  String? _textController6Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'en1eqln8' /* Field is required */,
@@ -93,8 +97,8 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    textController3Validator = _textController3Validator;
-    textController5Validator = _textController5Validator;
+    textController4Validator = _textController4Validator;
+    textController6Validator = _textController6Validator;
   }
 
   void dispose() {
@@ -114,6 +118,9 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
 
     textFieldFocusNode3?.dispose();
     textController5?.dispose();
+
+    textFieldFocusNode4?.dispose();
+    textController6?.dispose();
 
     shiftTextDEFocusNode?.dispose();
     shiftTextDEController?.dispose();

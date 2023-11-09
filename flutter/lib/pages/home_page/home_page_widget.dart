@@ -1,4 +1,5 @@
 import '/components/footer/footer_widget.dart';
+import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -86,78 +87,113 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   shape: BoxShape.rectangle,
                 ),
                 alignment: AlignmentDirectional(0.00, 0.00),
-                child: Align(
-                  alignment: AlignmentDirectional(0.00, 0.00),
-                  child: Wrap(
-                    spacing: 0.0,
-                    runSpacing: 0.0,
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    direction: Axis.horizontal,
-                    runAlignment: WrapAlignment.center,
-                    verticalDirection: VerticalDirection.down,
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 600.0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          10.0, 10.0, 10.0, 10.0),
+                      child: FlutterFlowLanguageSelector(
+                        width: 200.0,
+                        backgroundColor: FlutterFlowTheme.of(context).tertiary,
+                        borderColor: Colors.transparent,
+                        dropdownIconColor: Colors.white,
+                        borderRadius: 8.0,
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 13.0,
                         ),
-                        decoration: BoxDecoration(
-                          color: Color(0x00FFFFFF),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              25.0, 25.0, 25.0, 25.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'r9rlwmpr' /* Weihnachtsbasar 2023 */,
-                                ),
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: Colors.white,
-                                      fontSize: 32.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  '5fy8e6jx' /* Am Samstag, den 2.12.2023 n de... */,
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: Colors.white,
-                                      fontSize: 16.0,
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 30.0)),
-                          ),
-                        ),
+                        hideFlags: false,
+                        flagSize: 24.0,
+                        flagTextGap: 8.0,
+                        currentLanguage:
+                            FFLocalizations.of(context).languageCode,
+                        languages: FFLocalizations.languages(),
+                        onChanged: (lang) => setAppLanguage(context, lang),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            30.0, 30.0, 30.0, 30.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/title_poster.jpg',
-                            width: 290.0,
-                            height: 410.0,
-                            fit: BoxFit.cover,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Wrap(
+                        spacing: 0.0,
+                        runSpacing: 0.0,
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        direction: Axis.horizontal,
+                        runAlignment: WrapAlignment.center,
+                        verticalDirection: VerticalDirection.down,
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            constraints: BoxConstraints(
+                              maxWidth: 600.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0x00FFFFFF),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  25.0, 25.0, 25.0, 25.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'r9rlwmpr' /* Weihnachtsbasar 2023 */,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: Colors.white,
+                                          fontSize: 32.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'apmghflv' /* am Samstag, den 2.12.2023
+in d... */
+                                          ,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: Colors.white,
+                                              fontSize: 16.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ].divide(SizedBox(height: 30.0)),
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 20.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/title_poster.jpg',
+                                width: 290.0,
+                                height: 410.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Container(

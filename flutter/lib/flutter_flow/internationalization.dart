@@ -111,11 +111,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Weihnachtsbasar 2023',
       'el': 'Χριστουγεννιάτικο παζάρι 2023',
     },
-    '5fy8e6jx': {
+    'apmghflv': {
       'de':
-          'Am Samstag, den 2.12.2023 n den Räumen der DSA – Deutschen Schule Athen in Marousi.\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Schicht aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
-      'el':
-          'Ήρθε πάλι η ώρα! Χρειάζονται και πάλι βοηθοί για το χριστουγεννιάτικο παζάρι της ΓΣΑ! Και φέτος θα υπάρχουν πολυάριθμοι πάγκοι που θα πωλούν φαγητά, ποτά, χειροτεχνήματα, αγαθά και πολλά άλλα!\n\nΕνδιαφέρεστε να βοηθήσετε; Τότε εγγραφείτε τώρα στην παρακάτω ιστοσελίδα!',
+          'am Samstag, den 2.12.2023\nin den Räumen der DSA – Deutschen Schule Athen\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Schicht aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
+      'el': '',
     },
     'owosr0y7': {
       'de': 'Freitag, 1.12',
@@ -183,6 +182,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'cppf38cf': {
       'de': 'Name',
       'el': 'Όνομα',
+    },
+    'f3fy446j': {
+      'de': 'Label here...',
+      'el': '',
     },
     'xacoi8z5': {
       'de': 'E-Mail',
@@ -281,7 +284,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wbrhec20': {
       'de':
-          'Sie werden in den nächsten Tagen vom Stand-verantwortlichen kontaktiert.\n\nSollten Sie Ihre Anmeldung zurückziehen wollen, dann sprechen Sie das bitte mit dem Standverantwortlichen ab.',
+          'Sie werden in den nächsten Tagen vom Standverantwortlichen kontaktiert.\n\nSollten Sie Ihre Anmeldung zurückziehen wollen, dann sprechen Sie das bitte mit dem Standverantwortlichen ab.',
       'el':
           'Ο υπεύθυνος του πάγκου θα επικοινωνήσει μαζί σας τις επόμενες ημέρες.\n\nΕάν επιθυμείτε να αποσύρετε την εγγραφή σας, παρακαλούμε να ενημερώσετε τον υπεύθυνο.',
     },
@@ -399,6 +402,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'c5zh8m6t': {
       'de': 'Standname',
+      'el': '',
+    },
+    'ux4tcchw': {
+      'de': 'Name',
       'el': '',
     },
     'itpzx6ip': {

@@ -53,6 +53,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
+    _model.textController6 ??= TextEditingController();
+    _model.textFieldFocusNode4 ??= FocusNode();
+
     _model.shiftTextDEController ??= TextEditingController();
     _model.shiftTextDEFocusNode ??= FocusNode();
 
@@ -914,6 +917,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             .textController3,
                                                         focusNode: _model
                                                             .textFieldFocusNode1,
+                                                        autofocus: true,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -921,7 +925,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                            'itpzx6ip' /* Email */,
+                                                            'ux4tcchw' /* Name */,
                                                           ),
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
@@ -1027,7 +1031,6 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             .textController4,
                                                         focusNode: _model
                                                             .textFieldFocusNode2,
-                                                        autofocus: true,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -1035,7 +1038,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                            '7iessj1z' /* Phone */,
+                                                            'itpzx6ip' /* Email */,
                                                           ),
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
@@ -1141,6 +1144,120 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                             .textController5,
                                                         focusNode: _model
                                                             .textFieldFocusNode3,
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            '7iessj1z' /* Phone */,
+                                                          ),
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        16.0,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    fontSize:
+                                                                        16.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontSize: 16.0,
+                                                            ),
+                                                        validator: _model
+                                                            .textController5Validator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20.0,
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .textController6,
+                                                        focusNode: _model
+                                                            .textFieldFocusNode4,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -1236,7 +1353,7 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                               fontSize: 16.0,
                                                             ),
                                                         validator: _model
-                                                            .textController5Validator
+                                                            .textController6Validator
                                                             .asValidator(
                                                                 context),
                                                       ),

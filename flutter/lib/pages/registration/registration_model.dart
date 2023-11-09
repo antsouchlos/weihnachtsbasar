@@ -5,8 +5,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/request_manager.dart';
+
+import 'dart:async';
 import 'registration_widget.dart' show RegistrationWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +20,8 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
+  bool apiRequestCompleted = false;
+  String? apiRequestLastUniqueKey;
   // State field(s) for NameField widget.
   FocusNode? nameFieldFocusNode;
   TextEditingController? nameFieldController;
@@ -30,6 +36,10 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     return null;
   }
 
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for EmailField widget.
   FocusNode? emailFieldFocusNode;
   TextEditingController? emailFieldController;
@@ -72,6 +82,23 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   // Model for Footer component.
   late FooterModel footerModel;
 
+  /// Query cache managers for this widget.
+
+  final _getShiftsForStandManager = FutureRequestManager<ApiCallResponse>();
+  Future<ApiCallResponse> getShiftsForStand({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<ApiCallResponse> Function() requestFn,
+  }) =>
+      _getShiftsForStandManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearGetShiftsForStandCache() => _getShiftsForStandManager.clear();
+  void clearGetShiftsForStandCacheKey(String? uniqueKey) =>
+      _getShiftsForStandManager.clearRequest(uniqueKey);
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
@@ -86,6 +113,9 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     nameFieldFocusNode?.dispose();
     nameFieldController?.dispose();
 
+    textFieldFocusNode?.dispose();
+    textController2?.dispose();
+
     emailFieldFocusNode?.dispose();
     emailFieldController?.dispose();
 
@@ -93,9 +123,28 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     phoneFieldController?.dispose();
 
     footerModel.dispose();
+
+    /// Dispose query cache managers for this widget.
+
+    clearGetShiftsForStandCache();
   }
 
   /// Action blocks are added here.
 
   /// Additional helper methods are added here.
+
+  Future waitForApiRequestCompleted({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = apiRequestCompleted;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 }

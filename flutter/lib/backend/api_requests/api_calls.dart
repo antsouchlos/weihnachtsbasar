@@ -237,6 +237,36 @@ class GetRegistrationsCall {
   }
 }
 
+class GetShiftsForStandCall {
+  static Future<ApiCallResponse> call({
+    String? standname = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get shifts for stand',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/shifts/${standname}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic shiftTextDE(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['text_de']''',
+        true,
+      );
+  static dynamic shiftTextGR(dynamic response) => getJsonField(
+        response,
+        r'''$[:]['text_gr']''',
+        true,
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

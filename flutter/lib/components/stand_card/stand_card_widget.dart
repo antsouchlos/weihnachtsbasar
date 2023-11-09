@@ -134,15 +134,14 @@ class _StandCardWidgetState extends State<StandCardWidget> {
                                   alignment: AlignmentDirectional(0.00, 0.00),
                                   child: Container(
                                     width:
-                                        MediaQuery.sizeOf(context).width * 0.7,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                        MediaQuery.sizeOf(context).width * 0.8,
+                                    constraints: BoxConstraints(
+                                      maxWidth: 960.0,
                                     ),
-                                    alignment: AlignmentDirectional(0.00, 0.00),
+                                    decoration: BoxDecoration(),
                                     child: StandCardShiftNewWidget(
                                       key: Key(
-                                          'Keysfr_${shiftListIndex}_of_${shiftList.length}'),
+                                          'Keyo6t_${shiftListIndex}_of_${shiftList.length}'),
                                       standname: widget.standName!,
                                       shiftText: shiftListItem,
                                     ),
