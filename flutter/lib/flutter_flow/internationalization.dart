@@ -193,12 +193,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Εγγραφή',
     },
     'cppf38cf': {
-      'de': 'Name',
+      'de': 'Vorname',
       'el': 'Όνομα',
     },
     'f3fy446j': {
-      'de': 'Label here...',
-      'el': '',
+      'de': 'Nachname',
+      'el': 'Επώνυμο',
     },
     'xacoi8z5': {
       'de': 'E-Mail',

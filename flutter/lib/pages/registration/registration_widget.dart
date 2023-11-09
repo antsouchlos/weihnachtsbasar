@@ -155,7 +155,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     decoration: InputDecoration(
                                       labelText:
                                           FFLocalizations.of(context).getText(
-                                        'cppf38cf' /* Name */,
+                                        'cppf38cf' /* Vorname */,
                                       ),
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -231,7 +231,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     decoration: InputDecoration(
                                       labelText:
                                           FFLocalizations.of(context).getText(
-                                        'f3fy446j' /* Label here... */,
+                                        'f3fy446j' /* Nachname */,
                                       ),
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -503,21 +503,41 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                                 .standDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.standDropdownValue ??=
-                                              (GetStandsCall.standNameListDE(
-                                            standDropdownGetStandsResponse
-                                                .jsonBody,
-                                          ) as List)
-                                                  .map<String>(
-                                                      (s) => s.toString())
-                                                  .toList()
-                                                  .first,
+                                              FFAppState().language == 'de'
+                                                  ? (GetStandsCall
+                                                          .standNameListDE(
+                                                      standDropdownGetStandsResponse
+                                                          .jsonBody,
+                                                    ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()
+                                                      .first
+                                                  : (GetStandsCall
+                                                          .standNameListGR(
+                                                      standDropdownGetStandsResponse
+                                                          .jsonBody,
+                                                    ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()
+                                                      .first,
                                         ),
-                                        options: (GetStandsCall.standNameListDE(
-                                          standDropdownGetStandsResponse
-                                              .jsonBody,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()!,
+                                        options: FFAppState().language == 'de'
+                                            ? (GetStandsCall.standNameListDE(
+                                                standDropdownGetStandsResponse
+                                                    .jsonBody,
+                                              ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()!
+                                            : (GetStandsCall.standNameListGR(
+                                                standDropdownGetStandsResponse
+                                                    .jsonBody,
+                                              ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()!,
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.standDropdownValue = val);
@@ -537,11 +557,19 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               fontFamily: 'Inter',
                                               fontSize: 16.0,
                                             ),
-                                        hintText:
-                                            (GetStandsCall.standNameListDE(
-                                          standDropdownGetStandsResponse
-                                              .jsonBody,
-                                        ) as List)
+                                        hintText: FFAppState().language == 'de'
+                                            ? (GetStandsCall.standNameListDE(
+                                                standDropdownGetStandsResponse
+                                                    .jsonBody,
+                                              ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()
+                                                .first
+                                            : (GetStandsCall.standNameListGR(
+                                                standDropdownGetStandsResponse
+                                                    .jsonBody,
+                                              ) as List)
                                                 .map<String>(
                                                     (s) => s.toString())
                                                 .toList()
@@ -639,21 +667,40 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                                 .shiftDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.shiftDropdownValue ??=
-                                              (GetShiftsForStandCall
-                                                      .shiftTextDE(
-                                            shiftDropdownGetShiftsForStandResponse
-                                                .jsonBody,
-                                          ) as List)
-                                                  .map<String>(
-                                                      (s) => s.toString())
-                                                  .toList()
-                                                  .first,
+                                              FFAppState().language == 'de'
+                                                  ? (GetShiftsForStandCall
+                                                          .shiftTextDE(
+                                                      shiftDropdownGetShiftsForStandResponse
+                                                          .jsonBody,
+                                                    ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()
+                                                      .first
+                                                  : (GetShiftsForStandCall
+                                                          .shiftTextGR(
+                                                      shiftDropdownGetShiftsForStandResponse
+                                                          .jsonBody,
+                                                    ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()
+                                                      .first,
                                         ),
-                                        options:
-                                            (GetShiftsForStandCall.shiftTextDE(
-                                          shiftDropdownGetShiftsForStandResponse
-                                              .jsonBody,
-                                        ) as List)
+                                        options: FFAppState().language == 'de'
+                                            ? (GetShiftsForStandCall
+                                                    .shiftTextDE(
+                                                shiftDropdownGetShiftsForStandResponse
+                                                    .jsonBody,
+                                              ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()!
+                                            : (GetShiftsForStandCall
+                                                    .shiftTextGR(
+                                                shiftDropdownGetShiftsForStandResponse
+                                                    .jsonBody,
+                                              ) as List)
                                                 .map<String>(
                                                     (s) => s.toString())
                                                 .toList()!,
