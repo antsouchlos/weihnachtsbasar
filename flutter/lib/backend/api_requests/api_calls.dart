@@ -267,6 +267,27 @@ class GetShiftsForStandCall {
       );
 }
 
+class DownloadRegistrationsCall {
+  static Future<ApiCallResponse> call({
+    String? stand = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Download registrations',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/download/${stand}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -2139,8 +2140,10 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           15.0, 15.0, 15.0, 15.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          await actions.downloadAnyWebFile(
+                                            'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/download/',
+                                          );
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
