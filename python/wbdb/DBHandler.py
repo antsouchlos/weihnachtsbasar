@@ -4,6 +4,8 @@ from tinydb import TinyDB, Query
 import tinydb
 import os
 from wbdb import utility
+import json
+import time
 
 
 # =================================
@@ -96,8 +98,18 @@ class DBHandler:
         shift_table = self._db.table("shifts")
 
         Shift = Query()
-        results_de = shift_table.search(Shift.text_de == text)
-        results_gr = shift_table.search(Shift.text_gr == text)
+
+        results_de = None
+        results_gr = None
+
+        while True:
+            try:
+                results_de = shift_table.search(Shift.text_de == text)
+                results_gr = shift_table.search(Shift.text_gr == text)
+                break
+            except json.decoder.JSONDecodeError as e:
+                time.sleep(0.1)
+                continue
 
         if len(results_de) > 0:
             return results_de[0]["shift_id"]
@@ -110,9 +122,18 @@ class DBHandler:
         """Get the slug of a stand given its name."""
         blacklist_table = self._db.table("registration_blacklist")
 
+        results_de = None
+        results_gr = None
+
         Stand = Query()
-        results_de = blacklist_table.search(Stand.standname_de == standname)
-        results_gr = blacklist_table.search(Stand.standname_gr == standname)
+        while True:
+            try:
+                results_de = blacklist_table.search(Stand.standname_de == standname)
+                results_gr = blacklist_table.search(Stand.standname_gr == standname)
+                break
+            except json.decoder.JSONDecodeError as e:
+                time.sleep(0.1)
+                continue
 
         if len(results_de) > 0:
             return results_de[0]["stand_slug"]
@@ -156,7 +177,15 @@ class DBHandler:
         stand_table = self._db.table(stand_slug)
 
         Registration = Query()
-        result = [{"name": reg['name'], "email": reg['email'], "phone": reg['phone']} for reg in stand_table.search(Registration.shift_id == shift_id)]
+        result = None
+
+        while True:
+            try:
+                result = [{"name": reg['name'], "email": reg['email'], "phone": reg['phone']} for reg in stand_table.search(Registration.shift_id == shift_id)]
+                break
+            except json.decoder.JSONDecodeError as e:
+                time.sleep(0.1)
+                continue
         return result
 
 
@@ -306,7 +335,12 @@ class DBHandler:
         self._logger.debug(stand_slug)
 
         Stand = Query()
-        return blacklist_table.search(Stand.stand_slug == stand_slug)[0]["standname_de"]
+        possible_stands = blacklist_table.search(Stand.stand_slug == stand_slug)
+
+        if len(possible_stands) == 0:
+            return "[Deleted Stand]"
+        else:
+            return possible_stands[0]["standname_de"]
         
 
     def get_users(self):
