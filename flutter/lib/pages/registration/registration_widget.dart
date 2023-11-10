@@ -503,25 +503,10 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                                 .standDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.standDropdownValue ??=
-                                              FFAppState().language == 'de'
-                                                  ? (GetStandsCall
-                                                          .standNameListDE(
-                                                      standDropdownGetStandsResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                      .map<String>(
-                                                          (s) => s.toString())
-                                                      .toList()
-                                                      .first
-                                                  : (GetStandsCall
-                                                          .standNameListGR(
-                                                      standDropdownGetStandsResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                      .map<String>(
-                                                          (s) => s.toString())
-                                                      .toList()
-                                                      .first,
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            '96cg34yl' /* Bitte Stand auswählen... */,
+                                          ),
                                         ),
                                         options: FFAppState().language == 'de'
                                             ? (GetStandsCall.standNameListDE(
@@ -557,23 +542,10 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               fontFamily: 'Inter',
                                               fontSize: 16.0,
                                             ),
-                                        hintText: FFAppState().language == 'de'
-                                            ? (GetStandsCall.standNameListDE(
-                                                standDropdownGetStandsResponse
-                                                    .jsonBody,
-                                              ) as List)
-                                                .map<String>(
-                                                    (s) => s.toString())
-                                                .toList()
-                                                .first
-                                            : (GetStandsCall.standNameListGR(
-                                                standDropdownGetStandsResponse
-                                                    .jsonBody,
-                                              ) as List)
-                                                .map<String>(
-                                                    (s) => s.toString())
-                                                .toList()
-                                                .first,
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'uknozt60' /* Bitte Stand auswählen... */,
+                                        ),
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -633,10 +605,20 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                         .getShiftsForStand(
                                       requestFn: () =>
                                           GetShiftsForStandCall.call(
-                                        standname:
-                                            _model.standDropdownValue == 'null'
-                                                ? ''
-                                                : _model.standDropdownValue,
+                                        standname: () {
+                                          if (_model.standDropdownValue ==
+                                              'null') {
+                                            return '';
+                                          } else if ((_model
+                                                      .standDropdownValue ==
+                                                  'Παρακαλώ επιλέξτε πάγκο...') ||
+                                              (_model.standDropdownValue ==
+                                                  'Bitte Stand auswählen...')) {
+                                            return '';
+                                          } else {
+                                            return _model.standDropdownValue;
+                                          }
+                                        }(),
                                       ),
                                     )
                                         .then((result) {
@@ -667,25 +649,10 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                                 .shiftDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.shiftDropdownValue ??=
-                                              FFAppState().language == 'de'
-                                                  ? (GetShiftsForStandCall
-                                                          .shiftTextDE(
-                                                      shiftDropdownGetShiftsForStandResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                      .map<String>(
-                                                          (s) => s.toString())
-                                                      .toList()
-                                                      .first
-                                                  : (GetShiftsForStandCall
-                                                          .shiftTextGR(
-                                                      shiftDropdownGetShiftsForStandResponse
-                                                          .jsonBody,
-                                                    ) as List)
-                                                      .map<String>(
-                                                          (s) => s.toString())
-                                                      .toList()
-                                                      .first,
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                            '0waiphkf' /* Bitte Zeitraum auswählen... */,
+                                          ),
                                         ),
                                         options: FFAppState().language == 'de'
                                             ? (GetShiftsForStandCall
@@ -719,14 +686,9 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               lineHeight: 2.0,
                                             ),
                                         hintText:
-                                            (GetShiftsForStandCall.shiftTextDE(
-                                          shiftDropdownGetShiftsForStandResponse
-                                              .jsonBody,
-                                        ) as List)
-                                                .map<String>(
-                                                    (s) => s.toString())
-                                                .toList()
-                                                .first,
+                                            FFLocalizations.of(context).getText(
+                                          'h33oyca5' /* Bitte Zeitraum auswählen... */,
+                                        ),
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
                                           color: FlutterFlowTheme.of(context)

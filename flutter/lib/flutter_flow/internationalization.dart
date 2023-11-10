@@ -125,9 +125,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'apmghflv': {
       'de':
-          'am Samstag, den 2.12.2023\nin den Räumen der DSA – Deutschen Schule Athen\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Schicht aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
+          'am Samstag, den 2.12.2023\nin den Räumen der DSA – Deutschen Schule Athen\n\nFür das Gelingen unseres Basars freuen wir uns über jede Mithilfe! Wählen Sie Ihren Stand und Ihre Zeiten aus und melden Sie sich an!\n\nWir melden uns dann bei Ihnen! Vielen Dank!',
       'el':
-          'το Σάββατο 2/12/2023\nστους χώρους της ΓΣΑ - Γερμανικής Σχολής Αθηνών\n\nΧαιρόμαστε για κάθε βοήθεια για την επιτυχία του παζαριού μας! Επιλέξτε το περίπτερο και τη βάρδια σας και δηλώστε συμμετοχή!\n\nΣτη συνέχεια θα επικοινωνήσουμε μαζί σας! Σας ευχαριστούμε πολύ!',
+          'το Σάββατο 2/12/2023\nστους χώρους της ΓΣΑ - Γερμανικής Σχολής Αθηνών\n\nΧαιρόμαστε για κάθε βοήθεια για την επιτυχία του παζαριού μας! Επιλέξτε τον πάγκο και τις ώρες σας και δηλώστε συμμετοχή!\n\nΣτη συνέχεια θα επικοινωνήσουμε μαζί σας! Σας ευχαριστούμε πολύ!',
     },
     'owosr0y7': {
       'de': 'Freitag, 1.12',
@@ -212,9 +212,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Stand:',
       'el': 'Πάγκος ',
     },
+    '96cg34yl': {
+      'de': 'Bitte Stand auswählen...',
+      'el': 'Παρακαλώ επιλέξτε πάγκο...',
+    },
     'hrfsj93x': {
       'de': '',
       'el': '',
+    },
+    'uknozt60': {
+      'de': 'Bitte Stand auswählen...',
+      'el': 'Παρακλώ επιλέξτε πάγκο...',
     },
     'kre8u85u': {
       'de': 'Search for an item...',
@@ -223,6 +231,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ynko1xaq': {
       'de': 'Zeitraum:',
       'el': 'Ώρα:',
+    },
+    '0waiphkf': {
+      'de': 'Bitte Zeitraum auswählen...',
+      'el': 'Παρκαλώ επιλέξτε ώρα...',
     },
     'niv0okrx': {
       'de': 'Freitag 16:30-19:30: Aufbau',
@@ -247,6 +259,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'dzqycfmz': {
       'de': 'Samstag 19:00 - 21:00: Abbau',
       'el': 'Σάββατο 19:00 - 21:00: Καθάρισμα',
+    },
+    'h33oyca5': {
+      'de': 'Bitte Zeitraum auswählen...',
+      'el': 'Παρκαλώ επιλέξτε ώρα...',
     },
     'yeqaj2iy': {
       'de': 'Search for an item...',
