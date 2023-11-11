@@ -452,6 +452,11 @@ class TestUserCredentialsCall {
       cache: false,
     );
   }
+
+  static dynamic message(dynamic response) => getJsonField(
+        response,
+        r'''$['message']''',
+      );
 }
 
 class ApiPagingParams {

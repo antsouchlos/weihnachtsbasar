@@ -305,7 +305,14 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   if ((_model.apiResultg9l?.statusCode ??
                                           200) ==
                                       200) {
-                                    context.pushNamed('AdminPage');
+                                    if (TestUserCredentialsCall.message(
+                                          (_model.apiResultg9l?.jsonBody ?? ''),
+                                        ).toString() ==
+                                        'admin') {
+                                      context.pushNamed('AdminPage');
+                                    } else {
+                                      context.pushNamed('RegisteredList');
+                                    }
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
