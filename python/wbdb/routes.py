@@ -8,7 +8,7 @@ from wbdb import db_handler
 import os
 
 from wbdb.loggers import route_logger as route_logger
-from wbdb.auth import auth, require_stand_slug_or_admin_role
+from wbdb.auth import auth, require_standname_or_admin_role
 
 from werkzeug.security import generate_password_hash
 
@@ -48,7 +48,7 @@ from werkzeug.security import generate_password_hash
 #
 #
 # @app.route("/api/v1/registration/remove/<path:standname>", methods=["POST"])
-# @require_stand_slug_or_admin_role
+# @require_standname_or_admin_role
 # def remove_registration(standname):
 #     """Remove a helper registration."""
 #     # Fetch and validate request data
@@ -280,7 +280,7 @@ from werkzeug.security import generate_password_hash
 #
 #
 # @app.route("/api/v1/standdata/download/<path:stand_slug>", methods=["GET"])
-# @require_stand_slug_or_admin_role
+# @require_standname_or_admin_role
 # def get_stand_data(stand_slug):
 #     """Get a list of shifts, containing lists of helpers, for a given stand."""
 #     try:
@@ -447,8 +447,7 @@ def post_registration():
 
 
 @app.route("/api/v2/registrations/<path:standname>/<path:shift_text>/<path:email>", methods=["DELETE"])
-#@require_stand_slug_or_admin_role
-@auth.login_required(role="admin")
+@require_standname_or_admin_role
 def delete_registration(standname, shift_text, email):
     """Remove existing registration."""
     # Fetch and validate request data
@@ -472,8 +471,7 @@ def delete_registration(standname, shift_text, email):
 
 
 @app.route("/api/v2/registrations/<path:standname>/<path:shift_text>", methods=["GET"])
-#@require_stand_slug_or_admin_role
-@auth.login_required(role="admin")
+@require_standname_or_admin_role
 def get_registrations(standname, shift_text):
     """Get registrations for a specific shift of a stand."""
     # Fetch and validate request data
@@ -498,8 +496,7 @@ def get_registrations(standname, shift_text):
 
 
 @app.route("/api/v2/registrations/download/", methods=["GET"])
-#@require_stand_slug_or_admin_role
-@auth.login_required(role="admin")
+@require_standname_or_admin_role
 def download_registrations(): 
     try:
         return send_file('{0}/db.json'.format(os.getcwd()), as_attachment=True)
@@ -510,8 +507,7 @@ def download_registrations():
 
 
 @app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["POST"])
-#@require_stand_slug_or_admin_role
-@auth.login_required(role="admin")
+@require_standname_or_admin_role
 def set_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
     # Fetch and validate request data
@@ -535,8 +531,7 @@ def set_registration_status(standname, shift_text):
 
 
 @app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["GET"])
-#@require_stand_slug_or_admin_role
-@auth.login_required(role="admin")
+@require_standname_or_admin_role
 def get_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
     # Fetch and validate request data
@@ -628,7 +623,7 @@ def check_login_validity():
 
 
 @app.route("/api/v2/users/stand/<path:email>", methods=["GET"])
-#@auth.login_required(role="admin")
+@auth.login_required
 def get_user_stand(email):
     try:
         data = db_handler.get_stand_for_user(email)
