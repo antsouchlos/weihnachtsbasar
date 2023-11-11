@@ -1,9 +1,9 @@
 services:
-  #  app:
-  #  build: ./flutter
-  #  ports:
-  #    - 80:80
-  #  network_mode: "host"
+  app:
+    build: ./flutter
+    ports:
+      - 80:80
+    network_mode: "host"
   db:
     build: ./python
     ports:
