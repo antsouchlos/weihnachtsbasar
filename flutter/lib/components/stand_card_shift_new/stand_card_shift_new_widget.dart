@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -83,6 +84,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                 requestFn: () => GetRegistrationStatusCall.call(
                   standname: widget.standname,
                   shiftText: widget.shiftText,
+                  authString: functions.getAuthHeaderContent(
+                      FFAppState().username, FFAppState().password),
                 ),
               ),
               builder: (context, snapshot) {
@@ -174,6 +177,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
             requestFn: () => GetRegistrationsCall.call(
               standname: widget.standname,
               shiftText: widget.shiftText,
+              authString: functions.getAuthHeaderContent(
+                  FFAppState().username, FFAppState().password),
             ),
           ),
           builder: (context, snapshot) {
@@ -329,6 +334,9 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                     registrationListItem,
                                     r'''$['email']''',
                                   ).toString(),
+                                  authString: functions.getAuthHeaderContent(
+                                      FFAppState().username,
+                                      FFAppState().password),
                                 );
                                 if (!(_model.apiResultkb3?.succeeded ?? true)) {
                                   ScaffoldMessenger.of(context).showSnackBar(

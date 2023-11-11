@@ -80,6 +80,7 @@ class AddShiftCall {
   static Future<ApiCallResponse> call({
     String? textDe = '',
     String? textGr = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add shift',
@@ -87,6 +88,7 @@ class AddShiftCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
+        'authorization': '${authString}',
       },
       params: {
         'text_de': textDe,
@@ -104,13 +106,16 @@ class AddShiftCall {
 class RemoveShiftCall {
   static Future<ApiCallResponse> call({
     int? shiftId,
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Remove shift',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/shifts/${shiftId}',
       callType: ApiCallType.DELETE,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -124,6 +129,7 @@ class AddStandCall {
   static Future<ApiCallResponse> call({
     String? stannameDe = '',
     String? standnameGr = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add stand',
@@ -131,6 +137,7 @@ class AddStandCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
+        'authorization': '${authString}',
       },
       params: {
         'standname_de': stannameDe,
@@ -148,13 +155,16 @@ class AddStandCall {
 class RemoveStandCall {
   static Future<ApiCallResponse> call({
     String? standSlug = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Remove stand',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/stands/${standSlug}',
       callType: ApiCallType.DELETE,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -201,13 +211,16 @@ class DeleteRegistrationCall {
     String? standname = '',
     String? shiftText = '',
     String? email = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete registration',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/${standname}/${shiftText}/${email}',
       callType: ApiCallType.DELETE,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -221,13 +234,16 @@ class GetRegistrationsCall {
   static Future<ApiCallResponse> call({
     String? standname = '',
     String? shiftText = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get registrations',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/${standname}/${shiftText}',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -272,6 +288,7 @@ class SetRegistrationStatusCall {
     String? standname = '',
     String? shiftText = '',
     bool? status,
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Set registration status',
@@ -280,6 +297,7 @@ class SetRegistrationStatusCall {
       callType: ApiCallType.POST,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
+        'authorization': '${authString}',
       },
       params: {
         'status': status,
@@ -297,13 +315,16 @@ class GetRegistrationStatusCall {
   static Future<ApiCallResponse> call({
     String? standname = '',
     String? shiftText = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get registration status',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/status/${standname}/${shiftText}',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -319,12 +340,16 @@ class GetRegistrationStatusCall {
 }
 
 class GetUsersCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    String? authString = '',
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get users',
       apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -362,12 +387,15 @@ class AddUserCall {
     String? phone = '',
     String? password = '',
     String? standname = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add user',
       apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {
         'email': email,
         'name': name,
@@ -387,13 +415,16 @@ class AddUserCall {
 class DeleteUserCall {
   static Future<ApiCallResponse> call({
     String? email = '',
+    String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete user',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users/${email}',
       callType: ApiCallType.DELETE,
-      headers: {},
+      headers: {
+        'authorization': '${authString}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,

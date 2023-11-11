@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -380,6 +381,11 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                         standNamesItem,
                                                                         r'''$['stand_slug']''',
                                                                       ).toString(),
+                                                                      authString: functions.getAuthHeaderContent(
+                                                                          FFAppState()
+                                                                              .username,
+                                                                          FFAppState()
+                                                                              .password),
                                                                     );
                                                                     if (!(_model
                                                                             .apiResult60s
@@ -720,6 +726,12 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                           standnameGr: _model
                                                               .standnameGRController
                                                               .text,
+                                                          authString: functions
+                                                              .getAuthHeaderContent(
+                                                                  FFAppState()
+                                                                      .username,
+                                                                  FFAppState()
+                                                                      .password),
                                                         );
                                                         if ((_model.apiResultkn2
                                                                 ?.succeeded ??
@@ -783,7 +795,12 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                 children: [
                                   FutureBuilder<ApiCallResponse>(
                                     future: FFAppState().getUsers(
-                                      requestFn: () => GetUsersCall.call(),
+                                      requestFn: () => GetUsersCall.call(
+                                        authString:
+                                            functions.getAuthHeaderContent(
+                                                FFAppState().username,
+                                                FFAppState().password),
+                                      ),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -982,6 +999,11 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                   usersListItem,
                                                                   r'''$['email']''',
                                                                 ).toString(),
+                                                                authString: functions.getAuthHeaderContent(
+                                                                    FFAppState()
+                                                                        .username,
+                                                                    FFAppState()
+                                                                        .password),
                                                               );
                                                               if (!(_model
                                                                       .apiResultzyj
@@ -1719,6 +1741,12 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                         .text,
                                                     standname: _model
                                                         .standDropDownValue,
+                                                    authString: functions
+                                                        .getAuthHeaderContent(
+                                                            FFAppState()
+                                                                .username,
+                                                            FFAppState()
+                                                                .password),
                                                   );
                                                   if (!(_model.apiResultkzs
                                                           ?.succeeded ??
@@ -1971,6 +1999,11 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                                       shitsListItem,
                                                                       r'''$['shift_id']''',
                                                                     ),
+                                                                    authString: functions.getAuthHeaderContent(
+                                                                        FFAppState()
+                                                                            .username,
+                                                                        FFAppState()
+                                                                            .password),
                                                                   );
                                                                   if (!(_model
                                                                           .apiResults7h
@@ -2321,6 +2354,12 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                                           textGr: _model
                                                               .shiftTextGRController
                                                               .text,
+                                                          authString: functions
+                                                              .getAuthHeaderContent(
+                                                                  FFAppState()
+                                                                      .username,
+                                                                  FFAppState()
+                                                                      .password),
                                                         );
                                                         if ((_model.apiResultdsv
                                                                 ?.succeeded ??
