@@ -11,11 +11,11 @@ auth = HTTPBasicAuth()
 
 
 @auth.verify_password
-def verify_password(username, password):
+def verify_password(email, password):
     users = db_handler.get_users()
 
     for user in users:
-        if (user["username"] == username) and check_password_hash(
+        if (user["email"] == email) and check_password_hash(
                 user["password_hash"], password):
             return user
 

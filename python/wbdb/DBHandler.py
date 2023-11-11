@@ -332,8 +332,6 @@ class DBHandler:
     def _get_standname_by_stand_slug(self, stand_slug: str):
         blacklist_table = self._db.table("registration_blacklist")
 
-        self._logger.debug(stand_slug)
-
         Stand = Query()
         possible_stands = blacklist_table.search(Stand.stand_slug == stand_slug)
 
@@ -415,3 +413,26 @@ class DBHandler:
 
         return {"status": status}
 
+    def get_stand_for_user(self, email):
+
+        blacklist_table = self._db.table("registration_blacklist")
+        user_table = self._db.table("users")
+
+        User = Query()
+        users = user_table.search(User["email"] == email)
+        if len(users) == 0:
+            raise Exception(f"An error occurred while getting stand for user: A user with the email '{email}' does not exist")
+
+        stand_slug = users[0]["stand_slug"]
+
+        Stand = Query()
+        stands = blacklist_table.search(Stand.stand_slug == stand_slug)
+        if len(stands) == 0:
+            raise Exception(f"An error occurred while getting stand for user: A stand with the slug '{stand_slug}' does not exist")
+        stand = stands[0]
+
+
+        result = {"stand_slug": stand["stand_slug"],
+                  "standname_de": stand["standname_de"],
+                  "standname_gr": stand["standname_gr"]}
+        return result

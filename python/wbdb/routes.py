@@ -332,7 +332,7 @@ def get_shifts_for_stand(standname):
 
 
 @app.route("/api/v2/shifts", methods=["POST"])
-# TODO: Admin
+@auth.login_required(role="admin")
 def post_shift():
     """Add new shift."""
     # Fetch and validate request data
@@ -355,7 +355,7 @@ def post_shift():
 
 
 @app.route("/api/v2/shifts/<path:shift_id>", methods=["DELETE"])
-# TODO: Admin
+@auth.login_required(role="admin")
 def delete_shift(shift_id):
     """Add new shift."""
     shift_id = int(bleach.clean(shift_id))
@@ -384,7 +384,7 @@ def get_stands():
 
 
 @app.route("/api/v2/stands", methods=["POST"])
-# TODO: Auth
+@auth.login_required(role="admin")
 def post_stand():
     """Add new stand."""
     # Fetch and validate request data
@@ -407,7 +407,7 @@ def post_stand():
 
 
 @app.route("/api/v2/stands/<path:stand_slug>", methods=["DELETE"])
-# TODO: Admin
+@auth.login_required(role="admin")
 def delete_stand(stand_slug):
     """Add new shift."""
     stand_slug = bleach.clean(stand_slug)
@@ -447,7 +447,8 @@ def post_registration():
 
 
 @app.route("/api/v2/registrations/<path:standname>/<path:shift_text>/<path:email>", methods=["DELETE"])
-# TODO: Admin
+#@require_stand_slug_or_admin_role
+@auth.login_required(role="admin")
 def delete_registration(standname, shift_text, email):
     """Remove existing registration."""
     # Fetch and validate request data
@@ -471,7 +472,8 @@ def delete_registration(standname, shift_text, email):
 
 
 @app.route("/api/v2/registrations/<path:standname>/<path:shift_text>", methods=["GET"])
-# TODO: Admin
+#@require_stand_slug_or_admin_role
+@auth.login_required(role="admin")
 def get_registrations(standname, shift_text):
     """Get registrations for a specific shift of a stand."""
     # Fetch and validate request data
@@ -496,6 +498,8 @@ def get_registrations(standname, shift_text):
 
 
 @app.route("/api/v2/registrations/download/", methods=["GET"])
+#@require_stand_slug_or_admin_role
+@auth.login_required(role="admin")
 def download_registrations(): 
     try:
         return send_file('{0}/db.json'.format(os.getcwd()), as_attachment=True)
@@ -506,7 +510,8 @@ def download_registrations():
 
 
 @app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["POST"])
-# TODO: Admin
+#@require_stand_slug_or_admin_role
+@auth.login_required(role="admin")
 def set_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
     # Fetch and validate request data
@@ -530,7 +535,8 @@ def set_registration_status(standname, shift_text):
 
 
 @app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["GET"])
-# TODO: Admin
+#@require_stand_slug_or_admin_role
+@auth.login_required(role="admin")
 def get_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
     # Fetch and validate request data
@@ -552,7 +558,7 @@ def get_registration_status(standname, shift_text):
 
 
 @app.route("/api/v2/users", methods=["POST"])
-# TODO: Admin
+@auth.login_required(role="admin")
 def post_user():
     name = bleach.clean(request.form['name'])
     email = bleach.clean(request.form['email'])
@@ -572,9 +578,13 @@ def post_user():
 
 
 @app.route("/api/v2/users/<path:email>", methods=["DELETE"])
-# TODO: Admin
+@auth.login_required(role="admin")
 def delete_user(email):
     email = bleach.clean(email)
+
+    if email == auth.username():
+        route_logger.debug("Attempted to delete user used for auth")
+        return utility.gen_error("Cant remove user used for auth")
 
     try:
         db_handler.remove_user(email)
@@ -586,6 +596,7 @@ def delete_user(email):
 
 
 @app.route("/api/v2/users", methods=["GET"])
+@auth.login_required(role="admin")
 def get_users():
     try:
         data = db_handler.get_users()
@@ -596,3 +607,36 @@ def get_users():
     except Exception as e:
         route_logger.exception(f"Exception occurred while fetching users")
         return utility.gen_error("Unable to download users")
+
+
+@app.route("/api/v2/login", methods=["GET"])
+@auth.login_required
+def check_login_validity():
+    try:
+        users = db_handler.get_users()
+        user = next(x for x in users if x['email'] == auth.username())
+
+        route_logger.info(f"Verified user validity: {auth.username()}")
+
+        if "admin" in user["roles"]:
+            return utility.gen_success("admin")
+        else:
+            return utility.gen_success("non-admin")
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while validating user")
+        return utility.gen_error("Unable to validate user")
+
+
+@app.route("/api/v2/users/stand/<path:email>", methods=["GET"])
+#@auth.login_required(role="admin")
+def get_user_stand(email):
+    try:
+        data = db_handler.get_stand_for_user(email)
+        response = jsonify(data)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        route_logger.info(f"Fetched list of all users")
+        return response
+    except Exception as e:
+        route_logger.exception(f"Exception occurred while getting stand for user")
+        return utility.gen_error("Unable to get stand for user")
+
