@@ -348,7 +348,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // LogIn
   {
     '6wjeje1b': {
-      'de': 'Anmeldung für Standverantwortliche',
+      'de': 'Log in für Standverantwortliche',
       'el': 'Σύνδεση για υπεύθυνους',
     },
     'b08e8pzu': {

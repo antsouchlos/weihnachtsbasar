@@ -434,6 +434,26 @@ class DeleteUserCall {
   }
 }
 
+class TestUserCredentialsCall {
+  static Future<ApiCallResponse> call({
+    String? authString = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Test user credentials',
+      apiUrl: 'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/login',
+      callType: ApiCallType.GET,
+      headers: {
+        'authorization': '${authString}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

@@ -1,7 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'log_in_widget.dart' show LogInWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,6 +44,8 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
     return null;
   }
 
+  // Stores action output result for [Backend Call - API (Test user credentials)] action in Button widget.
+  ApiCallResponse? apiResultg9l;
   // Model for Footer component.
   late FooterModel footerModel;
 

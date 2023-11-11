@@ -1,7 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/components/footer/footer_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,7 +112,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   0.0, 0.0, 0.0, 40.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '6wjeje1b' /* Anmeldung für Standverantwortl... */,
+                                  '6wjeje1b' /* Log in für Standverantwortlich... */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
@@ -285,12 +287,43 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   0.0, 30.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  if (_model.formKey.currentState == null ||
+                                      !_model.formKey.currentState!
+                                          .validate()) {
+                                    return;
+                                  }
                                   FFAppState().username =
                                       _model.textController1.text;
                                   FFAppState().password =
                                       _model.textController2.text;
+                                  _model.apiResultg9l =
+                                      await TestUserCredentialsCall.call(
+                                    authString: functions.getAuthHeaderContent(
+                                        FFAppState().username,
+                                        FFAppState().password),
+                                  );
+                                  if ((_model.apiResultg9l?.statusCode ??
+                                          200) ==
+                                      200) {
+                                    context.pushNamed('AdminPage');
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Wrong username or password',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                  }
 
-                                  context.pushNamed('AdminPage');
+                                  setState(() {});
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'q79eoyym' /* Anmelden */,

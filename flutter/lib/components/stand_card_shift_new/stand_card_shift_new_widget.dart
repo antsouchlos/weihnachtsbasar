@@ -129,8 +129,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                               ),
                             ),
                             duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                            backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
                       }
@@ -350,8 +349,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                                       ),
                                       duration: Duration(milliseconds: 4000),
                                       backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
+                                          FlutterFlowTheme.of(context).error,
                                     ),
                                   );
                                 }

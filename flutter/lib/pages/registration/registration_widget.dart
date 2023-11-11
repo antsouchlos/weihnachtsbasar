@@ -226,7 +226,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                   child: TextFormField(
                                     controller: _model.textController2,
                                     focusNode: _model.textFieldFocusNode,
-                                    autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText:
