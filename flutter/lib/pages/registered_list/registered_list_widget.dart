@@ -4,6 +4,7 @@ import '/components/stand_card/stand_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -153,7 +154,11 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                             ),
                           ),
                           FutureBuilder<ApiCallResponse>(
-                            future: GetStandsCall.call(),
+                            future: AddStandForUserEmailCall.call(
+                              email: FFAppState().username,
+                              authString: functions.getAuthHeaderContent(
+                                  FFAppState().username, FFAppState().password),
+                            ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -169,20 +174,18 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                                   ),
                                 );
                               }
-                              final listViewGetStandsResponse = snapshot.data!;
-                              return ListView(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                children: [
-                                  wrapWithModel(
-                                    model: _model.standCardModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: StandCardWidget(
-                                      standName: 'test',
-                                    ),
-                                  ),
-                                ],
+                              final standCardAddStandForUserEmailResponse =
+                                  snapshot.data!;
+                              return wrapWithModel(
+                                model: _model.standCardModel,
+                                updateCallback: () => setState(() {}),
+                                child: StandCardWidget(
+                                  standName:
+                                      AddStandForUserEmailCall.standnameDE(
+                                    standCardAddStandForUserEmailResponse
+                                        .jsonBody,
+                                  ).toString(),
+                                ),
                               );
                             },
                           ),

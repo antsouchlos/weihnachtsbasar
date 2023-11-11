@@ -459,6 +459,41 @@ class TestUserCredentialsCall {
       );
 }
 
+class AddStandForUserEmailCall {
+  static Future<ApiCallResponse> call({
+    String? email = '',
+    String? authString = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Add stand for user email',
+      apiUrl:
+          'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users/stand/${email}',
+      callType: ApiCallType.GET,
+      headers: {
+        'authorization': '${authString}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic standSlug(dynamic response) => getJsonField(
+        response,
+        r'''$['stand_slug']''',
+      );
+  static dynamic standnameDE(dynamic response) => getJsonField(
+        response,
+        r'''$['standname_de']''',
+      );
+  static dynamic standnameGR(dynamic response) => getJsonField(
+        response,
+        r'''$['standname_gr']''',
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
