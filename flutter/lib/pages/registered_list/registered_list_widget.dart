@@ -154,7 +154,7 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                             ),
                           ),
                           FutureBuilder<ApiCallResponse>(
-                            future: AddStandForUserEmailCall.call(
+                            future: GetStandForUserEmailCall.call(
                               email: FFAppState().username,
                               authString: functions.getAuthHeaderContent(
                                   FFAppState().username, FFAppState().password),
@@ -174,15 +174,15 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                                   ),
                                 );
                               }
-                              final standCardAddStandForUserEmailResponse =
+                              final standCardGetStandForUserEmailResponse =
                                   snapshot.data!;
                               return wrapWithModel(
                                 model: _model.standCardModel,
                                 updateCallback: () => setState(() {}),
                                 child: StandCardWidget(
                                   standName:
-                                      AddStandForUserEmailCall.standnameDE(
-                                    standCardAddStandForUserEmailResponse
+                                      GetStandForUserEmailCall.standnameDE(
+                                    standCardGetStandForUserEmailResponse
                                         .jsonBody,
                                   ).toString(),
                                 ),

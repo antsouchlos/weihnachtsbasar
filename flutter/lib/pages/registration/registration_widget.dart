@@ -735,6 +735,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                       phone: _model.phoneFieldController.text,
                                       standname: _model.standDropdownValue,
                                       shiftText: _model.shiftDropdownValue,
+                                      language: FFAppState().language,
                                     );
                                     if ((_model.apiResultsc0?.succeeded ??
                                         true)) {

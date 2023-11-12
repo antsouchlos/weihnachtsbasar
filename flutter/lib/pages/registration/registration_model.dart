@@ -40,6 +40,16 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'tohimwxm' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for EmailField widget.
   FocusNode? emailFieldFocusNode;
   TextEditingController? emailFieldController;
@@ -103,6 +113,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
 
   void initState(BuildContext context) {
     nameFieldControllerValidator = _nameFieldControllerValidator;
+    textController2Validator = _textController2Validator;
     emailFieldControllerValidator = _emailFieldControllerValidator;
     phoneFieldControllerValidator = _phoneFieldControllerValidator;
     footerModel = createModel(context, () => FooterModel());

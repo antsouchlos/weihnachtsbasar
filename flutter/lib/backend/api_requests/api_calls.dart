@@ -181,6 +181,7 @@ class AddRegistrationCall {
     String? phone = '',
     String? standname = '',
     String? shiftText = '',
+    String? language = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add registration',
@@ -196,6 +197,7 @@ class AddRegistrationCall {
         'phone': phone,
         'standname': standname,
         'shift_text': shiftText,
+        'language': language,
       },
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
@@ -459,13 +461,13 @@ class TestUserCredentialsCall {
       );
 }
 
-class AddStandForUserEmailCall {
+class GetStandForUserEmailCall {
   static Future<ApiCallResponse> call({
     String? email = '',
     String? authString = '',
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'Add stand for user email',
+      callName: 'Get stand for user email',
       apiUrl:
           'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/users/stand/${email}',
       callType: ApiCallType.GET,
