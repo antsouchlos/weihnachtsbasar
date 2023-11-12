@@ -357,7 +357,7 @@ def check_login_validity():
 @auth.login_required
 def get_user_stand(email):
     try:
-        data = db_handler.get_stand_for_user(email)
+        data = db_handler.get_stands_for_user(email)
         response = jsonify(data)
         response.headers.add('Access-Control-Allow-Origin', '*')
         route_logger.info(f"Fetched list of all users")
