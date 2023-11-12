@@ -36,14 +36,14 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     return null;
   }
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
+  // State field(s) for SurnameField widget.
+  FocusNode? surnameFieldFocusNode;
+  TextEditingController? surnameFieldController;
+  String? Function(BuildContext, String?)? surnameFieldControllerValidator;
+  String? _surnameFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'tohimwxm' /* Field is required */,
+        'e4wxmcba' /* Field is required */,
       );
     }
 
@@ -113,7 +113,7 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
 
   void initState(BuildContext context) {
     nameFieldControllerValidator = _nameFieldControllerValidator;
-    textController2Validator = _textController2Validator;
+    surnameFieldControllerValidator = _surnameFieldControllerValidator;
     emailFieldControllerValidator = _emailFieldControllerValidator;
     phoneFieldControllerValidator = _phoneFieldControllerValidator;
     footerModel = createModel(context, () => FooterModel());
@@ -124,8 +124,8 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     nameFieldFocusNode?.dispose();
     nameFieldController?.dispose();
 
-    textFieldFocusNode?.dispose();
-    textController2?.dispose();
+    surnameFieldFocusNode?.dispose();
+    surnameFieldController?.dispose();
 
     emailFieldFocusNode?.dispose();
     emailFieldController?.dispose();

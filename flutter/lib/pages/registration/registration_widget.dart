@@ -44,8 +44,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
     _model.nameFieldController ??= TextEditingController();
     _model.nameFieldFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.surnameFieldController ??= TextEditingController();
+    _model.surnameFieldFocusNode ??= FocusNode();
 
     _model.emailFieldController ??= TextEditingController();
     _model.emailFieldFocusNode ??= FocusNode();
@@ -224,8 +224,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                    controller: _model.textController2,
-                                    focusNode: _model.textFieldFocusNode,
+                                    controller: _model.surnameFieldController,
+                                    focusNode: _model.surnameFieldFocusNode,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText:
@@ -287,7 +287,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           fontFamily: 'Inter',
                                           fontSize: 16.0,
                                         ),
-                                    validator: _model.textController2Validator
+                                    validator: _model
+                                        .surnameFieldControllerValidator
                                         .asValidator(context),
                                   ),
                                 ),
@@ -736,6 +737,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                       standname: _model.standDropdownValue,
                                       shiftText: _model.shiftDropdownValue,
                                       language: FFAppState().language,
+                                      surname:
+                                          _model.surnameFieldController.text,
                                     );
                                     if ((_model.apiResultsc0?.succeeded ??
                                         true)) {

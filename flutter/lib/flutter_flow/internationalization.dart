@@ -167,7 +167,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nh33btgd': {
       'de': 'Abbau',
-      'el': 'Καθάρισμα',
+      'el': 'Αποξύλωση',
     },
     'wxp0hk0b': {
       'de': 'Weiter zur Anmeldung',
@@ -280,11 +280,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'tohimwxm': {
+    'e4wxmcba': {
       'de': 'Field is required',
       'el': '',
     },
-    '5bu8k0hb': {
+    'ld7y6rru': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },

@@ -182,6 +182,7 @@ class AddRegistrationCall {
     String? standname = '',
     String? shiftText = '',
     String? language = '',
+    String? surname = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Add registration',
@@ -198,6 +199,7 @@ class AddRegistrationCall {
         'standname': standname,
         'shift_text': shiftText,
         'language': language,
+        'surname': surname,
       },
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
