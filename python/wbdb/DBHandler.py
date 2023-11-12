@@ -57,9 +57,6 @@ import time
 #
 
 
-# TODO: Only show data if authenticated
-# TODO: Replace print statement with proper logging
-# TODO: Don't do error handling of the normal program flow with exceptions
 class DBHandler:
     """Class which handles database stuff."""
 
@@ -142,14 +139,14 @@ class DBHandler:
         else:
             raise Exception(f"A stand with this name does not exist: {standname}")
 
-    def add_registration(self, name, email, phone, standname, shift_text):
+    def add_registration(self, firstname, surname, email, phone, standname, shift_text):
         """Add new registration."""
         shift_id = self._get_shift_id_by_text(shift_text)
 
         stand_slug = self._get_stand_slug_by_name(standname)
         stand_table = self._db.table(stand_slug)
 
-        stand_table.insert({"shift_id": shift_id, "name": name, "email": email, "phone": phone})
+        stand_table.insert({"shift_id": shift_id, "firstname": firstname, "surname": surname, "name": f"{firstname} {surname}", "email": email, "phone": phone})
 
     def remove_registration(self, standname: str, shift_text: int,
                             email: str):

@@ -138,6 +138,7 @@ def post_registration():
     # Fetch and validate request data
 
     helper_name = bleach.clean(request.form['name'])
+    helper_surname = bleach.clean(request.form['surname'])
     helper_email = bleach.clean(request.form['email'])
     helper_phone = bleach.clean(request.form['phone'])
     standname = bleach.clean(request.form['standname'])
@@ -147,7 +148,8 @@ def post_registration():
     # Add registration
 
     try:
-        db_handler.add_registration(helper_name, helper_email, helper_phone, standname, shift_text)
+        db_handler.add_registration(helper_name, helper_surname, helper_email, helper_phone, standname, shift_text)
+        helper_name = f"{helper_name} {helper_surname}"
         route_logger.info(
             f"Added new registration: ({helper_name}, {helper_email}, {helper_phone}, {standname}, {shift_text})")
         user = db_handler.get_responsible_for_stand(standname)
