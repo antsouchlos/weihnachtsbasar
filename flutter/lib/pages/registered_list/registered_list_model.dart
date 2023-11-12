@@ -16,21 +16,17 @@ class RegisteredListModel extends FlutterFlowModel<RegisteredListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for StandCard component.
-  late StandCardModel standCardModel;
   // Model for Footer component.
   late FooterModel footerModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    standCardModel = createModel(context, () => StandCardModel());
     footerModel = createModel(context, () => FooterModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    standCardModel.dispose();
     footerModel.dispose();
   }
 

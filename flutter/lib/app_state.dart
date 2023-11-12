@@ -17,29 +17,45 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _username = prefs.getString('ff_username') ?? _username;
+    });
+    _safeInit(() {
+      _password = prefs.getString('ff_password') ?? _password;
+    });
+    _safeInit(() {
+      _language = prefs.getString('ff_language') ?? _language;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
 
+  late SharedPreferences prefs;
+
   String _username = '';
   String get username => _username;
   set username(String _value) {
     _username = _value;
+    prefs.setString('ff_username', _value);
   }
 
   String _password = '';
   String get password => _password;
   set password(String _value) {
     _password = _value;
+    prefs.setString('ff_password', _value);
   }
 
   String _language = 'de';
   String get language => _language;
   set language(String _value) {
     _language = _value;
+    prefs.setString('ff_language', _value);
   }
 
   final _getStandsManager = FutureRequestManager<ApiCallResponse>();

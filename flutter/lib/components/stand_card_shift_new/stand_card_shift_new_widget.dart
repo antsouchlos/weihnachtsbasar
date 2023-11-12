@@ -118,6 +118,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                         status: true,
                         standname: widget.standname,
                         shiftText: widget.shiftText,
+                        authString: functions.getAuthHeaderContent(
+                            FFAppState().username, FFAppState().password),
                       );
                       if (!(_model.apiResultqy1?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -141,6 +143,8 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                         status: false,
                         standname: widget.standname,
                         shiftText: widget.shiftText,
+                        authString: functions.getAuthHeaderContent(
+                            FFAppState().username, FFAppState().password),
                       );
                       if (!(_model.apiResultjho?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -152,8 +156,7 @@ class _StandCardShiftNewWidgetState extends State<StandCardShiftNewWidget> {
                               ),
                             ),
                             duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                            backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
                       }

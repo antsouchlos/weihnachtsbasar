@@ -21,7 +21,9 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  final formKey = GlobalKey<FormState>();
+  final formKey3 = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -35,10 +37,30 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   FocusNode? standNameDEFocusNode;
   TextEditingController? standNameDEController;
   String? Function(BuildContext, String?)? standNameDEControllerValidator;
+  String? _standNameDEControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'wz9d5dsb' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for StandnameGR widget.
   FocusNode? standnameGRFocusNode;
   TextEditingController? standnameGRController;
   String? Function(BuildContext, String?)? standnameGRControllerValidator;
+  String? _standnameGRControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '896baaou' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Backend Call - API (Add stand)] action in IconButton widget.
   ApiCallResponse? apiResultkn2;
   // Stores action output result for [Backend Call - API (Delete user)] action in IconButton widget.
@@ -50,7 +72,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? _nameFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'v57fpinr' /* Field is required */,
+        'f2nexva6' /* Field is required */,
       );
     }
 
@@ -64,7 +86,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? _emailFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'ieivauvc' /* Field is required */,
+        'du0it98j' /* Field is required */,
       );
     }
 
@@ -78,7 +100,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? _phoneFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'ian8ggsx' /* Field is required */,
+        'wumah45p' /* Field is required */,
       );
     }
 
@@ -93,7 +115,7 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   String? _passwordFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'en1eqln8' /* Field is required */,
+        'oze2ex19' /* Field is required */,
       );
     }
 
@@ -113,10 +135,30 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   FocusNode? shiftTextDEFocusNode;
   TextEditingController? shiftTextDEController;
   String? Function(BuildContext, String?)? shiftTextDEControllerValidator;
+  String? _shiftTextDEControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'cgrlwb9u' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ShiftTextGR widget.
   FocusNode? shiftTextGRFocusNode;
   TextEditingController? shiftTextGRController;
   String? Function(BuildContext, String?)? shiftTextGRControllerValidator;
+  String? _shiftTextGRControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '3u6v1nos' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Backend Call - API (Add shift)] action in IconButton widget.
   ApiCallResponse? apiResultdsv;
   bool apiRequestCompleted3 = false;
@@ -125,11 +167,15 @@ class AdminPageModel extends FlutterFlowModel<AdminPageWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    standNameDEControllerValidator = _standNameDEControllerValidator;
+    standnameGRControllerValidator = _standnameGRControllerValidator;
     nameFieldControllerValidator = _nameFieldControllerValidator;
     emailFieldControllerValidator = _emailFieldControllerValidator;
     phoneFieldControllerValidator = _phoneFieldControllerValidator;
     passwordFieldVisibility = false;
     passwordFieldControllerValidator = _passwordFieldControllerValidator;
+    shiftTextDEControllerValidator = _shiftTextDEControllerValidator;
+    shiftTextGRControllerValidator = _shiftTextGRControllerValidator;
   }
 
   void dispose() {

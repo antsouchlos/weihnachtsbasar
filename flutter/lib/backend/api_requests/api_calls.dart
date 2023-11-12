@@ -379,7 +379,7 @@ class GetUsersCall {
       );
   static dynamic standnameList(dynamic response) => getJsonField(
         response,
-        r'''$[:]['standname']''',
+        r'''$[:]['standnames']''',
         true,
       );
 }
@@ -486,15 +486,18 @@ class GetStandForUserEmailCall {
 
   static dynamic standSlug(dynamic response) => getJsonField(
         response,
-        r'''$['stand_slug']''',
+        r'''$[:]['stand_slug']''',
+        true,
       );
   static dynamic standnameDE(dynamic response) => getJsonField(
         response,
-        r'''$['standname_de']''',
+        r'''$[:]['standname_de']''',
+        true,
       );
   static dynamic standnameGR(dynamic response) => getJsonField(
         response,
-        r'''$['standname_gr']''',
+        r'''$[:]['standname_gr']''',
+        true,
       );
 }
 

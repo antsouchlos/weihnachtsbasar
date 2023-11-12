@@ -112,48 +112,58 @@ class _RegisteredListWidgetState extends State<RegisteredListWidget> {
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     alignment: AlignmentDirectional(0.00, 0.00),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FutureBuilder<ApiCallResponse>(
-                            future: GetStandForUserEmailCall.call(
-                              email: FFAppState().username,
-                              authString: functions.getAuthHeaderContent(
-                                  FFAppState().username, FFAppState().password),
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              final standCardGetStandForUserEmailResponse =
-                                  snapshot.data!;
-                              return wrapWithModel(
-                                model: _model.standCardModel,
-                                updateCallback: () => setState(() {}),
-                                child: StandCardWidget(
-                                  standName:
-                                      GetStandForUserEmailCall.standnameDE(
-                                    standCardGetStandForUserEmailResponse
-                                        .jsonBody,
-                                  ).toString(),
-                                ),
-                              );
-                            },
-                          ),
-                        ].divide(SizedBox(height: 5.0)),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetStandForUserEmailCall.call(
+                        email: FFAppState().username,
+                        authString: functions.getAuthHeaderContent(
+                            FFAppState().username, FFAppState().password),
                       ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        final columnGetStandForUserEmailResponse =
+                            snapshot.data!;
+                        return Builder(
+                          builder: (context) {
+                            final standsList =
+                                (GetStandForUserEmailCall.standnameDE(
+                                      columnGetStandForUserEmailResponse
+                                          .jsonBody,
+                                    ) as List)
+                                        .map<String>((s) => s.toString())
+                                        .toList()
+                                        ?.toList() ??
+                                    [];
+                            return SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: List.generate(standsList.length,
+                                    (standsListIndex) {
+                                  final standsListItem =
+                                      standsList[standsListIndex];
+                                  return StandCardWidget(
+                                    key: Key(
+                                        'Keyuhh_${standsListIndex}_of_${standsList.length}'),
+                                    standName: standsListItem,
+                                  );
+                                }).divide(SizedBox(height: 5.0)),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                   wrapWithModel(

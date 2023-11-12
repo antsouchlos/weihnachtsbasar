@@ -534,7 +534,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                           await _model
                                               .waitForApiRequestCompleted();
                                         },
-                                        width: 300.0,
+                                        width: 350.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -676,14 +676,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                               _model.shiftDropdownValue = val);
                                           _model.clearGetShiftsForStandCache();
                                         },
-                                        width: 300.0,
-                                        height: 80.0,
+                                        width: 350.0,
+                                        height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Inter',
                                               fontSize: 16.0,
-                                              lineHeight: 2.0,
                                             ),
                                         hintText:
                                             FFLocalizations.of(context).getText(

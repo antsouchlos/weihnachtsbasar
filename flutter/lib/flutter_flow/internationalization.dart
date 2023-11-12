@@ -167,7 +167,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nh33btgd': {
       'de': 'Abbau',
-      'el': 'Αποξύλωση',
+      'el': 'Αποξήλωση',
     },
     'wxp0hk0b': {
       'de': 'Weiter zur Anmeldung',
@@ -360,7 +360,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'el': 'Σύνδεση για υπεύθυνους',
     },
     'b08e8pzu': {
-      'de': 'Username',
+      'de': 'Email',
       'el': 'Username',
     },
     'yxh9xf6w': {
@@ -425,6 +425,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Stand name GR',
       'el': 'Stand name GR',
     },
+    'wz9d5dsb': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'w62de90f': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    '896baaou': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'fobwrwkg': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
     '7ua3kj9e': {
       'de': 'Users',
       'el': 'Users',
@@ -453,35 +469,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Search for an item...',
       'el': '',
     },
-    'v57fpinr': {
+    'f2nexva6': {
       'de': 'Field is required',
       'el': '',
     },
-    '5geh6e4v': {
+    'badwff9e': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'ieivauvc': {
+    'du0it98j': {
       'de': 'Field is required',
       'el': '',
     },
-    'qkq1nyyi': {
+    'tx59dvs9': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'ian8ggsx': {
+    'wumah45p': {
       'de': 'Field is required',
       'el': '',
     },
-    'vfzc7fw6': {
+    '6n81j1gh': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
-    'en1eqln8': {
+    'oze2ex19': {
       'de': 'Field is required',
       'el': '',
     },
-    'z5y4z57e': {
+    '5r3j95hr': {
       'de': 'Please choose an option from the dropdown',
       'el': '',
     },
@@ -496,6 +512,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v7of0ds5': {
       'de': 'Text GR',
       'el': 'Text GR',
+    },
+    'cgrlwb9u': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    's6yzjffc': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
+    },
+    '3u6v1nos': {
+      'de': 'Field is required',
+      'el': '',
+    },
+    'zzdym3jb': {
+      'de': 'Please choose an option from the dropdown',
+      'el': '',
     },
     'de94tqxz': {
       'de': 'Registrations',

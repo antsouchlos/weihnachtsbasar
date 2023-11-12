@@ -139,7 +139,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   decoration: InputDecoration(
                                     labelText:
                                         FFLocalizations.of(context).getText(
-                                      'b08e8pzu' /* Username */,
+                                      'b08e8pzu' /* Email */,
                                     ),
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
