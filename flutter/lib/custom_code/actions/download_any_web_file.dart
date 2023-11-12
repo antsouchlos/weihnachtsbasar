@@ -16,18 +16,16 @@ import 'package:dio/dio.dart';
 import 'package:mime_type/mime_type.dart';
 import 'dart:html' as html;
 
-Future downloadAnyWebFile(String? url) async {
+Future downloadAnyWebFile(String? url, String? authString) async {
   Dio dio = Dio();
   try {
     // Fetch the file
-    Response response =
-        await dio.get(url!, options: Options(responseType: ResponseType.bytes));
+    Response response = await dio.get(url!,
+        options: Options(responseType: ResponseType.bytes, headers: {
+          "authorization": authString,
+        }));
 
-    // Generate a unique file name
-    String? ext = (url!.split(".").last);
-    String? extension = (ext.split("?").first);
-    String fileName =
-        'downloaded_file_${DateTime.now().millisecondsSinceEpoch.toString()}.$extension';
+    String fileName = 'helfer.xlsx';
 
     // Create a download link
     final anchor = html.AnchorElement(

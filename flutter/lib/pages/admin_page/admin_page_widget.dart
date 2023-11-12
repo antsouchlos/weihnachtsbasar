@@ -2437,6 +2437,9 @@ class _AdminPageWidgetState extends State<AdminPageWidget>
                                         onPressed: () async {
                                           await actions.downloadAnyWebFile(
                                             'http://weihnachtsbasar-athen-anmeldung.com:5000/api/v2/registrations/download/',
+                                            functions.getAuthHeaderContent(
+                                                FFAppState().username,
+                                                FFAppState().password),
                                           );
                                         },
                                         text:
