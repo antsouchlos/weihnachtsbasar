@@ -32,7 +32,7 @@ def get_shifts():
 def get_shifts_for_stand(standname):
     """Get a list of shifts open for registration for a given stand."""
     try:
-        # Handle API call before stands hvae been loaded
+        # Handle API call before stands have been loaded
         if standname == "null":
             return get_shifts()
 
@@ -42,8 +42,10 @@ def get_shifts_for_stand(standname):
         route_logger.info(f"Fetched list of shifts open for registration")
         return response
     except Exception as e:
-        route_logger.exception(f"Exception occurred while fetching shifts open for registration")
-        return utility.gen_error("Unable to download shifts open for registration")
+        route_logger.exception(
+            f"Exception occurred while fetching shifts open for registration")
+        return utility.gen_error(
+            "Unable to download shifts open for registration")
 
 
 @app.route("/api/v2/shifts", methods=["POST"])
@@ -54,9 +56,6 @@ def post_shift():
 
     text_de = bleach.clean(request.form['text_de'])
     text_gr = bleach.clean(request.form['text_gr'])
-
-    if (text_de is None) or (text_gr is None):
-        return utility.gen_error("Missing data fields")
 
     # Add shift
 
@@ -107,9 +106,6 @@ def post_stand():
     standname_de = bleach.clean(request.form['standname_de'])
     standname_gr = bleach.clean(request.form['standname_gr'])
 
-    if (standname_de is None) or (standname_gr is None):
-        return utility.gen_error("Missing data fields")
-
     # Add stand
 
     try:
@@ -147,21 +143,21 @@ def post_registration():
     standname = bleach.clean(request.form['standname'])
     shift_text = bleach.clean(request.form['shift_text'])
 
-    if (name is None) or (email is None) or (phone is None) or (standname is None) or (shift_text is None):
-        return utility.gen_error("Missing data fields")
-
     # Add registration
 
     try:
         db_handler.add_registration(name, email, phone, standname, shift_text)
-        route_logger.info(f"Added new registration: ({name}, {email}, {phone}, {standname}, {shift_text})")
+        route_logger.info(
+            f"Added new registration: ({name}, {email}, {phone}, {standname}, {shift_text})")
         return utility.gen_success("Added new registration")
     except Exception as e:
         route_logger.exception(f"Exception occurred while adding registration")
         return utility.gen_error("Unable to add registration")
 
 
-@app.route("/api/v2/registrations/<path:standname>/<path:shift_text>/<path:email>", methods=["DELETE"])
+@app.route(
+    "/api/v2/registrations/<path:standname>/<path:shift_text>/<path:email>",
+    methods=["DELETE"])
 @require_standname_or_admin_role
 def delete_registration(standname, shift_text, email):
     """Remove existing registration."""
@@ -171,21 +167,21 @@ def delete_registration(standname, shift_text, email):
     shift_text = bleach.clean(shift_text)
     email = bleach.clean(email)
 
-    if (standname is None) or (shift_text is None) or (email is None):
-        return utility.gen_error("Missing data fields")
-
     # Remove registration
 
     try:
         db_handler.remove_registration(standname, shift_text, email)
-        route_logger.info(f"Removed registration: ({standname}, {shift_text}, {email})")
+        route_logger.info(
+            f"Removed registration: ({standname}, {shift_text}, {email})")
         return utility.gen_success("Removed registration")
     except Exception as e:
-        route_logger.exception(f"Exception occurred while removing registration")
+        route_logger.exception(
+            f"Exception occurred while removing registration")
         return utility.gen_error("Unable to remove registration")
 
 
-@app.route("/api/v2/registrations/<path:standname>/<path:shift_text>", methods=["GET"])
+@app.route("/api/v2/registrations/<path:standname>/<path:shift_text>",
+           methods=["GET"])
 @require_standname_or_admin_role
 def get_registrations(standname, shift_text):
     """Get registrations for a specific shift of a stand."""
@@ -206,22 +202,25 @@ def get_registrations(standname, shift_text):
         route_logger.info(f"Fetched list of relevant registrations")
         return response
     except Exception as e:
-        route_logger.exception(f"Exception occurred while fetching registrations")
+        route_logger.exception(
+            f"Exception occurred while fetching registrations")
         return utility.gen_error("Unable to download registrations")
 
 
 @app.route("/api/v2/registrations/download/", methods=["GET"])
 @require_standname_or_admin_role
-def download_registrations(): 
+def download_registrations():
     try:
         return send_file('{0}/db.json'.format(os.getcwd()), as_attachment=True)
         route_logger.info(f"Sent data as excel")
     except Exception as e:
-        route_logger.exception(f"Exception occurred while sending data as excel")
+        route_logger.exception(
+            f"Exception occurred while sending data as excel")
         return utility.gen_error("Unable to download registrations")
 
 
-@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["POST"])
+@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>",
+           methods=["POST"])
 @require_standname_or_admin_role
 def set_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
@@ -231,21 +230,21 @@ def set_registration_status(standname, shift_text):
     shift_text = bleach.clean(shift_text)
     status = ((bleach.clean(request.form['status'])) == "true")
 
-    if status is None:
-        return utility.gen_error("Missing data fields")
-
     # Set registration status
 
     try:
         db_handler.set_registration_status(standname, shift_text, status)
-        route_logger.info(f"Set registration status: ({standname}, {shift_text}, {status})")
+        route_logger.info(
+            f"Set registration status: ({standname}, {shift_text}, {status})")
         return utility.gen_success("Set registration status")
     except Exception as e:
-        route_logger.exception(f"Exception occurred while setting registration status")
+        route_logger.exception(
+            f"Exception occurred while setting registration status")
         return utility.gen_error("Unable to set registration status")
 
 
-@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>", methods=["GET"])
+@app.route("/api/v2/registrations/status/<path:standname>/<path:shift_text>",
+           methods=["GET"])
 @require_standname_or_admin_role
 def get_registration_status(standname, shift_text):
     """Open or close registration for a shift of a given stand."""
@@ -263,7 +262,8 @@ def get_registration_status(standname, shift_text):
         route_logger.info(f"Fetched registration status")
         return response
     except Exception as e:
-        route_logger.exception(f"Exception occurred while fetching registration status")
+        route_logger.exception(
+            f"Exception occurred while fetching registration status")
         return utility.gen_error("Unable to get registration status")
 
 
@@ -280,7 +280,8 @@ def post_user():
 
     try:
         db_handler.add_user(name, email, phone, password_hash, standname)
-        route_logger.info(f"Added user: ({name}, {email}, {phone}, {password}, {standname})")
+        route_logger.info(
+            f"Added user: ({name}, {email}, {phone}, {password}, {standname})")
         return utility.gen_success("Added user")
     except Exception as e:
         route_logger.exception(f"Exception occurred while adding user")
@@ -347,6 +348,6 @@ def get_user_stand(email):
         route_logger.info(f"Fetched list of all users")
         return response
     except Exception as e:
-        route_logger.exception(f"Exception occurred while getting stand for user")
+        route_logger.exception(
+            f"Exception occurred while getting stand for user")
         return utility.gen_error("Unable to get stand for user")
-
