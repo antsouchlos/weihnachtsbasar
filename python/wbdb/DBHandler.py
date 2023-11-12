@@ -6,6 +6,7 @@ import os
 from wbdb import utility
 import json
 import time
+import pandas as pd
 
 
 # =================================
@@ -178,13 +179,36 @@ class DBHandler:
 
         while True:
             try:
-                result = [{"name": reg['name'], "email": reg['email'], "phone": reg['phone']} for reg in stand_table.search(Registration.shift_id == shift_id)]
+                result = [{"name": reg['name'], "firstname": reg["firstname"], "surname": reg["surname"], "email": reg['email'], "phone": reg['phone']} for reg in stand_table.search(Registration.shift_id == shift_id)]
                 break
             except json.decoder.JSONDecodeError as e:
                 time.sleep(0.1)
                 continue
         return result
 
+    def get_all_registrations(self):
+        db_shifts = self.get_shifts()
+        db_stands = self.get_stands()
+
+        firstnames = []
+        surnames = []
+        emails = []
+        phones = []
+        stands = []
+        shifts = []
+
+        for stand in db_stands:
+            for shift in db_shifts:
+                registrations = self.get_registrations(stand["standname_de"], shift["text_de"])
+                for reg in registrations:
+                    firstnames.append(reg["firstname"])
+                    surnames.append(reg["surname"])
+                    emails.append(reg["email"])
+                    phones.append(reg["phone"])
+                    stands.append(stand["standname_de"])
+                    shifts.append(shift["text_de"])
+
+        return pd.DataFrame({"Name": firstnames, "Surname": surnames, "Email": emails, "Phone": phones, "Stand": stands, "Shift": shifts})
 
     # Stand stuff
 

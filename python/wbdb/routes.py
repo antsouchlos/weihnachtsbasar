@@ -221,10 +221,12 @@ def get_registrations(standname, shift_text):
 
 
 @app.route("/api/v2/registrations/download/", methods=["GET"])
-@require_standname_or_admin_role
+@auth.login_required(role="admin")
 def download_registrations():
     try:
-        return send_file('{0}/db.json'.format(os.getcwd()), as_attachment=True)
+        df = db_handler.get_all_registrations()
+        df.to_excel(f"{os.getcwd()}/temp.xlsx")
+        return send_file(f'{os.getcwd()}/temp.xlsx', as_attachment=True)
         route_logger.info(f"Sent data as excel")
     except Exception as e:
         route_logger.exception(
