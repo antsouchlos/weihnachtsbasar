@@ -436,3 +436,20 @@ class DBHandler:
                   "standname_de": stand["standname_de"],
                   "standname_gr": stand["standname_gr"]}
         return result
+
+
+    def get_responsible_for_stand(self, standname):
+        stand_slug = self._get_stand_slug_by_name(standname)
+        
+        user_table = self._db.table("users")
+
+        User = Query()
+        users = user_table.search(User.stand_slug == stand_slug)
+
+        if len(users) == 0:
+            raise Exception(f"A user responsible for stand {stand_slug} could not be found")
+
+        user = users[0]
+        result = {"name": user["name"], "email": user["email"], "phone": user["phone"]}
+        return result
+

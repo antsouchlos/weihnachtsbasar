@@ -137,18 +137,29 @@ def post_registration():
     """Add new registration."""
     # Fetch and validate request data
 
-    name = bleach.clean(request.form['name'])
-    email = bleach.clean(request.form['email'])
-    phone = bleach.clean(request.form['phone'])
+    helper_name = bleach.clean(request.form['name'])
+    helper_email = bleach.clean(request.form['email'])
+    helper_phone = bleach.clean(request.form['phone'])
     standname = bleach.clean(request.form['standname'])
     shift_text = bleach.clean(request.form['shift_text'])
+    language = bleach.clean(request.form['language'])
 
     # Add registration
 
     try:
-        db_handler.add_registration(name, email, phone, standname, shift_text)
+        db_handler.add_registration(helper_name, helper_email, helper_phone, standname, shift_text)
         route_logger.info(
-            f"Added new registration: ({name}, {email}, {phone}, {standname}, {shift_text})")
+            f"Added new registration: ({helper_name}, {helper_email}, {helper_phone}, {standname}, {shift_text})")
+        user = db_handler.get_responsible_for_stand(standname)
+
+        responsible_name = user["name"]
+        #responsible_email = user["email"]
+        responsible_email = "an.tsouchlos@gmail.com"
+        responsible_phone = user["phone"]
+
+        send_responsible_email(recipients=[responsible_email], helper_name=helper_name, helper_email=helper_email, helper_phone=helper_phone, stand=standname, shift=shift_text)
+        send_helper_email(recipients=[helper_email], responsible_name=responsible_name, responsible_email=responsible_email, responsible_phone=responsible_phone, stand=standname, language=language)
+
         return utility.gen_success("Added new registration")
     except Exception as e:
         route_logger.exception(f"Exception occurred while adding registration")
