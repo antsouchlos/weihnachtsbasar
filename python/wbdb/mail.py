@@ -38,8 +38,7 @@ Der/Die Verantwortliche für diesen Stand ist:
 {responsible_email}
 {responsible_phone}
 
-Er/Sie wird in nächster Zeit zu Ihnen Kontakt aufnehmen.
-Bei weiteren Fragen oder anliegen melden Sie sich bitte bei dem/der Standverantwortlichen.
+Er/Sie wird in nächster Zeit Kontakt zu Ihnen aufnehmen, oder melden Sie sich bei dem/der Standverantwortlichen.
 
 Elektronische Helferanmeldung
 """
