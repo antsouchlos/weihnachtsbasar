@@ -3,3 +3,4 @@ __pycache__/
 python/db.json
 python/wbdb.log
 python/venv
+python/wbdb/config.py
