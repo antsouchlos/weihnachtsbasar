@@ -5,3 +5,4 @@ python/wbdb.log
 python/venv
 python/wbdb/config.py
 python/temp.xlsx
+python/db_backup*

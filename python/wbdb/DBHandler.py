@@ -21,7 +21,7 @@ import pandas as pd
 #             "name": "asdf adsf",
 #             "phone": "123456543",
 #             "password_hash": "efgh",
-#             "stand_slug": "stand0_slug",
+#             "stand_slugs": ["stand0_slug"],
 #             "roles": ["Stand0", "Stand1", ...]
 #         },
 #         {
@@ -326,18 +326,29 @@ class DBHandler:
 
     def add_user(self, name: str, email: str, phone: str, password_hash: str, standname: str):
         """Add a new user."""
-        stand_slug = self._get_stand_slug_by_name(standname)
-        roles = [stand_slug]
-
         user_table = self._db.table("users")
 
         User = Query()
-        if len(user_table.search(User["email"] == email)) > 0:
-            raise Exception(
-                f"A user with the email {email} already exists")
+        users = user_table.search(User["email"] == email)
+        if len(users) > 0:
+            stand_slug = self._get_stand_slug_by_name(standname)
 
-        user_table.insert(
-            {"name": name, "email": email, "phone": phone, "password_hash": password_hash, "stand_slug": stand_slug, "roles": roles})
+            user = users[0]
+            slugs = user["stand_slugs"]
+            roles = user["roles"]
+
+            slugs.append(stand_slug)
+            roles.append(stand_slug)
+
+            user_table.update({}, User.email == email)
+            user_table.update(
+                {"name": name, "email": email, "phone": phone, "password_hash": password_hash, "stand_slugs": slugs, "roles": roles}, User.email == email)
+
+        else:
+            stand_slug = self._get_stand_slug_by_name(standname)
+            roles = [stand_slug]
+            user_table.insert(
+                {"name": name, "email": email, "phone": phone, "password_hash": password_hash, "stand_slugs": [stand_slug], "roles": roles})
 
     def remove_user(self, email: str):
         """Remove an existing user."""
@@ -370,12 +381,12 @@ class DBHandler:
 
         result = []
         for user in user_table.all():
-            standname = self._get_standname_by_stand_slug(user["stand_slug"])
+            standnames = [self._get_standname_by_stand_slug(stand_slug) for stand_slug in user["stand_slugs"]]
             result.append(
                 {"email": user["email"],
                  "name": user["name"],
                  "phone": user["phone"],
-                 "standname": standname,
+                 "standnames": standnames,
                  "password_hash": user["password_hash"],
                  "roles": user["roles"]})
 
@@ -434,7 +445,7 @@ class DBHandler:
 
         return {"status": status}
 
-    def get_stand_for_user(self, email):
+    def get_stands_for_user(self, email):
 
         blacklist_table = self._db.table("registration_blacklist")
         user_table = self._db.table("users")
@@ -444,18 +455,21 @@ class DBHandler:
         if len(users) == 0:
             raise Exception(f"An error occurred while getting stand for user: A user with the email '{email}' does not exist")
 
-        stand_slug = users[0]["stand_slug"]
+        stand_slugs = users[0]["stand_slugs"]
 
-        Stand = Query()
-        stands = blacklist_table.search(Stand.stand_slug == stand_slug)
-        if len(stands) == 0:
-            raise Exception(f"An error occurred while getting stand for user: A stand with the slug '{stand_slug}' does not exist")
-        stand = stands[0]
+        result = []
 
+        for stand_slug in stand_slugs:
+            Stand = Query()
+            stands = blacklist_table.search(Stand.stand_slug == stand_slug)
+            if len(stands) == 0:
+                raise Exception(f"An error occurred while getting stand for user: A stand with the slug '{stand_slug}' does not exist")
+            stand = stands[0]
 
-        result = {"stand_slug": stand["stand_slug"],
-                  "standname_de": stand["standname_de"],
-                  "standname_gr": stand["standname_gr"]}
+            result.append({"stand_slug": stand["stand_slug"],
+                      "standname_de": stand["standname_de"],
+                      "standname_gr": stand["standname_gr"]})
+
         return result
 
 
